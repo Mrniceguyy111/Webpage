@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('content');
+            $table->unsignedBigInteger('category');
             $table->integer('is_active')->default(1);
             $table->timestamps();
 
+            $table->foreign('category')->references('id')->on('post_categories');
             $table->foreign('author_id')->references('id')->on('users');
         });
     }

@@ -1,4 +1,5 @@
 import './bootstrap';
+import './custom';
 
 import Alpine from 'alpinejs';
 import focus from '@alpinejs/focus';
@@ -10,7 +11,6 @@ Alpine.start();
 
 
 
-'use strict';
 
 // modal variables
 const modal = document.querySelector('[data-modal]');
@@ -23,10 +23,6 @@ const modalCloseFunc = function () { modal.classList.add('closed') }
 // modal eventListener
 modalCloseOverlay.addEventListener('click', modalCloseFunc);
 modalCloseBtn.addEventListener('click', modalCloseFunc);
-
-
-
-
 
 // notification toast variables
 const notificationToast = document.querySelector('[data-toast]');
@@ -98,3 +94,31 @@ for (let i = 0; i < accordionBtn.length; i++) {
   });
 
 }
+
+
+// Shopping card
+
+const deployShoppingCart = document.querySelector(".deploy-shoppingcart")
+const containerShoppingCart = document.querySelector(".container-shoppingcart")
+const deployShoppingCartMobile = document.querySelector(".deploy-shoppingcart-mobile")
+const closeShoppingCart = document.querySelector(".close-shoppingcar")
+const continueShoppingCart = document.querySelector(".continue-cartshopping")
+
+deployShoppingCart.addEventListener('click', deployscard)
+deployShoppingCartMobile.addEventListener('click', deployscardMobile)
+closeShoppingCart.addEventListener("click", closeCartShopping)
+continueShoppingCart.addEventListener("click", continueCartShoppingClose)
+function continueCartShoppingClose() {
+  containerShoppingCart.classList.add("inactive")
+}
+function deployscard() {
+  containerShoppingCart.classList.remove("inactive")
+}
+function deployscardMobile() {
+  containerShoppingCart.classList.remove("inactive")
+}
+function closeCartShopping() {
+  containerShoppingCart.classList.add("inactive")
+}
+
+

@@ -26,19 +26,23 @@ Route::get('/', function () {
     return view('website.theme-1.index');
 })->name('home');
 
-Route::get('post/{post:slug}', [PostController::class, 'show'])
+Route::get('post/{postCategory:slug}/{post:slug}', [PostController::class, 'show'])
     ->name('post.show');
 
-Route::get('post/{post:id}/delete', [PostController::class, 'delete'])
-    ->name('post.delete');
 
-Route::get('post/{post:id}/edit', [PostController::class, 'edit'])
-    ->name('post.edit');
+Route::get('memberships', function () {
+    return view('website.theme-1.membership');
+});
+
+Route::get('cart', function () {
+    return view('website.theme-1.shopingcart');
+});
+
+
 
 
 
 /* Dashboard */
-
 
 Route::middleware([
     'auth:sanctum',

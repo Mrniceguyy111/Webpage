@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend;
 
 use Livewire\Component;
 use App\Models\User;
+use App\Models\Subscription;
 
 class Userlist extends Component
 {
@@ -12,13 +13,14 @@ class Userlist extends Component
         $name,
         $email,
         $password,
+        $password_confirm,
         $hatchi_coins,
         $is_verified,
         $last_login_ip,
         $last_purchase,
         $total_purchases,
         $email_verified_at,
-        $suscription_level,
+        $subscription,
         $permision_level;
 
     public $modal = false;
@@ -29,19 +31,24 @@ class Userlist extends Component
         $sort_id = "id";
 
     protected $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'email' => 'required|unique:users,name',
+        // 'password' => 'required|min:8|confirmed',
+        // 'password_confirm' => 'required',
     ];
 
     public function render()
     {
         return view('livewire.backend.user.view', [
-            'users' => User::all()
+            'users' => User::all(),
+            'subscriptions' => Subscription::all(),
         ]);
     }
 
     public function store()
     {
         $this->validate();
+
 
         User::updateOrCreate(
             ["id" => $this->user_id],
@@ -55,14 +62,14 @@ class Userlist extends Component
                 'last_purchase' => $this->last_purchase,
                 'total_purchases' => $this->total_purchases,
                 'email_verified_at' => $this->email_verified_at,
-                'suscription_level' => $this->suscription_level,
+                'subscription_level' => $this->subscription,
             ]
 
         );
         $this->editing = false;
         session()->flash(
             "message",
-            $this->event_id ? "¡Actualización exitosa!" : "¡Alta Exitosa!"
+            $this->user_id ? "¡Actualización exitosa!" : "¡Alta Exitosa!"
         );
         $this->closeModal();
     }
@@ -75,12 +82,15 @@ class Userlist extends Component
     public function closeModal()
     {
         $this->modal = false;
+        $this->resetExcept("search");
     }
 
     public function edit($id)
     {
+
         $this->editing = true;
         $user = User::findOrFail($id);
+        $this->user_id = $id;
         $this->name = $user->name;
         $this->email = $user->email;
         $this->password = $user->password;
@@ -90,7 +100,7 @@ class Userlist extends Component
         $this->last_purchase = $user->last_purchase;
         $this->total_purchases = $user->total_purchases;
         $this->email_verified_at = $user->email_verified_at;
-        $this->suscription_level = $user->subscription->name;
+        $this->subscription = $user->subscription_level;
         $this->permision_level = $user->permision_level;
         $this->openModal();
     }

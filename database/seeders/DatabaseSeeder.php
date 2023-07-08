@@ -23,9 +23,16 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
+
+        // $this->call(PostCategorySeeder::class);
+
         \App\Models\Address::factory(5)->create();
+        \App\Models\AnimalsCategory::factory(5)->create();
+        \App\Models\PostCategory::factory(5)->create();
         \App\Models\Post::factory(5)->create();
+
         $this->call(TeamSeeder::class);
+
         DB::unprepared(file_get_contents(__DIR__ . '\Animals.sql'));
         DB::unprepared(file_get_contents(__DIR__ . '\AnimalBreed.sql'));
     }

@@ -26,7 +26,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'subscription_level',
     ];
 
     /**
@@ -62,5 +65,11 @@ class User extends Authenticatable
     public function subscription()
     {
         return $this->belongsTo(Subscription::class, 'subscription_level');
+    }
+
+    public function getLastBuyAttribute()
+    {
+        $lastPurchaseDate = \Carbon\Carbon::parse($this->last_purchase); // Convierte la cadena a un objeto Carbon
+        return $lastPurchaseDate->diffForHumans();
     }
 }

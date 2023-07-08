@@ -5,9 +5,9 @@
                 <div class="mb-4">
                     <h1 class="text-gray-900 text-2xl font-bold ">
                         @if ($editing)
-                            Actualizar
+                        Actualizar
                         @else
-                            Crear
+                        Crear
                         @endif usuario
                     </h1>
                 </div>
@@ -18,90 +18,71 @@
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="name" wire:model.defer="name">
                     @error('name')
-                        <span class="text-red-600">{{ $message }}</span>
+                    <span class="text-red-600">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <div class="mb-4" wire:ignore wire:key='description'>
+                <div class="mb-4" wire:ignore wire:key='email'>
                     <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Correo:</label>
                     <input type="text"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="description" wire:model.defer="email">
-                    @error('description')
-                        <span class="text-red-600">{{ $message }}</span>
+                        id="email" wire:model.defer="email">
+                    @error('email')
+                    <span class="text-red-600">{{ $message }}</span>
                     @enderror
-
                 </div>
 
-                <div class="mb-4" wire:ignore wire:key='type'>
+                <div class="mb-4" wire:ignore wire:key='hatchi_coins'>
                     <label for="type" class="block text-gray-700 text-sm font-bold mb-2">HatchiCoins:</label>
                     <input type="text" readonly="readonly"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="type" wire:model.defer="hatchi_coins">
-                    @error('type')
-                        <span class="text-red-600">{{ $message }}</span>
+                        id="hatchi_coins" wire:model.defer="hatchi_coins">
+                    @error('hatchi_coins')
+                    <span class="text-red-600">{{ $message }}</span>
                     @enderror
-
                 </div>
 
-                <div class="mb-4" wire:ignore wire:key='type'>
-                    <label for="type" class="block text-gray-700 text-sm font-bold mb-2">Verificado:</label>
-                    <input type="text" readonly="readonly"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="type" wire:model.defer="is_verified">
-                    @error('type')
-                        <span class="text-red-600">{{ $message }}</span>
-                    @enderror
-
-                </div>
-
-                <div class="mb-4" wire:ignore wire:key='url'>
+                <div class="mb-4" wire:ignore wire:key='last_login_ip'>
                     <label for="url" class="block text-gray-700 text-sm font-bold mb-2">Ultima ip registrada:</label>
                     <input type="text" readonly=""
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="url" wire:model="last_login_ip">
-                    @error('url')
-                        <span class="text-red-600">{{ $message }}</span>
+                        id="last_login_ip" wire:model="last_login_ip">
+                    @error('last_login_ip')
+                    <span class="text-red-600">{{ $message }}</span>
                     @enderror
                 </div>
-                
-                <div class="mb-4" wire:ignore wire:key='url'>
+
+                <div class="mb-4" wire:ignore wire:key='last_purchase'>
                     <label for="url" class="block text-gray-700 text-sm font-bold mb-2">Ultima compra:</label>
                     <input type="text" readonly=""
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="url" wire:model="last_purchase">
-                    @error('url')
-                        <span class="text-red-600">{{ $message }}</span>
+                        id="last_purchase" wire:model="last_purchase">
+                    @error('last_purchase')
+                    <span class="text-red-600">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <div class="mb-4" wire:ignore wire:key='url'>
+                <div class="mb-4" wire:ignore wire:key='total_purchases'>
                     <label for="url" class="block text-gray-700 text-sm font-bold mb-2">Total de compras:</label>
                     <input type="text" readonly=""
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="url" wire:model="total_purchases">
-                    @error('url')
-                        <span class="text-red-600">{{ $message }}</span>
+                        id="total_purchases" wire:model="total_purchases">
+                    @error('total_purchases')
+                    <span class="text-red-600">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <div class="mb-4" wire:ignore wire:key='url'>
-                    <label for="url" class="block text-gray-700 text-sm font-bold mb-2">Correo verificado el día:</label>
-                    <input type="text" readonly=""
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="url" wire:model="email_verified_at">
-                    @error('url')
-                        <span class="text-red-600">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="mb-4" wire:ignore wire:key='url'>
-                    <label for="url" class="block text-gray-700 text-sm font-bold mb-2">Suscripción:</label>
-                    <input type="text" readonly=""
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="url" wire:model="suscription_level">
-                    @error('url')
-                        <span class="text-red-600">{{ $message }}</span>
+                <div class="mb-4" wire:ignore wire:key='subscription'>
+                    <label for="subscription" class="block mb-2 text-sm font-medium text-gray-900">Select an
+                        option</label>
+                    <select id="subscription" wire:model='subscription'
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        @foreach ($subscriptions as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
+                    </select>
+                    @error('subscription')
+                    <span class="text-red-600">{{ $message }}</span>
                     @enderror
                 </div>
 
@@ -114,8 +95,7 @@
                     </span>
 
                     <span class="mb-2 flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                        <button wire:click="closeModal()" type="button" wire:loading.attr='disabled'
-                            wire:target='store'
+                        <button wire:click="closeModal()" type="button" wire:loading.attr='disabled' wire:target='store'
                             class="disabled:opacity-25  inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-200 text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                             Cancel
                         </button>
