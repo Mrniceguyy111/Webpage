@@ -8,7 +8,7 @@
 
   <title>{{env('APP_NAME')}} | @yield('title')</title>
 
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  @vite(['resources/css/app.css'])
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,27 +65,46 @@
           <button class="action-btn perfil-button">
             <ion-icon name="person-outline"></ion-icon>
           </button>
+
+          @auth
           <div class="desktop-menu inactive">
             <ul>
               <li>
-                <a href="/" class="">Mi Perfil</a>
-              </li>
-
-              <li>
-                <a href="/">Dashboard</a>
+                <a href="{{route('dashboard')}}" class="">Mi Perfil</a>
               </li>
               <li>
-                <a href="/">Api keys</a>
+                <a href="{{route('api-tokens.index')}}">Api keys</a>
+              </li>
+              <li>
+                <a href="/">Configuracion</a>
               </li>
               <li>
                 <a href="/">Sign out</a>
               </li>
             </ul>
           </div>
+          @endauth
+          @guest
+          <div class="desktop-menu inactive">
+            <ul>
+              <li>
+                <a href="{{route('login')}}" class="">Iniciar Sesión</a>
+              </li>
+
+              <li>
+                <a href="{{route('register')}}">Registrarse</a>
+              </li>
+              <li>
+                <a href="/">Rasterar envio</a>
+              </li>
+            </ul>
+          </div>
+          @endguest
           <button class="action-btn deploy-shoppingcart">
             <ion-icon name="bag-handle-outline"></ion-icon>
             <span class="count">0</span>
           </button>
+          @include('website.theme-1.shopingcart')
         </div>
       </div>
     </div>
@@ -100,7 +119,7 @@
             <div class="dropdown-panel">
               <ul class="dropdown-panel-list">
                 <li class="menu-title">
-                  <a href="#">Perros</a>
+                  <a href="{{route('shop.animal', " perros")}}">Perros</a>
                 </li>
                 <li class="panel-list-item">
                   <a href="#">1</a>
@@ -133,18 +152,25 @@
             </div>
           </li>
           <li class="menu-category">
-            <a href="#" class="menu-title">Perros</a>
+            <a href="{{route('shop.animal', 'perro')}}" class="menu-title">Perros</a>
             <ul class="dropdown-list">
               <li class="dropdown-item">
-                <a href="#">1</a>
+                @foreach ($animalCategory as $item)
+                <a href="">{{$item->name}}</a>
+                @endforeach
               </li>
             </ul>
           </li>
           <li class="menu-category">
-            <a href="#" class="menu-title">Gatos</a>
+            <a href="{{route('shop.animal', 'gato')}}" class="menu-title">Gatos</a>
             <ul class="dropdown-list">
               <li class="dropdown-item">
-                <a href="#">1</a>
+                @foreach ($animalCategory as $item)
+                <a href="{{route('shop.category', [
+                  'animal' => 'gato',
+                  'animalCategory' => $item->slug
+                  ])}}">{{$item->name}}</a>
+                @endforeach
               </li>
             </ul>
           </li>
@@ -165,7 +191,7 @@
             </ul>
           </li>
           <li class="menu-category">
-            <a href="#" class="menu-title">Nuestros Blogs!</a>
+            <a href="{{route('posts.index')}}" class="menu-title">Nuestros Blogs!</a>
           </li>
           <li class="menu-category">
             <a href="#" class="menu-title">Ofertas</a>
@@ -177,10 +203,11 @@
       <button class="action-btn" data-mobile-menu-open-btn>
         <ion-icon name="menu-outline"></ion-icon>
       </button>
-      <button class="action-btn">
+      <button class="action-btn deploy-shoppingcart-mobile">
         <ion-icon name="bag-handle-outline"></ion-icon>
         <span class="count">0</span>
       </button>
+      @include('website.theme-1.shopingcart')
       <button class="action-btn">
         <ion-icon name="home-outline"></ion-icon>
       </button>
@@ -404,19 +431,31 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="container">
+      <div class="container payment-zone">
+        <img src="{{asset('images/bitcoinhere.jpg')}}" alt="payment method" class="payment-img">
         <img src="{{asset('images/payment.png')}}" alt="payment method" class="payment-img">
-        <p class="copyright">
-          Copyright &copy; <a href="#">Hatchi</a> all rights reserved.
-        </p>
+        <img src="{{asset('images/bitcoinhere.jpg')}}" alt="payment method" class="payment-img">
+
       </div>
+      <p class="copyright">
+        Copyright &copy; <a href="#">Hatchi</a> all rights reserved.
+      </p>
     </div>
   </footer>
-
-  <script src="./assets/js/script.js"></script>
+  @vite(['resources/js/app.js'])
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>
+    const profileMenuDesktop = document.querySelector(".desktop-menu")
+    const profileMenuOpen = document.querySelector(".perfil-button")
 
+    profileMenuOpen.addEventListener("click", openMenuDesktop)
+
+    function openMenuDesktop() {
+      profileMenuDesktop.classList.toggle("inactive")
+    }
+
+  </script>
 
 </body>
 

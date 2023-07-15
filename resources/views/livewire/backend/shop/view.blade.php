@@ -25,6 +25,7 @@
                             <th class="">Nombre</th>
                             <th class="">Precio</th>
                             <th class="">Descuento</th>
+                            <th class="">¿Activo?</th>
                             <th class="">Acciones</th>
                         </tr>
                     </thead>
@@ -32,9 +33,11 @@
                         @foreach ($products as $item)
                         <tr>
                             <td class="border" NOWRAP>{{$item->id}}</td>
-                            <td class="border">{{$item->image}}</td>
-                            <td class="border">{{$item->email}}</td>
-                            <td class="border">{{$item->permision_level}}</td>
+                            <td class="border"><img src="{{asset('images/juguetes.png')}}" width="120"></td>
+                            <td class="border">{{$item->name}}</td>
+                            <td class="border">${{$item->price}}</td>
+                            <td class="border">{{$item->discount}}%</td>
+                            <td class="border"><b>{{$item->checkActive()}}</b></td>
                             <td class="border px-2 py-2 text-center w-40">
                                 <button title="Editar a {{$item->name}}" wire:click="edit({{$item->id}})"
                                     class="btn btn-red">

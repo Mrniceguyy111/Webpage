@@ -12,6 +12,7 @@ Alpine.start();
 
 
 
+
 // modal variables
 const modal = document.querySelector('[data-modal]');
 const modalCloseBtn = document.querySelector('[data-modal-close]');
@@ -98,27 +99,39 @@ for (let i = 0; i < accordionBtn.length; i++) {
 
 // Shopping card
 
-const deployShoppingCart = document.querySelector(".deploy-shoppingcart")
 const containerShoppingCart = document.querySelector(".container-shoppingcart")
-const deployShoppingCartMobile = document.querySelector(".deploy-shoppingcart-mobile")
-const closeShoppingCart = document.querySelector(".close-shoppingcar")
-const continueShoppingCart = document.querySelector(".continue-cartshopping")
 
-deployShoppingCart.addEventListener('click', deployscard)
-deployShoppingCartMobile.addEventListener('click', deployscardMobile)
-closeShoppingCart.addEventListener("click", closeCartShopping)
-continueShoppingCart.addEventListener("click", continueCartShoppingClose)
-function continueCartShoppingClose() {
-  containerShoppingCart.classList.add("inactive")
-}
-function deployscard() {
-  containerShoppingCart.classList.remove("inactive")
-}
-function deployscardMobile() {
-  containerShoppingCart.classList.remove("inactive")
-}
-function closeCartShopping() {
-  containerShoppingCart.classList.add("inactive")
+const deployShoppingCartMobile = document.querySelector(".deploy-shoppingcart-mobile") // Muestra
+const deployShoppingCart = document.querySelector(".deploy-shoppingcart") // Muestra
+
+const closeShoppingCart = document.querySelector(".close-shopingcar") // Esconde
+const continueShoppingCart = document.querySelector(".continue-cartshopping") // Esconde
+
+
+function openShoppingCart(){
+  containerShoppingCart.classList.remove('hidden');
 }
 
+function closeShoppingCartFn(){
+  containerShoppingCart.classList.add('hidden');
+}
+
+
+
+deployShoppingCart.addEventListener('click', () => {
+  openShoppingCart();
+});
+
+deployShoppingCartMobile.addEventListener('click', () => {
+  openShoppingCart();
+  console.log("hola");
+});
+
+continueShoppingCart.addEventListener("click", () => {
+  closeShoppingCartFn();
+});
+
+closeShoppingCart.addEventListener("click", () => {
+  closeShoppingCartFn();
+});
 

@@ -6,11 +6,18 @@ use App\Http\Controllers\backend\{
     DefaultController,
     UserController
 };
-use App\Http\Controllers\PostController;
-use App\Http\Livewire\Backend\Posts;
-use App\Http\Livewire\Backend\Shop;
-use App\Http\Livewire\Backend\Userlist;
 
+use App\Http\Controllers\{
+    Controller,
+    PostController,
+    ShopController
+};
+
+use App\Http\Livewire\Backend\{
+    Posts,
+    Shop,
+    Userlist,
+};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,24 +29,29 @@ use App\Http\Livewire\Backend\Userlist;
 |
 */
 
-Route::get('/', function () {
-    return view('website.theme-1.index');
-})->name('home');
-
-Route::get('post/{postCategory:slug}/{post:slug}', [PostController::class, 'show'])
-    ->name('post.show');
-
+Route::get('/', [Controller::class, 'index'])->name('home');
 
 Route::get('memberships', function () {
     return view('website.theme-1.membership');
 });
 
-Route::get('cart', function () {
-    return view('website.theme-1.shopingcart');
+
+Route::get('posts', [PostController::class, 'view'])
+    ->name('posts.index');
+
+
+
+
+Route::get('post/{postCategory:slug}/{post:slug}', [PostController::class, 'show'])
+    ->name('post.show');
+
+Route::prefix('shop')->group(function () {
+    Route::get('{animals:name}', [ShopController::class, 'view'])
+        ->name('shop.animal');
+
+    Route::get('{animal:name}/{animalCategory:slug}', [ShopController::class, 'category'])
+        ->name('shop.category');
 });
-
-
-
 
 
 /* Dashboard */
@@ -59,14 +71,11 @@ Route::middleware([
 
         Route::get('/usuarios', Userlist::class)->name('users.index');
 
-        Route::get('/purchases', Shop::class)->name('purchases')
+        Route::get('/products', Shop::class)->name('purchases')
             ->middleware(["auth"]);
 
         Route::get('/post', Posts::class)
             ->name('post.view')
             ->middleware(["auth"]);
-
-        Route::get('/post/create', [PostController::class, 'create'])
-            ->name('post.create');
     });
 });

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('price');
             $table->integer('discount')->default(0);
-            $table->integer('subscrition_price')->nullable();
+            $table->integer('subscription_price')->nullable();
             $table->integer('is_active')->default(1);
             $table->unsignedBigInteger('animal');
             $table->unsignedBigInteger('animal_category');
@@ -29,6 +29,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('animal')->references('id')->on('animals');
+            $table->foreign('animal_category')->references('id')->on('animals_categories');
         });
     }
 
