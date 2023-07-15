@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(TeamSeeder::class);
 
-        DB::unprepared(file_get_contents(__DIR__ . '\Animals.sql'));
-        DB::unprepared(file_get_contents(__DIR__ . '\AnimalBreed.sql'));
+        DB::unprepared(file_get_contents(__DIR__ . '/Animals.sql'));
+        DB::unprepared(file_get_contents(__DIR__ . '/AnimalBreed.sql'));
     }
 }
