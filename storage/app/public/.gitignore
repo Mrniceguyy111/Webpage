@@ -1,5 +1,4 @@
 *
-
-blogs/*
-pets/*
+!blogs
+!pets
 !.gitignore

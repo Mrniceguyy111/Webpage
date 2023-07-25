@@ -1,4 +1,3 @@
 *
-!public/blogs
-!public/pets
+!public
 !.gitignore
