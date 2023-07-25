@@ -1,3 +1,20 @@
+@php
+$nav_links = [
+
+[
+'name' => 'Membresias',
+'route' => route('purchases'),
+],
+[
+'name' => 'Ofertas',
+'route' => route('system.config'),
+]
+
+]
+@endphp
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -209,9 +226,16 @@
         <ion-icon name="bag-handle-outline"></ion-icon>
         <span class="count">0</span>
       </a>
-      <button class="action-btn">
+      @auth
+      <a href="{{route('dashboard')}}" class="action-btn">
         <ion-icon name="home-outline"></ion-icon>
-      </button>
+      </a>
+      @endauth
+      @guest
+      <a href="{{route('login')}}" class="action-btn">
+        <ion-icon name="home-outline"></ion-icon>
+      </a>
+      @endguest
       <button class="action-btn" data-mobile-menu-open-btn>
         <ion-icon name="grid-outline"></ion-icon>
       </button>
@@ -241,54 +265,11 @@
             </li>
           </ul>
         </li>
+        @foreach ($nav_links as $item)
         <li class="menu-category">
-          <button class="accordion-menu" data-accordion-btn>
-            <p class="menu-title">Gatos</p>
-            <div>
-              <ion-icon name="add-outline" class="add-icon"></ion-icon>
-              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-            </div>
-          </button>
-          <ul class="submenu-category-list" data-accordion>
-            <li class="submenu-category">
-              <a href="#" class="submenu-title">1</a>
-            </li>
-          </ul>
+          <a href="{{$item['route']}}" class="menu-title">{{$item['name']}}</a>
         </li>
-        <li class="menu-category">
-          <button class="accordion-menu" data-accordion-btn>
-            <p class="menu-title">Caballos</p>
-            <div>
-              <ion-icon name="add-outline" class="add-icon"></ion-icon>
-              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-            </div>
-          </button>
-          <ul class="submenu-category-list" data-accordion>
-            <li class="submenu-category">
-              <a href="#" class="submenu-title">1</a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-category">
-          <button class="accordion-menu" data-accordion-btn>
-            <p class="menu-title">Otros</p>
-            <div>
-              <ion-icon name="add-outline" class="add-icon"></ion-icon>
-              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-            </div>
-          </button>
-          <ul class="submenu-category-list" data-accordion>
-            <li class="submenu-category">
-              <a href="#" class="submenu-title">1</a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-category">
-          <a href="#" class="menu-title">Nuestros Blogs!</a>
-        </li>
-        <li class="menu-category">
-          <a href="#" class="menu-title">Ofertas</a>
-        </li>
+        @endforeach
       </ul>
       <ul class="menu-social-container">
         <li>

@@ -140,8 +140,6 @@
             </div>
             <ul class="sidebar-menu-category-list">
               @foreach ($animals as $animal)
-
-
               <li class="sidebar-menu-category">
                 <button class="sidebar-accordion-menu" data-accordion-btn>
                   <div class="menu-title-flex">
@@ -464,50 +462,32 @@
     <div class="container">
       <h2 class="tittle">Nuestro Blog:</h2>
       <div class="blog-container has-scrollbar">
+        @foreach ($lastPosts as $item)
         <div class="blog-card">
-          <a href="#">
-            <img src="{{asset('images/banner.png')}}" alt="" class="blog-banner" width="300">
+          <a href="{{route('post.show', [
+            'postCategory' => $item->category_data->slug, 
+            'post' => $item->slug
+            ])}}">
+            <img src="{{asset('storage/blogs/'.$item->banner_image)}}" alt="" class="blog-banner" width="300">
           </a>
           <div class="blog-content">
-            <a href="#" class="blog-category">Polemica</a>
+            <a href="{{route('post.show', [
+              'postCategory' => $item->category_data->slug, 
+              'post' => $item->slug
+              ])}}" class="blog-category">{{$item->category_data->name}}</a>
             <h3>
-              <a href="#" class="blog-title">Hatchi vs Laika</a>
+              <a href="{{route('post.show', [
+                'postCategory' => $item->category_data->slug, 
+                'post' => $item->slug
+                ])}}" class="blog-title">{{$item->title}}</a>
             </h3>
             <p class="blog-meta">
-              Por <cite>Angelo Acevedo</cite> / <time datetime="2022-03-15">Agosto 15, 2023</time>
+              Por <cite>{{$item->user->name}}</cite> / <time
+                datetime="{{$item->created_at}}">{{$item->published_at}}</time>
             </p>
           </div>
         </div>
-        <div class="blog-card">
-          <a href="#">
-            <img src="{{asset('images/banner.png')}}" alt="Curbside fashion Trends: How to Win the Pickup Battle."
-              class="blog-banner" width="300">
-          </a>
-          <div class="blog-content">
-            <a href="#" class="blog-category">Polemica</a>
-            <h3>
-              <a href="#" class="blog-title">Hatchi vs Laika</a>
-            </h3>
-            <p class="blog-meta">
-              Por <cite>Angelo Acevedo</cite> / <time datetime="2022-03-15">Agosto 15, 2023</time>
-            </p>
-          </div>
-        </div>
-        <div class="blog-card">
-          <a href="#">
-            <img src="{{asset('images/banner.png')}}" alt="Curbside fashion Trends: How to Win the Pickup Battle."
-              class="blog-banner" width="300">
-          </a>
-          <div class="blog-content">
-            <a href="#" class="blog-category">Polemica</a>
-            <h3>
-              <a href="#" class="blog-title">Hatchi vs Laika</a>
-            </h3>
-            <p class="blog-meta">
-              Por <cite>Angelo Acevedo</cite> / <time datetime="2022-03-15">Agosto 15, 2023</time>
-            </p>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
   </div>
