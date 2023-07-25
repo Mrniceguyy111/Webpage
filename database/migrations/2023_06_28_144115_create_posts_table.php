@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('author_id');
             $table->string('title');
             $table->string('slug');
+            $table->string('banner_image')->default("default.png");
             $table->text('content');
             $table->unsignedBigInteger('category');
             $table->integer('is_active')->default(1);

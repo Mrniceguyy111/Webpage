@@ -79,7 +79,7 @@
                 <a href="/">Configuracion</a>
               </li>
               <li>
-                <a href="/">Sign out</a>
+                <a href="{{route('logout')}}">Sign out</a>
               </li>
             </ul>
           </div>
@@ -100,11 +100,10 @@
             </ul>
           </div>
           @endguest
-          <button class="action-btn deploy-shoppingcart">
+          <a class="action-btn" href="{{route('cart.view')}}">
             <ion-icon name="bag-handle-outline"></ion-icon>
             <span class="count">0</span>
-          </button>
-          @include('website.theme-1.shopingcart')
+          </a>
         </div>
       </div>
     </div>
@@ -119,7 +118,7 @@
             <div class="dropdown-panel">
               <ul class="dropdown-panel-list">
                 <li class="menu-title">
-                  <a href="{{route('shop.animal', " perros")}}">Perros</a>
+                  <a href="{{route('shop.animal', 'perros')}}">Perros</a>
                 </li>
                 <li class="panel-list-item">
                   <a href="#">1</a>
@@ -156,7 +155,10 @@
             <ul class="dropdown-list">
               <li class="dropdown-item">
                 @foreach ($animalCategory as $item)
-                <a href="">{{$item->name}}</a>
+                <a href="{{route('shop.category', [
+                  'animal' => 'perro',
+                  'animalCategory' => $item->slug
+                  ])}}">{{$item->name}}</a>
                 @endforeach
               </li>
             </ul>
@@ -203,11 +205,10 @@
       <button class="action-btn" data-mobile-menu-open-btn>
         <ion-icon name="menu-outline"></ion-icon>
       </button>
-      <button class="action-btn deploy-shoppingcart-mobile">
+      <a href="{{route('cart.view')}}" class="action-btn deploy-shoppingcart-mobile">
         <ion-icon name="bag-handle-outline"></ion-icon>
         <span class="count">0</span>
-      </button>
-      @include('website.theme-1.shopingcart')
+      </a>
       <button class="action-btn">
         <ion-icon name="home-outline"></ion-icon>
       </button>
@@ -434,8 +435,8 @@
       <div class="container payment-zone">
         <img src="{{asset('images/bitcoinhere.jpg')}}" alt="payment method" class="payment-img">
         <img src="{{asset('images/payment.png')}}" alt="payment method" class="payment-img">
-        <img src="{{asset('images/bitcoinhere.jpg')}}" alt="payment method" class="payment-img">
-
+        <img src="{{asset('images/cryptohere')}}" alt="payment method" class="payment-img">
+        n
       </div>
       <p class="copyright">
         Copyright &copy; <a href="#">Hatchi</a> all rights reserved.

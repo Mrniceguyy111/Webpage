@@ -41,17 +41,19 @@ class ShopController extends Controller
     }
 
 
-    public function product(Animals $animal, AnimalsCategory $animalCategory, Product $product)
+    public function product(Animals $animal, $animalCategory, Product $product)
     {
+
+        if ($product->is_active == 0) {
+            return abort(404);
+        }
         $category = AnimalsCategory::where('slug', $animalCategory)->first();
 
-        $product = Product::where('animal', $animal->id)
-            ->where('is_active', 1)
-            ->where('animal_category', $category->id)
-            ->get();
-
-
-
-        return view('website.theme-1.shop.view', []);
+        return view('website.theme-1.shop.show', [
+            "product" => $product,
+            "animals" => $animal,
+            "category" => $animalCategory,
+            "animalCategory" => AnimalsCategory::all(),
+        ]);
     }
 }

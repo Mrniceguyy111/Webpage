@@ -7,15 +7,20 @@ use App\Models\Post;
 use App\Models\PostCategory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
+use Livewire\WithFileUploads;
 
 class Posts extends Component
 {
+
+    use WithFileUploads;
 
     public $post_id,
         $author_id,
         $title,
         $slug,
+        $image,
+        $imagename,
         $content,
         $category,
         $is_active;
@@ -53,6 +58,12 @@ class Posts extends Component
     {
         $this->validate();
 
+        if ($this->imagename) {
+            if ($this->image) {
+                Storage::disk("blogs")->delete($this->image);
+            }
+            $this->image = $this->imagename->store(null, "blogs");
+        }
 
         Post::updateOrCreate(
             ["id" => $this->post_id],
@@ -61,6 +72,7 @@ class Posts extends Component
                 "title" => $this->title,
                 "slug" => Str::slug($this->title),
                 "content" => $this->content,
+                "banner_image" => $this->image,
                 "category" => $this->category,
                 "is_active" => $this->is_active,
             ]

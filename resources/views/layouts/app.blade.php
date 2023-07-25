@@ -50,7 +50,7 @@
     </div>
 
     @stack('modals')
-
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     @livewireScripts
 </body>
 

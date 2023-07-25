@@ -15,7 +15,8 @@ class Post extends Model
         "slug",
         "content",
         "category",
-        "is_active"
+        "is_active",
+        "banner_image"
     ];
 
     public function getExcerptAttribute()

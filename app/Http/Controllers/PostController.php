@@ -11,15 +11,24 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('website.theme-1.post.posts');
+        return view('website.theme-1.post.posts', [
+            'lastPost' => Post::latest()->first(),
+            'category' => PostCategory::all(),
+            'post' => Post::all(),
+            "animalCategory" => AnimalsCategory::all(),
+        ]);
     }
 
-    public function show($postCategory, Post $post)
+    public function view($postCategory, Post $post)
     {
         return view('website.theme-1.post.show', [
             'category' => $postCategory,
             'post' => $post,
-            "animalsCategory" => AnimalsCategory::all(),
+            "animalCategory" => AnimalsCategory::all(),
         ]);
+    }
+    public function shoppingCart()
+    {
+        return view('website.theme-1.shop.shopingcart');
     }
 }

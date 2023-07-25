@@ -99,8 +99,24 @@
                         </div>
                         <span class="ml-3 text-gray-700 text-sm font-bold">Activar</span>
                     </label>
+                    @error('is_active')
+                    <span class="text-red-600">{{ $message }}</span>
+                    @enderror
                 </div>
 
+                <div class="mb-4" wire:ignore wire:key='has_offer'>
+                    <label for="has_offer" class="block text-gray-700 text-sm font-bold mb-2"></label>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" wire:model="has_offer" class="sr-only peer" checked>
+                        <div
+                            class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                        </div>
+                        <span class="ml-3 text-gray-700 text-sm font-bold">¿Tiene oferta?</span>
+                    </label>
+                    @error('has_offer')
+                    <span class="text-red-600">{{ $message }}</span>
+                    @enderror
+                </div>
 
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                     <span class="mb-2 flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">

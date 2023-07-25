@@ -89,21 +89,35 @@
                                 class="product-img hover">
                         </div>
                         <div class="showcase-content">
-                            <a href="#" class="showcase-category">{{$item->getCategory->name}}</a>
-                            <a href="#">
+                            <a href="{{route('shop.product',[
+                                'animal' => $item->getAnimal->name,
+                                'animalCategory' => $item->getCategory->slug,
+                                'product' => $item->slug,
+                              ])}}" class="showcase-category">{{$item->getCategory->name}}</a>
+                            <a href="{{route('shop.product',[
+                                'animal' => $item->getAnimal->name,
+                                'animalCategory' => $item->getCategory->slug,
+                                'product' => $item->slug,
+                              ])}}">
                                 <h3 class="showcase-title">{{$item->name}}</h3>
                             </a>
-                            <div class="showcase-rating">
+                            {{-- <div class="showcase-rating">
                                 <ion-icon name="star"></ion-icon>
                                 <ion-icon name="star"></ion-icon>
                                 <ion-icon name="star"></ion-icon>
                                 <ion-icon name="star"></ion-icon>
                                 <ion-icon name="star-outline"></ion-icon>
+                            </div> --}}
+                            @if ($item->discount == 0) <div class="price-box">
+                                <p class="price">${{$item->getCorrectPrice()}}</p>
                             </div>
+                            @else
                             <div class="price-box">
-                                <p class="price">${{$item->subscription_price}}</p>
-                                <del>${{$item->price}}</del>
+                                <p class="price">${{$item->getPriceWithDiscount()}}</p>
+                                <del>${{$item->getCorrectPrice()}}</del>
                             </div>
+                            @endif
+
                         </div>
                     </div>
                     @endforeach

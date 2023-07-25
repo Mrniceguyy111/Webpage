@@ -21,7 +21,8 @@ class Shop extends Component
         $price,
         $description,
         $discount,
-        $is_active,
+        $is_active = 1,
+        $has_offer = 0,
         $subscription_price,
         $animal,
         $animal_category,
@@ -34,7 +35,11 @@ class Shop extends Component
     public $editing = false;
 
     protected $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'price' => 'required',
+        'description' => 'required',
+        'animal' => 'required',
+        'animal_category' => 'required',
     ];
 
     public function render()
@@ -78,6 +83,7 @@ class Shop extends Component
                 "discount" => $this->discount,
                 "subscription_price" => $this->subscription_price,
                 "is_active" => $this->is_active,
+                "has_offer" => $this->has_offer,
                 "animal" => $this->animal,
                 "animal_category" => $this->animal_category,
                 "principal_image_path" => $this->principal_image_path,
@@ -105,6 +111,7 @@ class Shop extends Component
         $this->discount = $product->discount;
         $this->description = $product->description;
         $this->is_active = $product->is_active;
+        $this->has_offer = $product->has_offer;
 
         $this->animal = $product->animal;
         $this->animal_category = $product->animal_category;

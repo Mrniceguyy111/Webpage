@@ -109,11 +109,11 @@ const continueShoppingCart = document.querySelector(".continue-cartshopping") //
 
 
 function openShoppingCart(){
-  containerShoppingCart.classList.remove('hidden');
+  containerShoppingCart.classList.remove('inactive');
 }
 
 function closeShoppingCartFn(){
-  containerShoppingCart.classList.add('hidden');
+  containerShoppingCart.classList.add('inactive');
 }
 
 
@@ -124,7 +124,6 @@ deployShoppingCart.addEventListener('click', () => {
 
 deployShoppingCartMobile.addEventListener('click', () => {
   openShoppingCart();
-  console.log("hola");
 });
 
 continueShoppingCart.addEventListener("click", () => {

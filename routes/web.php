@@ -10,12 +10,15 @@ use App\Http\Controllers\backend\{
 use App\Http\Controllers\{
     Controller,
     PostController,
-    ShopController
+    ShopController,
+    ShoppingCartController
 };
 
 use App\Http\Livewire\Backend\{
+    Pets,
     Posts,
     Shop,
+    SystemConfig,
     Userlist,
 };
 /*
@@ -36,13 +39,13 @@ Route::get('memberships', function () {
 });
 
 
-Route::get('posts', [PostController::class, 'view'])
+Route::get('posts', [PostController::class, 'index'])
     ->name('posts.index');
 
 
 
 
-Route::get('post/{postCategory:slug}/{post:slug}', [PostController::class, 'show'])
+Route::get('post/{postCategory:slug}/{post:slug}', [PostController::class, 'view'])
     ->name('post.show');
 
 Route::prefix('shop')->group(function () {
@@ -51,8 +54,16 @@ Route::prefix('shop')->group(function () {
 
     Route::get('{animal:name}/{animalCategory:slug}', [ShopController::class, 'category'])
         ->name('shop.category');
+    Route::get('{animal:name}/{animalCategory:slug}/{product:slug}', [ShopController::class, 'product'])
+        ->name('shop.product');
 });
 
+Route::prefix('cart')->group(function () {
+    Route::get('view', [ShoppingCartController::class, 'view'])
+        ->name('cart.view');
+    Route::get('payment-method', [ShoppingCartController::class, 'selectMethod'])
+        ->name('cart.method');
+});
 
 /* Dashboard */
 
@@ -66,6 +77,8 @@ Route::middleware([
         ->name('dashboard')
         ->middleware(["auth"]);
 
+    Route::get('/mis-mascotas', Pets::class)
+        ->name('pets.view');
 
     Route::prefix('staff')->group(function () {
 
@@ -77,5 +90,7 @@ Route::middleware([
         Route::get('/post', Posts::class)
             ->name('post.view')
             ->middleware(["auth"]);
+        Route::get('/config', SystemConfig::class)
+            ->name('system.config');
     });
 });

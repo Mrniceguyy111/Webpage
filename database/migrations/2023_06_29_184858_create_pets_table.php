@@ -16,8 +16,14 @@ return new class extends Migration
             $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('animal_id');
             $table->unsignedBigInteger('race_id');
-            $table->decimal('age');
-            $table->string('photo_pet');
+            $table->string('name');
+            $table->string('slug_pet');
+            $table->integer('age');
+            $table->string('weight');
+            $table->string('photo')->nullable();
+            $table->integer('is_vaccinated');
+            $table->string('peat_eats')->nullable();
+            $table->string('temper')->nullable();
             $table->timestamps();
 
             $table->foreign('owner_id')->references('id')->on('users');
