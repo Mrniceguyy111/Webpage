@@ -25,8 +25,9 @@ class Shop extends Component
         $has_offer = 0,
         $subscription_price,
         $animal,
+        $quantity,
         $animal_category,
-        $principal_image_path = "nada",
+        $principal_image_path,
         $second_image_path,
         $third_image_path,
         $fourth_image_path;
@@ -37,7 +38,6 @@ class Shop extends Component
     protected $rules = [
         'name' => 'required',
         'price' => 'required',
-        'description' => 'required',
         'animal' => 'required',
         'animal_category' => 'required',
     ];
@@ -81,12 +81,13 @@ class Shop extends Component
                 "description" => $this->description,
                 "price" => $this->price,
                 "discount" => $this->discount,
+                "quantity" => $this->quantity,
                 "subscription_price" => $this->subscription_price,
                 "is_active" => $this->is_active,
                 "has_offer" => $this->has_offer,
                 "animal" => $this->animal,
                 "animal_category" => $this->animal_category,
-                "principal_image_path" => $this->principal_image_path,
+                // "principal_image_path" => $this->principal_image_path,
             ]
         );
 
@@ -107,6 +108,7 @@ class Shop extends Component
         $this->name = $product->name;
         $this->slug = $product->slug;
         $this->price = $product->price;
+        $this->quantity = $product->quantity;
         $this->subscription_price = $product->subscription_price;
         $this->discount = $product->discount;
         $this->description = $product->description;

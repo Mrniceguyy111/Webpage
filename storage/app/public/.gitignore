@@ -1,6 +1,8 @@
 *
 !blogs/default.png
 !blogs/
+!products/
+!products/default.png
 !pets/default.png
 !pets/
 !.gitignore

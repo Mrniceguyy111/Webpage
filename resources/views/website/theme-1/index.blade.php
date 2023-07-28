@@ -4,9 +4,6 @@
 
 
 @section('content')
-
-
-
 <div class="overlay" data-overlay></div>
 <div class="modal" data-modal>
   <div class="modal-close-overlay" data-modal-overlay></div>
@@ -256,10 +253,16 @@
                   <ion-icon name="star"></ion-icon>
                   <ion-icon name="star-outline"></ion-icon>
                 </div>
+                @if ($item->discount != 0)
                 <div class="price-box">
                   <p class="price">${{$item->getPriceWithDiscount()}}</p>
                   <del>${{$item->getCorrectPrice()}}</del>
                 </div>
+                @else
+                <div class="price-box">
+                  <p class="price">${{$item->getCorrectPrice()}}</p>
+                </div>
+                @endif
               </div>
             </div>
             @endforeach
@@ -292,10 +295,16 @@
                   <ion-icon name="star"></ion-icon>
                   <ion-icon name="star-outline"></ion-icon>
                 </div>
+                @if ($item->discount != 0)
                 <div class="price-box">
                   <p class="price">${{$item->getPriceWithDiscount()}}</p>
                   <del>${{$item->getCorrectPrice()}}</del>
                 </div>
+                @else
+                <div class="price-box">
+                  <p class="price">${{$item->getCorrectPrice()}}</p>
+                </div>
+                @endif
               </div>
             </div>
             @endforeach
@@ -328,10 +337,16 @@
                   <ion-icon name="star"></ion-icon>
                   <ion-icon name="star-outline"></ion-icon>
                 </div>
+                @if ($item->discount != 0)
                 <div class="price-box">
                   <p class="price">${{$item->getPriceWithDiscount()}}</p>
                   <del>${{$item->getCorrectPrice()}}</del>
                 </div>
+                @else
+                <div class="price-box">
+                  <p class="price">${{$item->getCorrectPrice()}}</p>
+                </div>
+                @endif
               </div>
             </div>
             @endforeach
@@ -392,8 +407,10 @@
 
               <div class="service-content">
 
-                <h3 class="service-title">Aceptamos Bitcoin</h3>
-                <p class="service-desc">Recibimos bitcoin</p>
+                <h3 class="service-title">Primeros En Aceptar Pagos Con Criptomonedas
+                </h3>
+                <p class="service-desc">Recibimos BTC,ETH,USDT,LTC y Mas…
+                </p>
 
               </div>
 
@@ -408,7 +425,8 @@
               <div class="service-content">
 
                 <h3 class="service-title">Rapidos envios</h3>
-                <p class="service-desc">Flash</p>
+                <p class="service-desc">Contamos Con Un servicio Especializado de Entregas El mismo Día
+                </p>
 
               </div>
 
@@ -423,7 +441,9 @@
               <div class="service-content">
 
                 <h3 class="service-title">El mejor soporte</h3>
-                <p class="service-desc">Horas: 8AM - 11PM</p>
+                <p class="service-desc">Nuestro Soporte Capacitado Con Inteligencia Artificial de 8am a 5Pm Todos los
+                  días
+                </p>
 
               </div>
 
@@ -437,8 +457,9 @@
 
               <div class="service-content">
 
-                <h3 class="service-title">Politica de regreso</h3>
-                <p class="service-desc">Facil y rapido</p>
+                <h3 class="service-title">Campañas y Blogs</h3>
+                <p class="service-desc">Campañas y Blogs Para La Educación A Los Jovenes Hacia Los Animales
+                  Asesoramientos Nutricionales Para Cada Raza y Orientaciones De Entrenamientos </p>
               </div>
             </a>
             <a href="#" class="service-item">
@@ -447,7 +468,7 @@
               </div>
               <div class="service-content">
                 <h3 class="service-title">Descuentos</h3>
-                <p class="service-desc">Si ayudas</p>
+                <p class="service-desc">Descuentos En Toda Nuestra Tienda</p>
               </div>
             </a>
           </div>

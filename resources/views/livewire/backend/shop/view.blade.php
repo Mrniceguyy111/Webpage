@@ -59,7 +59,8 @@
             </div>
             </td>
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <div class="text-sm leading-5 text-gray-500"> {{----}}</div>
+                <div class="text-sm leading-5 text-gray-500"><img
+                        src="{{asset('storage/products/'.$item->principal_image_path)}}" alt="{{$item->name}}"></div>
             </td>
 
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">

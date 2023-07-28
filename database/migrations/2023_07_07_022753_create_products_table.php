@@ -16,14 +16,18 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('slug');
             $table->text('description');
+
             $table->integer('price');
             $table->integer('discount')->default(0)->nullable();
             $table->integer('subscription_price')->nullable();
+            $table->integer('quantity')->default(1);
             $table->integer('is_active')->default(1);
             $table->integer('has_offer')->default(0);
+
             $table->unsignedBigInteger('animal');
             $table->unsignedBigInteger('animal_category');
-            $table->string('principal_image_path');
+
+            $table->string('principal_image_path')->default('default.png')->nullable();
             $table->string('second_image_path')->nullable();
             $table->string('third_image_path')->nullable();
             $table->string('fourth_image_path')->nullable();

@@ -16,12 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('animal_id');
             $table->unsignedBigInteger('race_id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('slug_pet');
             $table->integer('age');
             $table->string('weight');
-            $table->string('photo')->nullable();
-            $table->integer('is_vaccinated');
+            $table->string('photo')->default('default.png');
+            $table->integer('is_vaccinated')->default(0);
             $table->string('peat_eats')->nullable();
             $table->string('temper')->nullable();
             $table->timestamps();

@@ -65,10 +65,35 @@ class Pets extends Component
         $this->openModal();
     }
 
-    public function viewPet()
+    public function viewPet($id)
     {
         $this->resetExcept("search");
         $this->profile = true;
+
+        $pet = ModelsPets::findOrFail($id);
+
+        $race = AnimalBreed::findOrFail($pet->animal_id);
+        $animal = Animals::findOrFail($pet->animal_id);
+
+        $this->owner_id = $pet->owner_id;
+        $this->animal_id = $animal->name;
+        $this->race_id = $race->name;
+        $this->name = $pet->name;
+        $this->slug_pet = $pet->slug;
+        $this->age = $pet->age;
+        if ($pet->is_vaccinated == 1) {
+            $this->is_vaccinated = "Si";
+        } else {
+            $this->is_vaccinated = "No";
+        }
+        $this->weight = $pet->weight;
+        $this->photo = $pet->photo;
+    }
+
+    public function closePet()
+    {
+        $this->resetExcept("search");
+        $this->profile = false;
     }
 
     public function store()
@@ -125,6 +150,7 @@ class Pets extends Component
         $this->name = $pet->name;
         $this->slug_pet = $pet->slug;
         $this->age = $pet->age;
+        $this->is_vaccinated = $pet->is_vaccinated;
         $this->weight = $pet->weight;
         $this->photo = $pet->photo;
     }

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150" zoomAndPan="magnify"
-  viewBox="0 0 375 149.999998" height="200" preserveAspectRatio="xMidYMid meet" version="1.0">
+  viewBox="0 0 375 149.999998" height="60" preserveAspectRatio="xMidYMid meet" version="1.0">
   <defs>
     <filter x="0%" y="0%" width="100%" height="100%" id="6efb5acf63">
       <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" color-interpolation-filters="sRGB" />

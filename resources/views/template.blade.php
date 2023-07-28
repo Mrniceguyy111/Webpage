@@ -22,40 +22,44 @@ $nav_links = [
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>{{env('APP_NAME')}} | @yield('title')</title>
 
   @vite(['resources/css/app.css'])
-
+  <link rel="shortcut icon" href="{{asset('images/favicon.ico')}}" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
+  @livewireStyles
+
 </head>
 
 <body>
+  <div class="overlay" data-overlay></div>
   <header>
     <div class="header-top">
       <div class="container">
         <ul class="header-social-container">
           <li>
-            <a href="#" class="social-link">
+            <a href="https://www.facebook.com/Hatchicolombia" class="social-link">
               <ion-icon name="logo-facebook"></ion-icon>
             </a>
           </li>
           <li>
-            <a href="#" class="social-link">
+            <a href="https://instagram.com/hatchicolombia" class="social-link">
               <ion-icon name="logo-twitter"></ion-icon>
             </a>
           </li>
           <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
+            <a href="https://www.tiktok.com/@hatchicolombia" class="social-link">
+              <ion-icon name="logo-tiktok"></ion-icon>
             </a>
           </li>
           <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-linkedin"></ion-icon>
+            <a href="https://youtube.com/@Hatchicolombia" class="social-link">
+              <ion-icon name="logo-youtube"></ion-icon>
             </a>
           </li>
         </ul>
@@ -73,7 +77,8 @@ $nav_links = [
           <img src="{{asset('images/logo.png')}}" alt="Anon's logo" width="120" height="120">
         </a>
         <div class="header-search-container">
-          <input type="search" name="search" class="search-field" placeholder="Enter your product name...">
+          <input type="search" name="search" autocomplete="off" class="search-field"
+            placeholder="Enter your product name...">
           <button class="search-btn">
             <ion-icon name="search-outline"></ion-icon>
           </button>
@@ -96,7 +101,13 @@ $nav_links = [
                 <a href="/">Configuracion</a>
               </li>
               <li>
-                <a href="{{route('logout')}}">Sign out</a>
+                <form method="POST" action="{{ route('logout') }}" x-data>
+                  @csrf
+
+                  <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                    {{ __('Log Out') }}
+                  </x-dropdown-link>
+                </form>
               </li>
             </ul>
           </div>
@@ -112,14 +123,14 @@ $nav_links = [
                 <a href="{{route('register')}}">Registrarse</a>
               </li>
               <li>
-                <a href="/">Rasterar envio</a>
+                <a href="/">Rastrear envio</a>
               </li>
             </ul>
           </div>
           @endguest
           <a class="action-btn" href="{{route('cart.view')}}">
             <ion-icon name="bag-handle-outline"></ion-icon>
-            <span class="count">0</span>
+            <span class="count">{{Cart::count()}}</span>
           </a>
         </div>
       </div>
@@ -168,46 +179,7 @@ $nav_links = [
             </div>
           </li>
           <li class="menu-category">
-            <a href="{{route('shop.animal', 'perro')}}" class="menu-title">Perros</a>
-            <ul class="dropdown-list">
-              <li class="dropdown-item">
-                @foreach ($animalCategory as $item)
-                <a href="{{route('shop.category', [
-                  'animal' => 'perro',
-                  'animalCategory' => $item->slug
-                  ])}}">{{$item->name}}</a>
-                @endforeach
-              </li>
-            </ul>
-          </li>
-          <li class="menu-category">
-            <a href="{{route('shop.animal', 'gato')}}" class="menu-title">Gatos</a>
-            <ul class="dropdown-list">
-              <li class="dropdown-item">
-                @foreach ($animalCategory as $item)
-                <a href="{{route('shop.category', [
-                  'animal' => 'gato',
-                  'animalCategory' => $item->slug
-                  ])}}">{{$item->name}}</a>
-                @endforeach
-              </li>
-            </ul>
-          </li>
-          <li class="menu-category">
-            <a href="#" class="menu-title">Caballos</a>
-            <ul class="dropdown-list">
-              <li class="dropdown-item">
-                <a href="#">1</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu-category">
-            <a href="#" class="menu-title">Otros</a>
-            <ul class="dropdown-list">
-              <li class="dropdown-item">
-                <a href="#">1</a>
-              </li>
-            </ul>
+            <a href="{{route('membership.index')}}" class="menu-title">Membresias</a>
           </li>
           <li class="menu-category">
             <a href="{{route('posts.index')}}" class="menu-title">Nuestros Blogs!</a>
@@ -224,7 +196,7 @@ $nav_links = [
       </button>
       <a href="{{route('cart.view')}}" class="action-btn deploy-shoppingcart-mobile">
         <ion-icon name="bag-handle-outline"></ion-icon>
-        <span class="count">0</span>
+        <span class="count">{{Cart::count()}}</span>
       </a>
       @auth
       <a href="{{route('dashboard')}}" class="action-btn">
@@ -251,47 +223,42 @@ $nav_links = [
         <li class="menu-category">
           <a href="#" class="menu-title">Inicio</a>
         </li>
-        <li class="menu-category">
-          <button class="accordion-menu" data-accordion-btn>
-            <p class="menu-title">Perros</p>
-            <div>
-              <ion-icon name="add-outline" class="add-icon"></ion-icon>
-              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-            </div>
-          </button>
-          <ul class="submenu-category-list" data-accordion>
-            <li class="submenu-category">
-              <a href="#" class="submenu-title">1</a>
-            </li>
-          </ul>
-        </li>
         @foreach ($nav_links as $item)
         <li class="menu-category">
           <a href="{{$item['route']}}" class="menu-title">{{$item['name']}}</a>
         </li>
         @endforeach
+        <li class="menu-category">
+          <a href="" class="menu-title">Iniciar sesion</a>
+        </li>
+        <li class="menu-category">
+          <a href="" class="menu-title">Registrarse</a>
+        </li>
+        <li style="color: red;" class="menu-category">
+          <a href="" class="menu-title" style="color: red;">Rastrear envio</a>
+        </li>
       </ul>
-      <ul class="menu-social-container">
-        <li>
-          <a href="#" class="social-link">
-            <ion-icon name="logo-facebook"></ion-icon>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="social-link">
-            <ion-icon name="logo-twitter"></ion-icon>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="social-link">
-            <ion-icon name="logo-instagram"></ion-icon>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="social-link">
-            <ion-icon name="logo-linkedin"></ion-icon>
-          </a>
-        </li>
+      <ul class="menu-social-container"></ul>
+      <li>
+        <a href="#" class="social-link">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="social-link">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="social-link">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="social-link">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a>
+      </li>
       </ul>
       </div>
     </nav>
@@ -307,18 +274,46 @@ $nav_links = [
         <div class="footer-category-box">
           <h3 class="category-box-title">Lagartos :</h3>
           <a href="#" class="footer-category-link">Camisas para cocodrilos</a>
+          <a href="#" class="footer-category-link">Camisas para cocodrilos</a>
+          <a href="#" class="footer-category-link">Camisas para cocodrilos</a>
+          <a href="#" class="footer-category-link">Camisas para cocodrilos</a>
+          <a href="#" class="footer-category-link">Camisas para cocodrilos</a>
         </div>
         <div class="footer-category-box">
           <h3 class="category-box-title">Caballos :</h3>
+          <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Shampoo</a>
           <a href="#" class="footer-category-link">Shampoo</a>
         </div>
         <div class="footer-category-box">
           <h3 class="category-box-title">Gatos :</h3>
           <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Shampoo</a>
         </div>
         <div class="footer-category-box">
           <h3 class="category-box-title">Perros :</h3>
           <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Shampoo</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-category">
+      <div class="container">
+        <h2 class="footer-category-title">Descarganos en:</h2>
+        <div class="footer-bottom">
+          <div class="dowloand-zone">
+            <img src="{{asset('images/googlePlayBadge.png')}}" alt="disponible app" class="dowloand-img">
+            <img src="{{asset('images/svg/AppleBadge.svg')}}" alt="disponible app" class="dowloand-img">
+            <img src="{{asset('images/appGalleryBadge.png')}}" alt="disponible app" class="dowloand-img">
+          </div>
         </div>
       </div>
     </div>
@@ -331,6 +326,12 @@ $nav_links = [
           <li class="footer-nav-item">
             <a href="#" class="footer-nav-link">1</a>
           </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">1</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">1</a>
+          </li>
         </ul>
         <ul class="footer-nav-list">
           <li class="footer-nav-item">
@@ -339,18 +340,45 @@ $nav_links = [
           <li class="footer-nav-item">
             <a href="#" class="footer-nav-link">1</a>
           </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">1</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">1</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">1</a>
+          </li>
         </ul>
         <ul class="footer-nav-list">
           <li class="footer-nav-item">
-            <h2 class="nav-title">Our Company</h2>
+            <h2 class="nav-title">Sobre nosotros:</h2>
           </li>
           <li class="footer-nav-item">
             <a href="#" class="footer-nav-link">Pago seguro</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Recibimos bitcoin</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Blogs</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Membresias</a>
           </li>
         </ul>
         <ul class="footer-nav-list">
           <li class="footer-nav-item">
             <h2 class="nav-title">Servicios</h2>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">1</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">1</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">1</a>
           </li>
           <li class="footer-nav-item">
             <a href="#" class="footer-nav-link">1</a>
@@ -365,25 +393,25 @@ $nav_links = [
               <ion-icon name="location-outline"></ion-icon>
             </div>
             <address class="content">
-              Cr93 765 a10 2020 Nw
+              Carrera 26 #50-34
             </address>
           </li>
           <li class="footer-nav-item flex">
             <div class="icon-box">
               <ion-icon name="call-outline"></ion-icon>
             </div>
-            <a href="tel:+607936-8058" class="footer-nav-link">(57)3202443545</a>
+            <a href="tel:+607936-8058" class="footer-nav-link">(+57) 322-730-35-00</a>
           </li>
           <li class="footer-nav-item flex">
             <div class="icon-box">
               <ion-icon name="mail-outline"></ion-icon>
             </div>
-            <a href="" class="footer-nav-link">hatchi@gmail.com</a>
+            <a href="" class="footer-nav-link">Hatchicolombia@gmail.com</a>
           </li>
         </ul>
         <ul class="footer-nav-list">
           <li class="footer-nav-item">
-            <h2 class="nav-title">Follow Us</h2>
+            <h2 class="nav-title">Siguenos en:</h2>
           </li>
           <li>
             <ul class="social-link">
@@ -413,11 +441,10 @@ $nav_links = [
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="container payment-zone">
-        <img src="{{asset('images/bitcoinhere.jpg')}}" alt="payment method" class="payment-img">
+      <div class="payment-zone">
+        <img src="{{asset('images/bitcoinhere.png')}}" alt="payment method" class="paymentb-img">
         <img src="{{asset('images/payment.png')}}" alt="payment method" class="payment-img">
-        <img src="{{asset('images/cryptohere')}}" alt="payment method" class="payment-img">
-        n
+        <img src="{{asset('images/cryptohere.png')}}" alt="payment method" class="paymentb-img">
       </div>
       <p class="copyright">
         Copyright &copy; <a href="#">Hatchi</a> all rights reserved.
@@ -438,6 +465,8 @@ $nav_links = [
     }
 
   </script>
+
+  @livewireScripts
 
 </body>
 

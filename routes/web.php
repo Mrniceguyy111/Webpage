@@ -11,7 +11,6 @@ use App\Http\Controllers\{
     Controller,
     PostController,
     ShopController,
-    ShoppingCartController
 };
 
 use App\Http\Livewire\Backend\{
@@ -21,6 +20,10 @@ use App\Http\Livewire\Backend\{
     SystemConfig,
     Userlist,
 };
+use App\Http\Livewire\Website\{
+    ShoppingCart
+};
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,11 +35,12 @@ use App\Http\Livewire\Backend\{
 |
 */
 
+
 Route::get('/', [Controller::class, 'index'])->name('home');
 
 Route::get('memberships', function () {
     return view('website.theme-1.membership');
-});
+})->name('membership.index');
 
 
 Route::get('posts', [PostController::class, 'index'])
@@ -58,11 +62,14 @@ Route::prefix('shop')->group(function () {
         ->name('shop.product');
 });
 
+
+Route::get('cart/view', ShoppingCart::class)
+    ->name('cart.view');
+
 Route::prefix('cart')->group(function () {
-    Route::get('view', [ShoppingCartController::class, 'view'])
-        ->name('cart.view');
-    Route::get('payment-method', [ShoppingCartController::class, 'selectMethod'])
-        ->name('cart.method');
+
+    Route::get('add/{id}', [ShoppingCart::class, 'addCart'])
+        ->name('cart.add');
 });
 
 /* Dashboard */

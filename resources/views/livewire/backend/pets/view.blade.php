@@ -18,8 +18,8 @@
         <div class="flex flex-row flex-wrap-reverse justify-center items-center	" bis_skin_checked="1">
 
             @foreach ($pets as $item)
-            <div class="flex flex-col justify-center m-8 text-center cursor-pointer items-center" wire:click="viewPet"
-                bis_skin_checked="1">
+            <div class="flex flex-col justify-center m-8 text-center cursor-pointer items-center"
+                wire:click="viewPet({{$item->id}})" bis_skin_checked="1">
                 <img alt="" class="self-center flex-shrink-0 w-24 h-24 mb-4 bg-center bg-cover rounded-full "
                     src="{{asset('storage/pets/'.$item->photo)}}">
                 <p class="text-xl font-semibold leadi">{{$item->name}}</p>

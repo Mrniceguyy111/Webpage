@@ -159,13 +159,13 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Te7aHoudini\LaravelTrix\LaravelTrixServiceProvider::class,
+        Alexo\LaravelPayU\LaravelPayUServiceProvider::class,
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        Te7aHoudini\LaravelTrix\LaravelTrixServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
@@ -185,7 +185,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        //
     ])->toArray(),
 
 ];

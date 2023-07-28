@@ -1,9 +1,17 @@
 @extends('template')
-@section('title', "Membresias")
-
+@section('title', $product->name)
 @section('content')
 
 <section class="overflow-hidden bg-white py-11 font-poppins">
+    @if (session()->has('message'))
+    <div class="w-2/5 ml-12 bg-teal-100 rounded-b text-teal-900 px-4 py-4 shadow-md my-3" role="alert">
+        <div class="flex">
+            <div>
+                <h4>{{ session('message') }}</h4>
+            </div>
+        </div>
+    </div>
+    @endif
     <div class="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
         <div class="flex flex-wrap -mx-4">
             <div class="w-full mb-8 md:w-1/2 md:mb-0">
@@ -122,15 +130,15 @@
                     </div>
                     <div class="w-32 mb-8 ">
                         <label for=""
-                            class="w-full pb-1 text-xl font-semibold text-gray-700 border-b border-blue-300 dark:border-gray-600 ">Cantidad</label>
+                            class="w-full pb-1 text-xl font-semibold text-gray-700 border-b border-blue-300">Cantidad</label>
                         <div class="relative flex flex-row w-full h-10 mt-6 bg-transparent rounded-lg">
                             <!-- <button
                                 class="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer dark:hover:bg-gray-700  hover:text-gray-700 dark:bg-gray-900 hover:bg-gray-400">
                                 <span class="m-auto text-2xl font-thin">-</span>
                             </button> -->
                             <input type="number"
-                                class="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none  dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black"
-                                placeholder="1">
+                                class="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none focus:outline-none text-md hover:text-black"
+                                placeholder="1" value="1">
                             <!-- <button
                                 class="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700  dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-400">
                                 <span class="m-auto text-2xl font-thin">+</span>
@@ -138,9 +146,9 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap items-center gap-4">
-                        <button
-                            class="w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700">
-                            Add to cart</button>
+                        <a href="{{route('cart.add', $product->id)}}"
+                            class="text-center w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700">
+                            Add to cart</a>
                         <button
                             class="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-500 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
                             Buy Now
@@ -151,5 +159,4 @@
         </div>
     </div>
 </section>
-
 @endsection
