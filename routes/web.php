@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\backend\{
     DefaultController,
-    UserController
 };
 
 use App\Http\Controllers\{
@@ -14,6 +13,8 @@ use App\Http\Controllers\{
 };
 
 use App\Http\Livewire\Backend\{
+    Addresses,
+    Orders,
     Pets,
     Posts,
     Shop,
@@ -21,6 +22,7 @@ use App\Http\Livewire\Backend\{
     Userlist,
 };
 use App\Http\Livewire\Website\{
+    Payment,
     ShoppingCart
 };
 
@@ -35,41 +37,74 @@ use App\Http\Livewire\Website\{
 |
 */
 
+if (time() > strtotime("August 01 2023 00:00:00")) {
+    Route::get('/', [Controller::class, 'index'])->name('home');
+} else {
+    Route::get('/', [Controller::class, 'coomingSoon'])->name('home');
+}
 
-Route::get('/', [Controller::class, 'index'])->name('home');
+// Route::get('/', [Controller::class, 'index'])->name('home');
 
-Route::get('memberships', function () {
-    return view('website.theme-1.membership');
-})->name('membership.index');
+Route::get('memberships', [Controller::class, 'memberships'])
+    ->name('membership.index');
+
+Route::get('/help', [Controller::class, 'helpCenter'])
+    ->name('help.view');
+
+Route::get('/unete-a-hatchi', [Controller::class, 'workUs'])
+    ->name('workus.view');
+
+Route::get('/faq', [Controller::class, 'faq'])
+    ->name('faq.view');
 
 
-Route::get('posts', [PostController::class, 'index'])
-    ->name('posts.index');
 
+/* Blogs */
 
+Route::prefix('blog')->group(function () {
+    Route::get('posts', [PostController::class, 'index'])
+        ->name('posts.index');
 
+    Route::get('post/{postCategory:slug}/{post:slug}', [PostController::class, 'view'])
+        ->name('post.show');
+});
 
-Route::get('post/{postCategory:slug}/{post:slug}', [PostController::class, 'view'])
-    ->name('post.show');
+/* Tienda */
 
 Route::prefix('shop')->group(function () {
+
+    Route::get('ofertas', [ShopController::class, 'offerts'])
+        ->name('shop.offert');
+
     Route::get('{animals:name}', [ShopController::class, 'view'])
         ->name('shop.animal');
 
     Route::get('{animal:name}/{animalCategory:slug}', [ShopController::class, 'category'])
         ->name('shop.category');
+
     Route::get('{animal:name}/{animalCategory:slug}/{product:slug}', [ShopController::class, 'product'])
         ->name('shop.product');
 });
 
-
-Route::get('cart/view', ShoppingCart::class)
-    ->name('cart.view');
+/* Carrito de compras */
 
 Route::prefix('cart')->group(function () {
+    Route::get('view', ShoppingCart::class)
+        ->name('cart.view');
 
     Route::get('add/{id}', [ShoppingCart::class, 'addCart'])
-        ->name('cart.add');
+        ->name('cart.add')
+        ->middleware(["auth"]);
+});
+
+
+
+/* Pagos */
+
+Route::prefix('payment')->group(function () {
+    Route::get('resume', Payment::class)
+        ->name('payment.view')
+        ->middleware(["auth"]);
 });
 
 /* Dashboard */
@@ -84,8 +119,17 @@ Route::middleware([
         ->name('dashboard')
         ->middleware(["auth"]);
 
+    Route::get('/mis-direcciones', Addresses::class)
+        ->name('addresses.view')
+        ->middleware(["auth"]);
+
     Route::get('/mis-mascotas', Pets::class)
-        ->name('pets.view');
+        ->name('pets.view')
+        ->middleware(["auth"]);
+
+    Route::get('/mis-pedidos', Orders::class)
+        ->name('orders.view');
+
 
     Route::prefix('staff')->group(function () {
 

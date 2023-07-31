@@ -23,6 +23,16 @@ class ShopController extends Controller
         ]);
     }
 
+    public function offerts()
+    {
+        $product = new Product();
+
+        return view('website.theme-1.shop.offers', [
+            "product" => $product->getProductHasOffer(),
+            "animalCategory" => AnimalsCategory::all(),
+        ]);
+    }
+
     public function category(Animals $animal, $animalCategory)
     {
         $category = AnimalsCategory::where('slug', $animalCategory)->first();

@@ -1,12 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Alexo\LaravelPayU\Payable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    use HasFactory;
     use Payable;
 
     /**
@@ -14,7 +16,8 @@ class Order extends Model
      *
      * @var array
      */
+
     protected $fillable = [
-        'reference', 'state', 'value', 'user_id'
+        'reference', 'payu_order_id',  'transaction_id', 'state', 'value', 'user_id'
     ];
 }

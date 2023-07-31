@@ -16,6 +16,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
+    public function coomingSoon()
+    {
+        return view('coomingsoon');
+    }
+
     public function index()
     {
         $products = new Product();
@@ -27,6 +32,37 @@ class Controller extends BaseController
             "productsOfDogs" => $products->getProductByAnimal("perro"),
             "productsOfCat" => $products->getProductByAnimal("gato"),
 
+            "animals" => Animals::all(),
+            "animalCategory" => AnimalsCategory::all(),
+        ]);
+    }
+
+    public function helpCenter()
+    {
+        return view('website.theme-1.help', [
+            "animals" => Animals::all(),
+            "animalCategory" => AnimalsCategory::all(),
+        ]);
+    }
+
+    public function workUs()
+    {
+        return view('website.theme-1.work-us', [
+            "animals" => Animals::all(),
+            "animalCategory" => AnimalsCategory::all(),
+        ]);
+    }
+    public function faq()
+    {
+        return view('website.theme-1.faq', [
+            "animals" => Animals::all(),
+            "animalCategory" => AnimalsCategory::all(),
+        ]);
+    }
+
+    public function memberships()
+    {
+        return view('website.theme-1.membership', [
             "animals" => Animals::all(),
             "animalCategory" => AnimalsCategory::all(),
         ]);

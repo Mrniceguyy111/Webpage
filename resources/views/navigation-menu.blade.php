@@ -3,32 +3,44 @@ $nav_links = [
 [
 'name' => 'Dashboard',
 'route' => route('dashboard'),
-'active' => request()->routeIs('dashboard')
+'active' => request()->routeIs('dashboard'),
+'model' => 'Team',
 ],
 [
 'name' => 'Mis mascotas',
 'route' => route('pets.view'),
-'active' => request()->routeIs('pets.view')
+'active' => request()->routeIs('pets.view'),
+'model' => 'Team',
+],
+[
+'name' => 'Mis pedidos',
+'route' => route('orders.view'),
+'active' => request()->routeIs('orders.view'),
+'model' => 'Team',
 ],
 [
 'name' => 'Blogs',
 'route' => route('post.view'),
-'active' => request()->routeIs('post.view')
+'active' => request()->routeIs('post.view'),
+'model' => 'Product',
 ],
 [
 'name' => 'Lista de usuarios',
 'route' => route('users.index'),
-'active' => request()->routeIs('users.index')
+'active' => request()->routeIs('users.index'),
+'model' => 'Product',
 ],
 [
 'name' => 'Registro de productos',
 'route' => route('purchases'),
-'active' => request()->routeIs('purchases')
+'active' => request()->routeIs('purchases'),
+'model' => 'Product',
 ],
 [
 'name' => 'Configuracion',
 'route' => route('system.config'),
-'active' => request()->routeIs('system.config')
+'active' => request()->routeIs('system.config'),
+'model' => 'Product',
 ]
 ]
 @endphp
@@ -46,13 +58,14 @@ $nav_links = [
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 lg:flex">
                     @foreach ($nav_links as $item)
+                    @can('viewAny', 'App\Models\\' . $item['model'])
                     <x-nav-link href="{{ $item['route'] }}" :active="$item['active']">
                         {{ $item['name'] }}
                     </x-nav-link>
+                    @endcan
                     @endforeach
-
                 </div>
             </div>
 
@@ -79,14 +92,15 @@ $nav_links = [
                         <x-slot name="content">
                             <div class="w-60">
                                 <!-- Team Management -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{-- <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Manage Team') }}
-                                </div>
+                                </div> --}}
 
+                                {{--
                                 <!-- Team Settings -->
                                 <x-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
                                     {{ __('Team Settings') }}
-                                </x-dropdown-link>
+                                </x-dropdown-link> --}}
 
                                 @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                                 <x-dropdown-link href="{{ route('teams.create') }}">
@@ -95,8 +109,8 @@ $nav_links = [
                                 @endcan
 
                                 <!-- Team Switcher -->
-                                @if (Auth::user()->allTeams()->count() > 1)
-                                <div class="border-t border-gray-200"></div>
+                                @if (Auth::user()->allTeams()->count() > 2)
+                                {{-- <div class="border-t border-gray-200"></div> --}}
 
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Switch Teams') }}
@@ -171,7 +185,7 @@ $nav_links = [
             </div>
 
             <!-- Hamburger -->
-            <div class="-mr-2 flex items-center sm:hidden">
+            <div class="-mr-2 flex items-center lg:hidden">
                 <button @click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -187,12 +201,14 @@ $nav_links = [
     </div>
 
 
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden lg:hidden">
         <div class="pt-2 pb-3 space-y-1">
             @foreach ($nav_links as $item)
+            @can('viewAny', 'App\Models\\' . $item['model'])
             <x-responsive-nav-link href="{{ $item['route'] }}" :active="$item['active']">
                 {{ $item['name'] }}
             </x-responsive-nav-link>
+            @endcan
             @endforeach
         </div>
         <!-- Responsive Settings Options -->

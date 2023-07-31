@@ -29,6 +29,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'document',
+        'document_type',
         'subscription_level',
     ];
 
@@ -66,6 +69,17 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Subscription::class, 'subscription_level');
     }
+
+    public function addresses()
+    {
+        return $this->belongsTo(Address::class);
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
+
 
     public function getLastBuyAttribute()
     {

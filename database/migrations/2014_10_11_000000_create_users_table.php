@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('phone');
+            $table->string('document');
+            $table->string('document_type');
+
             $table->integer('is_verified')->default(0);
             $table->string('profile_photo_path', 2048)->nullable();
             $table->ipAddress('last_login_ip')->nullable();
@@ -24,6 +28,7 @@ return new class extends Migration
             $table->timestamp('last_purchase')->nullable();
             $table->integer('total_purchases')->default(0);
             $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('birthday_date')->nullable();
             $table->unsignedBigInteger('subscription_level')->default(1)->nullable();
             $table->integer('permision_level')->default(0);
             $table->rememberToken();

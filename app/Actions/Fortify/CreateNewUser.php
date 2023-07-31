@@ -21,18 +21,26 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
+
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
+            'phone' => ['required', 'integer'],
+            'document' => ['required', 'integer'],
+            'document_type' => ['required'],
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
-
         return DB::transaction(function () use ($input) {
             return tap(User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
+                'phone' => $input['phone'],
+                'document' => $input['document'],
+                'birthday_date' => $input['birthday'],
+                'document_type' => $input['document_type']
             ]), function (User $user) {
                 $this->assignTeamAuto($user);
             });
@@ -53,8 +61,7 @@ class CreateNewUser implements CreatesNewUsers
 
     protected function assignTeamAuto(User $user)
     {
-
-        // Si cambia el seeder de usuarios aca tambien debera cambiarlo
+        // Si cambia el seeder de usuarios aca tambien de tendra que cambiarlo
 
         $team = Jetstream::teamModel()::where('name', 'Usuarios')->first();
 

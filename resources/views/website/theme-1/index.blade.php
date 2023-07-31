@@ -19,7 +19,7 @@
         <div class="newsletter-header">
           <h3 class="newsletter-title">Bienvenido a Hatchi</h3>
           <p class="newsletter-desc">
-            La mejor <b>E-commerce</b> para tus peluditos
+            La mejor <b>E-commerce</b> para tus mascotas.
           </p>
         </div>
         <input type="email" name="email" class="email-field" placeholder="Email Address" required>
@@ -105,413 +105,414 @@
         <div class="container">
           <h2 class="tittle">Animales como:</h2>
           <div class="category-item-container has-scrollbar">
-            <div class="category-item"></div>
-            <div class="category-img-box">
-              <img src="{{asset('images/juguetes.png')}}" alt="" width="100">
-            </div>
-            <div class="category-content-box">
-              <div class="category-content-flex">
-                <h3 class="category-item-title">Perros</h3>
+            <div class="category-item flex flex-col text-center">
+              <div class="category-img-box">
+                <img src="{{asset('images/juguetes.png')}}" alt="dress & frock" width="100">
               </div>
-              <a href="#" class="category-btn">Mirar todos los productos:</a>
+              <div class="category-content-box ">
+                <a href="#" class="category-btn">Perros</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!--
+      <!--
       - productos
     -->
-    <div class="product-container">
-      <div class="container">
-        <!--
+      <div class="product-container">
+        <div class="container">
+          <!--
           - sidebar
         -->
-        <div class="sidebar  has-scrollbar" data-mobile-menu>
-          <div class="sidebar-category">
-            <div class="sidebar-top">
-              <h2 class="sidebar-title">Trabajamos para mascotas como:</h2>
-              <button class="sidebar-close-btn" data-mobile-menu-close-btn>
-                <ion-icon name="close-outline"></ion-icon>
-              </button>
-            </div>
-            <ul class="sidebar-menu-category-list">
-              @foreach ($animals as $animal)
-              <li class="sidebar-menu-category">
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-                  <div class="menu-title-flex">
-                    <p class="menu-title">{{$animal->name}}</p>
-                  </div>
-                  <div>
-                    <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                    <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                  </div>
+          <div class="sidebar  has-scrollbar" data-mobile-menu>
+            <div class="sidebar-category">
+              <div class="sidebar-top">
+                <h2 class="sidebar-title">Trabajamos para mascotas como:</h2>
+                <button class="sidebar-close-btn" data-mobile-menu-close-btn>
+                  <ion-icon name="close-outline"></ion-icon>
                 </button>
-                <ul class="sidebar-submenu-category-list" data-accordion>
-                  @foreach ($animalCategory as $category)
-                  <li class="sidebar-submenu-category">
-                    <a href="{{route('shop.category', [
+              </div>
+              <ul class="sidebar-menu-category-list">
+                @foreach ($animals as $animal)
+                <li class="sidebar-menu-category">
+                  <button class="sidebar-accordion-menu" data-accordion-btn>
+                    <div class="menu-title-flex">
+                      <p class="menu-title">{{$animal->name}}</p>
+                    </div>
+                    <div>
+                      <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                      <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                  </button>
+                  <ul class="sidebar-submenu-category-list" data-accordion>
+                    @foreach ($animalCategory as $category)
+                    <li class="sidebar-submenu-category">
+                      <a href="{{route('shop.category', [
                       'animal' => $animal->name,
                       'animalCategory' => $category->slug
                       ])}}" class=" sidebar-submenu-title">
-                      <p class="product-name">{{$category->name}}</p>
+                        <p class="product-name">{{$category->name}}</p>
+                      </a>
+                    </li>
+                    @endforeach
+                  </ul>
+                </li>
+                @endforeach
+              </ul>
+            </div>
+            <div class="product-showcase">
+              <h3 class="showcase-heading">Lo mas vendido!</h3>
+              <div class="showcase-wrapper">
+                <div class="showcase-container">
+                  <div class="showcase">
+                    <a href="#" class="showcase-img-box">
+                      <img src="{{asset('images/logo.png')}}" alt="" width="75" height="75" class="showcase-img">
                     </a>
-                  </li>
-                  @endforeach
-                </ul>
-              </li>
-              @endforeach
-            </ul>
-          </div>
-          <div class="product-showcase">
-            <h3 class="showcase-heading">Lo mas vendido!</h3>
-            <div class="showcase-wrapper">
-              <div class="showcase-container">
-                <div class="showcase">
-                  <a href="#" class="showcase-img-box">
-                    <img src="{{asset('images/logo.png')}}" alt="" width="75" height="75" class="showcase-img">
-                  </a>
-                  <div class="showcase-content">
-                    <a href="#">
-                      <h4 class="showcase-title">Lorem, ipsum.</h4>
-                    </a>
-                    <div class="price-box">
-                      <del>$5.00</del>
-                      <p class="price">$4.00</p>
+                    <div class="showcase-content">
+                      <a href="#">
+                        <h4 class="showcase-title">Lorem, ipsum.</h4>
+                      </a>
+                      <div class="price-box">
+                        <del>$5.00</del>
+                        <p class="price">$4.00</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!--
+          <!--
             - Gird de los productos
           -->
-        <div class="product-main">
-          <h2 class="title">Ofertas!</h2>
-          <div class="product-grid">
-            @foreach ($productsInOffer as $item)
-            <div class="showcase">
-              <div class="showcase-banner">
-                <img src="{{asset('images/juguetes.png')}}" alt="" width="300" class="product-img default">
-                <img src="{{asset('images/logo.png')}}" alt="" width="300" class="product-img hover">
-              </div>
-              <div class="showcase-content">
-                <a href="{{route('shop.product',[
+          <div class="product-main">
+            <h2 class="title">Ofertas!</h2>
+            <div class="product-grid">
+              @foreach ($productsInOffer as $item)
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <img src="{{asset('images/juguetes.png')}}" alt="" width="300" class="product-img default">
+                  <img src="{{asset('images/logo.png')}}" alt="" width="300" class="product-img hover">
+                </div>
+                <div class="showcase-content">
+                  <a href="{{route('shop.product',[
                   'animal' => $item->getAnimal->name,
                   'animalCategory' => $item->getCategory->slug,
                   'product' => $item->slug,
                 ])}}" class="showcase-category">{{$item->getCategory->name}}</a>
-                <a href="{{route('shop.product',[
+                  <a href="{{route('shop.product',[
                   'animal' => $item->getAnimal->name,
                   'animalCategory' => $item->getCategory->slug,
                   'product' => $item->slug,
                 ])}}">
-                  <h3 class="showcase-title">{{$item->name}}</h3>
-                </a>
-                <div class="showcase-rating">
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star-outline"></ion-icon>
-                </div>
-                <div class="price-box">
-                  <p class="price">${{$item->getPriceWithDiscount()}}</p>
-                  <del>${{$item->getCorrectPrice()}}</del>
+                    <h3 class="showcase-title">{{$item->name}}</h3>
+                  </a>
+                  <div class="showcase-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </div>
+                  <div class="price-box">
+                    <p class="price">${{$item->getPriceWithDiscount()}}</p>
+                    <del>${{$item->getCorrectPrice()}}</del>
+                  </div>
                 </div>
               </div>
+              @endforeach
             </div>
-            @endforeach
-          </div>
-          <h2 class="title">Lo ultimo</h2>
-          <div class="product-grid">
-            @foreach ($lastUploadProducts as $item)
-            <div class="showcase">
-              <div class="showcase-banner">
-                <img src="{{asset('images/juguetes.png')}}" alt="" width="300" class="product-img default">
-                <img src="{{asset('images/logo.png')}}" alt="" width="300" class="product-img hover">
-              </div>
-              <div class="showcase-content">
-                <a href="{{route('shop.product',[
+            <h2 class="title">Lo ultimo</h2>
+            <div class="product-grid">
+              @foreach ($lastUploadProducts as $item)
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <img src="{{asset('images/juguetes.png')}}" alt="" width="300" class="product-img default">
+                  <img src="{{asset('images/logo.png')}}" alt="" width="300" class="product-img hover">
+                </div>
+                <div class="showcase-content">
+                  <a href="{{route('shop.product',[
                   'animal' => $item->getAnimal->name,
                   'animalCategory' => $item->getCategory->slug,
                   'product' => $item->slug,
                 ])}}" class="showcase-category">{{$item->getCategory->name}}</a>
-                <a href="{{route('shop.product',[
+                  <a href="{{route('shop.product',[
                   'animal' => $item->getAnimal->name,
                   'animalCategory' => $item->getCategory->slug,
                   'product' => $item->slug,
                 ])}}">
-                  <h3 class="showcase-title">{{$item->name}}</h3>
-                </a>
-                <div class="showcase-rating">
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star-outline"></ion-icon>
+                    <h3 class="showcase-title">{{$item->name}}</h3>
+                  </a>
+                  <div class="showcase-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </div>
+                  @if ($item->discount != 0)
+                  <div class="price-box">
+                    <p class="price">${{$item->getPriceWithDiscount()}}</p>
+                    <del>${{$item->getCorrectPrice()}}</del>
+                  </div>
+                  @else
+                  <div class="price-box">
+                    <p class="price">${{$item->getCorrectPrice()}}</p>
+                  </div>
+                  @endif
                 </div>
-                @if ($item->discount != 0)
-                <div class="price-box">
-                  <p class="price">${{$item->getPriceWithDiscount()}}</p>
-                  <del>${{$item->getCorrectPrice()}}</del>
-                </div>
-                @else
-                <div class="price-box">
-                  <p class="price">${{$item->getCorrectPrice()}}</p>
-                </div>
-                @endif
               </div>
+              @endforeach
             </div>
-            @endforeach
-          </div>
-          <h2 class="title">Perros</h2>
-          <div class="product-grid">
-            @foreach ($productsOfDogs as $item)
-            <div class="showcase">
-              <div class="showcase-banner">
-                <img src="{{asset('images/juguetes.png')}}" alt="" width="300" class="product-img default">
-                <img src="{{asset('images/logo.png')}}" alt="" width="300" class="product-img hover">
-              </div>
-              <div class="showcase-content">
-                <a href="{{route('shop.product',[
+            <h2 class="title">Perros</h2>
+            <div class="product-grid">
+              @foreach ($productsOfDogs as $item)
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <img src="{{asset('images/juguetes.png')}}" alt="" width="300" class="product-img default">
+                  <img src="{{asset('images/logo.png')}}" alt="" width="300" class="product-img hover">
+                </div>
+                <div class="showcase-content">
+                  <a href="{{route('shop.product',[
                   'animal' => $item->getAnimal->name,
                   'animalCategory' => $item->getCategory->slug,
                   'product' => $item->slug,
                 ])}}" class="showcase-category">{{$item->getCategory->name}}</a>
-                <a href="{{route('shop.product',[
+                  <a href="{{route('shop.product',[
                   'animal' => $item->getAnimal->name,
                   'animalCategory' => $item->getCategory->slug,
                   'product' => $item->slug,
                 ])}}">
-                  <h3 class="showcase-title">{{$item->name}}</h3>
-                </a>
-                <div class="showcase-rating">
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star-outline"></ion-icon>
+                    <h3 class="showcase-title">{{$item->name}}</h3>
+                  </a>
+                  <div class="showcase-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </div>
+                  @if ($item->discount != 0)
+                  <div class="price-box">
+                    <p class="price">${{$item->getPriceWithDiscount()}}</p>
+                    <del>${{$item->getCorrectPrice()}}</del>
+                  </div>
+                  @else
+                  <div class="price-box">
+                    <p class="price">${{$item->getCorrectPrice()}}</p>
+                  </div>
+                  @endif
                 </div>
-                @if ($item->discount != 0)
-                <div class="price-box">
-                  <p class="price">${{$item->getPriceWithDiscount()}}</p>
-                  <del>${{$item->getCorrectPrice()}}</del>
-                </div>
-                @else
-                <div class="price-box">
-                  <p class="price">${{$item->getCorrectPrice()}}</p>
-                </div>
-                @endif
               </div>
+              @endforeach
             </div>
-            @endforeach
-          </div>
-          <h2 class="title">Gatos</h2>
-          <div class="product-grid">
-            @foreach ($productsOfCat as $item)
-            <div class="showcase">
-              <div class="showcase-banner">
-                <img src="{{asset('images/juguetes.png')}}" alt="" width="300" class="product-img default">
-                <img src="{{asset('images/logo.png')}}" alt="" width="300" class="product-img hover">
-              </div>
-              <div class="showcase-content">
-                <a href="{{route('shop.product',[
+            <h2 class="title">Gatos</h2>
+            <div class="product-grid">
+              @foreach ($productsOfCat as $item)
+              <div class="showcase">
+                <div class="showcase-banner">
+                  <img src="{{asset('images/juguetes.png')}}" alt="" width="300" class="product-img default">
+                  <img src="{{asset('images/logo.png')}}" alt="" width="300" class="product-img hover">
+                </div>
+                <div class="showcase-content">
+                  <a href="{{route('shop.product',[
                   'animal' => $item->getAnimal->name,
                   'animalCategory' => $item->getCategory->slug,
                   'product' => $item->slug,
                 ])}}" class="showcase-category">{{$item->getCategory->name}}</a>
-                <a href="{{route('shop.product',[
+                  <a href="{{route('shop.product',[
                   'animal' => $item->getAnimal->name,
                   'animalCategory' => $item->getCategory->slug,
                   'product' => $item->slug,
                 ])}}">
-                  <h3 class="showcase-title">{{$item->name}}</h3>
-                </a>
-                <div class="showcase-rating">
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star-outline"></ion-icon>
+                    <h3 class="showcase-title">{{$item->name}}</h3>
+                  </a>
+                  <div class="showcase-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </div>
+                  @if ($item->discount != 0)
+                  <div class="price-box">
+                    <p class="price">${{$item->getPriceWithDiscount()}}</p>
+                    <del>${{$item->getCorrectPrice()}}</del>
+                  </div>
+                  @else
+                  <div class="price-box">
+                    <p class="price">${{$item->getCorrectPrice()}}</p>
+                  </div>
+                  @endif
                 </div>
-                @if ($item->discount != 0)
-                <div class="price-box">
-                  <p class="price">${{$item->getPriceWithDiscount()}}</p>
-                  <del>${{$item->getCorrectPrice()}}</del>
-                </div>
-                @else
-                <div class="price-box">
-                  <p class="price">${{$item->getCorrectPrice()}}</p>
-                </div>
-                @endif
               </div>
+              @endforeach
             </div>
-            @endforeach
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
-  </div>
-  <!--
+    <!--
       - Testimonios, cta y servicios
     -->
-  <div>
-    <div class="container">
-      <div class="testimonials-box">
-        <!--
+    <div>
+      <div class="container">
+        <div class="testimonials-box">
+          <!--
             - testimonios
           -->
-        <div class="testimonial">
-          <h2 class="title">Testimonio:</h2>
-          <div class="testimonial-card">
-            <img src="{{asset('images/logo.png')}}" alt="alan doe" class="testimonial-banner" width="80" height="80">
-            <p class="testimonial-name">Angelo Acevedo</p>
-            <p class="testimonial-title">Webmaster de Hatchi</p>
-            <img src="{{asset('images/testimonia.png')}}" alt="quotation" class="quotation-img" width="26">
-            <p class="testimonial-desc">
-              Lorem ipsum dolor sit amet consectetur Lorem ipsum
-              dolor dolor sit amet.
-            </p>
+          <div class="testimonial">
+            <h2 class="title">Testimonio:</h2>
+            <div class="testimonial-card">
+              <div class="testimonial-imgs">
+                <img src="{{asset('images/logo.png')}}" alt="alan doe" class="testimonial-banner" width="70"
+                  height="70">
+                <img src="{{asset('images/logo.png')}}" alt="alan doe" class="testimonial-banner" width="70"
+                  height="70">
+              </div>
+
+              <p class="testimonial-name">Angelo Acevedo</p>
+              <p class="testimonial-title">Webmaster de Hatchi</p>
+              <img src="{{asset('images/testimonia.png')}}" alt="quotation" class="quotation-img" width="26">
+              <p class="testimonial-desc">
+                Lorem ipsum dolor sit amet consectetur Lorem ipsum
+                dolor dolor sit amet.
+              </p>
+            </div>
           </div>
-        </div>
-        <!--
+          <!--
             - CTA
           -->
-        <div class="cta-container">
-          <img src="{{asset('images/banner.png')}}" alt="summer collection" class="cta-banner">
-          <a href="#" class="cta-content">
-            <p class="discount">25% de Descuento</p>
-            <h2 class="cta-title">En la collecion de Gatos</h2>
-            <p class="cta-text">Envio gratis a partir de 50$</p>
-            <button class="cta-btn">Ver coleccion</button>
-          </a>
-        </div>
-        <!--
+          <div class="cta-container">
+            <img src="{{asset('images/banner.png')}}" alt="summer collection" class="cta-banner">
+            <a href="#" class="cta-content">
+              <p class="discount">1% De Donacion</p>
+              <h2 class="cta-title">En todas tus compras</h2>
+              <p class="cta-text">Para ayudar a los que no pueden hablar</p>
+              <button class="cta-btn">Ver coleccion</button>
+            </a>
+          </div>
+          <!--
             - SERVICE
           -->
-        <div class="service">
+          <div class="service">
 
-          <h2 class="title">¿Que ofrecemos?</h2>
+            <h2 class="title">¿Que ofrecemos?</h2>
 
-          <div class="service-container">
+            <div class="service-container">
 
-            <a href="#" class="service-item">
+              <a href="#" class="service-item">
 
-              <div class="service-icon">
-                <ion-icon name="boat-outline"></ion-icon>
-              </div>
+                <div class="service-icon">
+                  <ion-icon name="boat-outline"></ion-icon>
+                </div>
 
-              <div class="service-content">
+                <div class="service-content">
 
-                <h3 class="service-title">Primeros En Aceptar Pagos Con Criptomonedas
-                </h3>
-                <p class="service-desc">Recibimos BTC,ETH,USDT,LTC y Mas…
-                </p>
+                  <h3 class="service-title">Primeros En Aceptar Pagos Con Criptomonedas
+                  </h3>
+                  <p class="service-desc">Recibimos BITCOIN y TETHER (USDT)
+                  </p>
 
-              </div>
+                </div>
+              </a>
+              <a href="#" class="service-item">
 
-            </a>
+                <div class="service-icon">
+                  <ion-icon name="rocket-outline"></ion-icon>
+                </div>
 
-            <a href="#" class="service-item">
+                <div class="service-content">
 
-              <div class="service-icon">
-                <ion-icon name="rocket-outline"></ion-icon>
-              </div>
+                  <h3 class="service-title">Rapidos envios</h3>
+                  <p class="service-desc">Envios el mismo dia, compra en linea y recoje en tienda o usando nuestro nuevo
+                    sistema de autoship.
+                  </p>
 
-              <div class="service-content">
+                </div>
 
-                <h3 class="service-title">Rapidos envios</h3>
-                <p class="service-desc">Contamos Con Un servicio Especializado de Entregas El mismo Día
-                </p>
+              </a>
 
-              </div>
+              <a href="#" class="service-item">
 
-            </a>
+                <div class="service-icon">
+                  <ion-icon name="call-outline"></ion-icon>
+                </div>
 
-            <a href="#" class="service-item">
+                <div class="service-content">
 
-              <div class="service-icon">
-                <ion-icon name="call-outline"></ion-icon>
-              </div>
+                  <h3 class="service-title">El mejor soporte</h3>
+                  <p class="service-desc">Soporte inmediatico con IA 24/7 y unico en Colombia
+                  </p>
 
-              <div class="service-content">
+                </div>
 
-                <h3 class="service-title">El mejor soporte</h3>
-                <p class="service-desc">Nuestro Soporte Capacitado Con Inteligencia Artificial de 8am a 5Pm Todos los
-                  días
-                </p>
+              </a>
 
-              </div>
+              <a href="#" class="service-item">
 
-            </a>
+                <div class="service-icon">
+                  <ion-icon name="arrow-undo-outline"></ion-icon>
+                </div>
 
-            <a href="#" class="service-item">
+                <div class="service-content">
 
-              <div class="service-icon">
-                <ion-icon name="arrow-undo-outline"></ion-icon>
-              </div>
-
-              <div class="service-content">
-
-                <h3 class="service-title">Campañas y Blogs</h3>
-                <p class="service-desc">Campañas y Blogs Para La Educación A Los Jovenes Hacia Los Animales
-                  Asesoramientos Nutricionales Para Cada Raza y Orientaciones De Entrenamientos </p>
-              </div>
-            </a>
-            <a href="#" class="service-item">
-              <div class="service-icon">
-                <ion-icon name="ticket-outline"></ion-icon>
-              </div>
-              <div class="service-content">
-                <h3 class="service-title">Descuentos</h3>
-                <p class="service-desc">Descuentos En Toda Nuestra Tienda</p>
-              </div>
-            </a>
+                  <h3 class="service-title">Asesoramientos y orientaciones</h3>
+                  <p class="service-desc">Cuidamos tanto tus mascotas, que realizamos todo tipo de asesoriamiento y
+                    orientaciones con nuestro emergente sistema.</p>
+                </div>
+              </a>
+              <a href="#" class="service-item">
+                <div class="service-icon">
+                  <ion-icon name="ticket-outline"></ion-icon>
+                </div>
+                <div class="service-content">
+                  <h3 class="service-title">Descuentos</h3>
+                  <p class="service-desc">Descuentos En Toda Nuestra Tienda y Aliados</p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!--
+    <!--
       - BLOG
     -->
-  <div class="blog">
-    <div class="container">
-      <h2 class="tittle">Nuestro Blog:</h2>
-      <div class="blog-container has-scrollbar">
-        @foreach ($lastPosts as $item)
-        <div class="blog-card">
-          <a href="{{route('post.show', [
+    <div class="blog">
+      <div class="container">
+        <h2 class="tittle">Nuestro Blog:</h2>
+        <div class="blog-container has-scrollbar">
+          @foreach ($lastPosts as $item)
+          <div class="blog-card">
+            <a href="{{route('post.show', [
             'postCategory' => $item->category_data->slug, 
             'post' => $item->slug
             ])}}">
-            <img src="{{asset('storage/blogs/'.$item->banner_image)}}" alt="" class="blog-banner" width="300">
-          </a>
-          <div class="blog-content">
-            <a href="{{route('post.show', [
+              <img src="{{asset('storage/blogs/'.$item->banner_image)}}" alt="" class="blog-banner" width="300">
+            </a>
+            <div class="blog-content">
+              <a href="{{route('post.show', [
               'postCategory' => $item->category_data->slug, 
               'post' => $item->slug
               ])}}" class="blog-category">{{$item->category_data->name}}</a>
-            <h3>
-              <a href="{{route('post.show', [
+              <h3>
+                <a href="{{route('post.show', [
                 'postCategory' => $item->category_data->slug, 
                 'post' => $item->slug
                 ])}}" class="blog-title">{{$item->title}}</a>
-            </h3>
-            <p class="blog-meta">
-              Por <cite>{{$item->user->name}}</cite> / <time
-                datetime="{{$item->created_at}}">{{$item->published_at}}</time>
-            </p>
+              </h3>
+              <p class="blog-meta">
+                Por <cite>{{$item->user->name}}</cite> / <time
+                  datetime="{{$item->created_at}}">{{$item->published_at}}</time>
+              </p>
+            </div>
           </div>
+          @endforeach
         </div>
-        @endforeach
       </div>
     </div>
-  </div>
 </main>
 
 

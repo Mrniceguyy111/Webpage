@@ -3,11 +3,11 @@ $nav_links = [
 
 [
 'name' => 'Membresias',
-'route' => route('purchases'),
+'route' => route('membership.index'),
 ],
 [
 'name' => 'Ofertas',
-'route' => route('system.config'),
+'route' => route('shop.offert'),
 ]
 
 ]
@@ -32,12 +32,11 @@ $nav_links = [
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
-  @livewireStyles
 
+  @livewireStyles
 </head>
 
 <body>
-  <div class="overlay" data-overlay></div>
   <header>
     <div class="header-top">
       <div class="container">
@@ -49,7 +48,7 @@ $nav_links = [
           </li>
           <li>
             <a href="https://instagram.com/hatchicolombia" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
+              <ion-icon name="logo-instagram"></ion-icon>
             </a>
           </li>
           <li>
@@ -65,8 +64,7 @@ $nav_links = [
         </ul>
         <div class="header-alert-news">
           <p>
-            <b>www.hatchi.com.co</b>
-            De nuestro corazon, para tus peluditos.
+            Nadie se preocupara mas por ti y tu mascota, Que HATCHI.
           </p>
         </div>
       </div>
@@ -139,7 +137,7 @@ $nav_links = [
       <div class="container">
         <ul class="desktop-menu-category-list">
           <li class="menu-category">
-            <a href="#" class="menu-title">Inicio</a>
+            <a href="{{route('home')}}" class="menu-title">Inicio</a>
           </li>
           <li class="menu-category">
             <a href="#" class="menu-title">Categorias</a>
@@ -185,7 +183,7 @@ $nav_links = [
             <a href="{{route('posts.index')}}" class="menu-title">Nuestros Blogs!</a>
           </li>
           <li class="menu-category">
-            <a href="#" class="menu-title">Ofertas</a>
+            <a href="{{route('shop.offert')}}" class="menu-title">Ofertas</a>
           </li>
         </ul>
       </div>
@@ -229,15 +227,56 @@ $nav_links = [
         </li>
         @endforeach
         <li class="menu-category">
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Perros</p>
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+          <ul class="submenu-category-list" data-accordion>
+            @foreach($animalCategory as $item)
+            <li class="submenu-category">
+              <a href="{{route('shop.category', [
+                  'animal' => 'perro',
+                  'animalCategory' => $item->slug
+                  ])}}">{{$item->name}}</a>
+            </li>
+            @endforeach
+          </ul>
+        </li>
+
+        <li class="menu-category">
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Gatos</p>
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+          <ul class="submenu-category-list" data-accordion>
+            @foreach($animalCategory as $item)
+            <li class="submenu-category">
+              <a href="{{route('shop.category', [
+                  'animal' => 'gato',
+                  'animalCategory' => $item->slug
+                  ])}}">{{$item->name}}</a>
+            </li>
+            @endforeach
+          </ul>
+        </li>
+        @guest
+        <li class="menu-category">
           <a href="" class="menu-title">Iniciar sesion</a>
         </li>
         <li class="menu-category">
           <a href="" class="menu-title">Registrarse</a>
         </li>
-        <li style="color: red;" class="menu-category">
-          <a href="" class="menu-title" style="color: red;">Rastrear envio</a>
+        <li class="menu-category">
+          <a href="" class="menu-title">Rastrear envio</a>
         </li>
       </ul>
+      @endguest
       <ul class="menu-social-container"></ul>
       <li>
         <a href="#" class="social-link">
@@ -264,8 +303,9 @@ $nav_links = [
     </nav>
   </header>
 
-
-  @yield('content')
+  <div>
+    @yield('content')
+  </div>
 
   <footer>
     <div class="footer-category">
@@ -310,7 +350,7 @@ $nav_links = [
         <h2 class="footer-category-title">Descarganos en:</h2>
         <div class="footer-bottom">
           <div class="dowloand-zone">
-            <img src="{{asset('images/googlePlayBadge.png')}}" alt="disponible app" class="dowloand-img">
+            <img src="{{asset('images/googlePlayBadge.png')}}" alt="disponible app" class="dowloand-img2">
             <img src="{{asset('images/svg/AppleBadge.svg')}}" alt="disponible app" class="dowloand-img">
             <img src="{{asset('images/appGalleryBadge.png')}}" alt="disponible app" class="dowloand-img">
           </div>
@@ -321,67 +361,36 @@ $nav_links = [
       <div class="container">
         <ul class="footer-nav-list">
           <li class="footer-nav-item">
-            <h2 class="nav-title">Categorias</h2>
+            <h2 class="nav-title">Sobre Hatchi</h2>
           </li>
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">1</a>
+          <li class="footer-nav-link">
+            <a href="">Acerca de Hatchi</a>
           </li>
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">1</a>
+          <li class="footer-nav-link">
+            <a href="">Trabaja con nosotros</a>
           </li>
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">1</a>
+          <li class="footer-nav-link">
+            <a href="">Nuestros blogs</a>
           </li>
-        </ul>
-        <ul class="footer-nav-list">
-          <li class="footer-nav-item">
-            <h2 class="nav-title">Productos</h2>
-          </li>
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">1</a>
-          </li>
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">1</a>
-          </li>
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">1</a>
-          </li>
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">1</a>
+          <li class="footer-nav-link">
+            <a href="">Terminos y condiciones</a>
           </li>
         </ul>
         <ul class="footer-nav-list">
           <li class="footer-nav-item">
-            <h2 class="nav-title">Sobre nosotros:</h2>
+            <h2 class="nav-title">Datos de intereses</h2>
           </li>
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Pago seguro</a>
+            <a href="#" class="footer-nav-link">¿Como comprar en hatchi?</a>
           </li>
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Recibimos bitcoin</a>
+            <a href="#" class="footer-nav-link">Preguntas frecuentes</a>
           </li>
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Blogs</a>
+            <a href="#" class="footer-nav-link">Politicas de entrega</a>
           </li>
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Membresias</a>
-          </li>
-        </ul>
-        <ul class="footer-nav-list">
-          <li class="footer-nav-item">
-            <h2 class="nav-title">Servicios</h2>
-          </li>
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">1</a>
-          </li>
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">1</a>
-          </li>
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">1</a>
-          </li>
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">1</a>
+            <a href="#" class="footer-nav-link">Politicas de privacidad</a>
           </li>
         </ul>
         <ul class="footer-nav-list">
@@ -444,14 +453,15 @@ $nav_links = [
       <div class="payment-zone">
         <img src="{{asset('images/bitcoinhere.png')}}" alt="payment method" class="paymentb-img">
         <img src="{{asset('images/payment.png')}}" alt="payment method" class="payment-img">
-        <img src="{{asset('images/cryptohere.png')}}" alt="payment method" class="paymentb-img">
       </div>
       <p class="copyright">
         Copyright &copy; <a href="#">Hatchi</a> all rights reserved.
       </p>
     </div>
   </footer>
+  @livewireScripts
   @vite(['resources/js/app.js'])
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script>
@@ -466,7 +476,6 @@ $nav_links = [
 
   </script>
 
-  @livewireScripts
 
 </body>
 

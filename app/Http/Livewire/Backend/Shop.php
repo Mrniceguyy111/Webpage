@@ -8,11 +8,11 @@ use Livewire\Component;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
-
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Shop extends Component
 {
-
+    use AuthorizesRequests;
     use WithFileUploads;
 
     public $product_id,
@@ -44,6 +44,7 @@ class Shop extends Component
 
     public function render()
     {
+        $this->authorize("viewAny", App\Models\Product::class);
         return view('livewire.backend.shop.view', [
             'products' => Product::all(),
             'animals' => Animals::all(),
@@ -68,6 +69,10 @@ class Shop extends Component
     }
 
 
+    public function lastedOrders()
+    {
+        return view('livewire.backend.history.show');
+    }
 
     public function store()
     {

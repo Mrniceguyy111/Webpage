@@ -26,6 +26,18 @@ class SystemConfig extends Component
         $slug,
         $is_active;
 
+
+    public function checkPayU()
+    {
+        LaravelPayU::doPing(function ($response) {
+            $code = $response->code;
+            echo "PayU Status: " . $code;
+        }, function ($e) {
+            echo "PayU Status: " . $e;
+            return;
+        });
+    }
+
     public function render()
     {
         // $this->checkPayU();

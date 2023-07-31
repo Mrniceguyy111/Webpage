@@ -5,7 +5,7 @@
     @include('livewire.backend.config.category.create')
     @endif
 
-    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+    <div class="overflow-hidden shadow-xl sm:rounded-lg">
 
         @if (session()->has('message'))
         <div class="w-2/5 ml-12 bg-teal-100 rounded-b text-teal-900 px-4 py-4 shadow-md my-3" role="alert">
@@ -17,12 +17,55 @@
         </div>
         @endif
 
-
-
+        <h1 class="text-4xl font-bold leadi text-center sm:text-5xl" style="color: #e7a242;">Status</h1>
+        <div class="max-w-full mx-4 py-6 sm:mx-auto sm:px-6 lg:px-8">
+            <div class="sm:flex sm:space-x-4">
+                <div
+                    class="inline-block align-bottom  rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+                    <div class="bg-white p-5">
+                        <div class="sm:flex sm:items-start">
+                            <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                                <h3 class="text-sm leading-6 font-medium" style="color: #e7a242;">PayU</h3>
+                                <p class="text-3xl font-bold text-black">Active</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+                    <div class="bg-white p-5">
+                        <div class="sm:flex sm:items-start">
+                            <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                                <h3 class="text-sm leading-6 font-medium" style="color: #e7a242;">Database:</h3>
+                                <p class="text-3xl font-bold text-black">Active</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+                    <div class="bg-white p-5">
+                        <div class="sm:flex sm:items-start">
+                            <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                                <h3 class="text-sm leading-6 font-medium text-gray-400" style="color: #e7a242;">API</h3>
+                                <p class="text-3xl font-bold text-black">Disable</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex flex-col mt-8">
-                <h2 class="text-2xl font-semibold mb-3">Categorias: </h2>
-                <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                <h2 class="text-2xl font-semibold mb-3">Categorias
+                    <box-icon name='down-arrow-alt' id="down-arrow-category" class="down-arrow cursor-pointer">
+                    </box-icon>
+                    <box-icon name='up-arrow-alt' id="up-arrow-category" class="up-arrow inactive cursor-pointer">
+                    </box-icon>
+                </h2>
+
+                <div id="table-category"
+                    class="table-category inactive py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                     <div
                         class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                         <table class="min-w-full">
@@ -99,10 +142,13 @@
                 </div>
             </div>
             <div class="flex flex-col mt-8">
-                <h2 class="text-2xl font-semibold mb-3">Listado de animales: </h2>
+                <h2 class="text-2xl font-semibold mb-3">Listado de animales
+                    <box-icon class="cursor-pointer" id="down-arrow-animals" name='down-arrow-alt'></box-icon>
+                    <box-icon class="inactive cursor-pointer" id="up-arrow-animals" name='up-arrow-alt'></box-icon>
+                </h2>
                 <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                    <div
-                        class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
+                    <div id="table-animals"
+                        class="inactive inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                         <table class="min-w-full">
                             <thead>
                                 <tr>
@@ -177,10 +223,8 @@
                 </div>
             </div>
             @if ($error)
-            Contamos con un error {{$errorData}}
+            Contamos con un error
             @endif
         </div>
-
-
     </div>
 </div>

@@ -16,8 +16,13 @@ use App\Models\{
 class DefaultController extends Controller
 {
 
+
+
     public function index()
     {
+
+
+
         $user = User::find(Auth::id());
 
         $address = Address::where('user_id', $user->id)->get();

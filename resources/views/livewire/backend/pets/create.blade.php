@@ -110,34 +110,35 @@
                     </div>
                 </fieldset>
                 <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm">
-                    <div class="space-y-2 col-span-full lg:col-span-1" bis_skin_checked="1">
+                    <!-- <div class="space-y-2 col-span-full lg:col-span-1" bis_skin_checked="1">
                         <p class="font-medium">Cuentanos los comportamientos de tu mascota</p>
                         <p class="text-xs">Elije 4 opciones que creas que representen a tu mascota</p>
                     </div>
                     <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3" bis_skin_checked="1">
                         <div class="flex flex-row col-span-full sm:col-span-3" bis_skin_checked="1">
                             <div class="">
-                                <button id="typepet"
-                                    class="text-pink-500 bg-transparent border border-solid border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3  rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                <button id="typepet" value="Amorosa"
+                         +           class="pet-button text-pink-500 bg-transparent border border-solid border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3  rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                     type="button">Amorosa</button>
                             </div>
                             <div class="">
-                                <button
-                                    class="text-pink-500 bg-transparent border border-solid border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3  rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                <button value="Cariñosa"
+                                    class="pet-button text-pink-500 bg-transparent border border-solid border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3  rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                     type="button">Cariñosa</button>
                             </div>
                             <div class="">
-                                <button
-                                    class="text-pink-500 bg-transparent border border-solid border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3  rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                <button value="Valiente"
+                                    class="pet-button text-pink-500 bg-transparent border border-solid border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3  rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                     type="button">Valiente</button>
                             </div>
                             <div class="">
-                                <button
-                                    class="text-pink-500 bg-transparent border border-solid border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3  rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                <button value="Timido"
+                                    class="pet-button text-pink-500 bg-transparent border border-solid border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3  rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                     type="button">Timido</button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+                    <div id="selectedValue"></div>
                     <div class="col-span-full" bis_skin_checked="1">
                         <label for="bio" class="text-sm">Imagen</label>
                         <div class="flex items-center space-x-2" bis_skin_checked="1">

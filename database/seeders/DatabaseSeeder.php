@@ -19,8 +19,11 @@ class DatabaseSeeder extends Seeder
         // \App\Models\Suscription::factory(3)->create();
         $this->call(SusriptionsSeeder::class);
         \App\Models\User::factory()->create([
-            'name' => 'rcomunica',
+            'name' => 'CoMMArka Studio',
             'email' => 'test@example.com',
+            'phone' => '3195397373',
+            'document' => '123456789',
+            'document_type' => 'C.C'
         ]);
 
 
@@ -35,5 +38,7 @@ class DatabaseSeeder extends Seeder
 
         DB::unprepared(file_get_contents(__DIR__ . '/Animals.sql'));
         DB::unprepared(file_get_contents(__DIR__ . '/AnimalBreed.sql'));
+        DB::unprepared(file_get_contents(__DIR__ . '/Departaments.sql'));
+        DB::unprepared(file_get_contents(__DIR__ . '/Municipalities.sql'));
     }
 }

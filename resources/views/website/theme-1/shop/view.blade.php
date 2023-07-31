@@ -1,27 +1,17 @@
 @extends('template')
-@section('title', "Membresias")
+@section('title', "Tienda")
 
 @section('content')
-<div class="overlay" data-overlay></div>
 <!--
     - MAIN
   -->
 <main>
-    <!--
-      - Inicio banner
-    -->
-    <!--
-      - animalss list
-    -->
-    <!--
-      - productos
-    -->
     <div class="product-container">
         <div class="container">
             <!--
           - sidebar
         -->
-            <div class="sidebar  has-scrollbar" data-mobile-menu>
+            <div class="sidebar has-scrollbar" data-mobile-menu>
                 <div class="sidebar-category">
                     <div class="sidebar-top">
                         <h2 class="sidebar-title">Trabajamos para mascotas como:</h2>
@@ -78,7 +68,7 @@
             
           -->
             <div class="product-main">
-                <h2 class="title">{{$animals->name}}!</h2>
+                <h2 class="title">{{$animals->name}}</h2>
                 <div class="product-grid">
                     @foreach ($product as $item)
                     <div class="showcase">
