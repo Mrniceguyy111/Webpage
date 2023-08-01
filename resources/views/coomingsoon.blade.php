@@ -53,7 +53,7 @@
 
     <script>
         function countdown() {
-    const targetDate = new Date("August 01, 2023 00:00:00").getTime();
+    const targetDate = new Date("August 05, 2023 00:00:00").getTime();
     const currentDate = new Date().getTime();
     const difference = targetDate - currentDate;
   
