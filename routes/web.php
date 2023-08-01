@@ -37,11 +37,7 @@ use App\Http\Livewire\Website\{
 |
 */
 
-if (time() > strtotime("August 01 2023 00:00:00")) {
-    Route::get('/', [Controller::class, 'index'])->name('home');
-} else {
-    Route::get('/', [Controller::class, 'coomingSoon'])->name('home');
-}
+Route::get('/', [Controller::class, 'index'])->name('home');
 
 // Route::get('/', [Controller::class, 'index'])->name('home');
 
