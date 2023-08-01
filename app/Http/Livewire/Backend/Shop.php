@@ -9,6 +9,7 @@ use App\Models\Product;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Storage;
 
 class Shop extends Component
 {
@@ -28,6 +29,7 @@ class Shop extends Component
         $quantity,
         $animal_category,
         $principal_image_path,
+        $imagename,
         $second_image_path,
         $third_image_path,
         $fourth_image_path;
@@ -78,6 +80,13 @@ class Shop extends Component
     {
         $this->validate();
 
+        if ($this->imagename) {
+            if ($this->principal_image_path) {
+                Storage::disk("products")->delete($this->principal_image_path);
+            }
+            $this->principal_image_path = $this->imagename->store(null, "products");
+        }
+
         Product::updateOrCreate(
             ["id" => $this->product_id],
             [
@@ -92,7 +101,7 @@ class Shop extends Component
                 "has_offer" => $this->has_offer,
                 "animal" => $this->animal,
                 "animal_category" => $this->animal_category,
-                // "principal_image_path" => $this->principal_image_path,
+                "principal_image_path" => $this->principal_image_path,
             ]
         );
 

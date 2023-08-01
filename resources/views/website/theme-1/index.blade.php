@@ -166,7 +166,8 @@
                 <div class="showcase-container">
                   <div class="showcase">
                     <a href="#" class="showcase-img-box">
-                      <img src="{{asset('images/logo.png')}}" alt="" width="75" height="75" class="showcase-img">
+                      <img src="{{asset('images/logo.png')}}" alt="more_sell" width="75" height="75"
+                        class="showcase-img">
                     </a>
                     <div class="showcase-content">
                       <a href="#">
@@ -191,8 +192,10 @@
               @foreach ($productsInOffer as $item)
               <div class="showcase">
                 <div class="showcase-banner">
-                  <img src="{{asset('images/juguetes.png')}}" alt="" width="300" class="product-img default">
-                  <img src="{{asset('images/logo.png')}}" alt="" width="300" class="product-img hover">
+                  <img src="{{asset('storage/products/'. $item->principal_image_path)}}" alt="{{$item->name}}"
+                    width="300" class="product-img default">
+                  <img src="{{asset('storage/products/'. $item->principal_image_path)}}" alt="{{$item->name}}"
+                    width="300" class="product-img hover">
                 </div>
                 <div class="showcase-content">
                   <a href="{{route('shop.product',[
@@ -227,8 +230,10 @@
               @foreach ($lastUploadProducts as $item)
               <div class="showcase">
                 <div class="showcase-banner">
-                  <img src="{{asset('images/juguetes.png')}}" alt="" width="300" class="product-img default">
-                  <img src="{{asset('images/logo.png')}}" alt="" width="300" class="product-img hover">
+                  <img src="{{asset('storage/products/'. $item->principal_image_path)}}" alt="{{$item->name}}"
+                    width="300" class="product-img default">
+                  <img src="{{asset('storage/products/'. $item->principal_image_path)}}" alt="{{$item->name}}"
+                    width="300" class="product-img hover">
                 </div>
                 <div class="showcase-content">
                   <a href="{{route('shop.product',[
@@ -269,8 +274,10 @@
               @foreach ($productsOfDogs as $item)
               <div class="showcase">
                 <div class="showcase-banner">
-                  <img src="{{asset('images/juguetes.png')}}" alt="" width="300" class="product-img default">
-                  <img src="{{asset('images/logo.png')}}" alt="" width="300" class="product-img hover">
+                  <img src="{{asset('storage/products/'. $item->principal_image_path)}}" alt="{{$item->name}}"
+                    width="300" class="product-img default">
+                  <img src="{{asset('storage/products/'. $item->principal_image_path)}}" alt="{{$item->name}}"
+                    width="300" class="product-img hover">
                 </div>
                 <div class="showcase-content">
                   <a href="{{route('shop.product',[
@@ -311,8 +318,10 @@
               @foreach ($productsOfCat as $item)
               <div class="showcase">
                 <div class="showcase-banner">
-                  <img src="{{asset('images/juguetes.png')}}" alt="" width="300" class="product-img default">
-                  <img src="{{asset('images/logo.png')}}" alt="" width="300" class="product-img hover">
+                  <img src="{{asset('storage/products/'. $item->principal_image_path)}}" alt="{{$item->name}}"
+                    width="300" class="product-img default">
+                  <img src="{{asset('storage/products/'. $item->principal_image_path)}}" width="300"
+                    class="product-img hover">
                 </div>
                 <div class="showcase-content">
                   <a href="{{route('shop.product',[
@@ -353,6 +362,76 @@
         </div>
       </div>
     </div>
+
+
+    <div id="promotion-bar" class="p-6 py-12" bis_skin_checked="1">
+      <div class="container mx-auto" bis_skin_checked="1">
+        <div class="flex flex-col lg:flex-row items-center justify-between" bis_skin_checked="1">
+          <h2 class="text-center text-2xl tracki font-bold" style="color: #e7a242;">En HATCHI siempre
+            <br class="sm:hidden">Aseguramos el bienestar <br> de tu mascota!
+          </h2>
+          <div class=" space-x-2 text-center py-2 lg:py-0" bis_skin_checked="1">
+            <span class="">Lo hacemos lo mejor de lo mejor!</span>
+            <span class="font-bold text-lg">Miralo!</span>
+          </div>
+          <a href="{{route('shop.offert')}}" rel="noreferrer noopener"
+            class="bg-white px-5 mt-4 lg:mt-0 py-3 rounded-md border block dark:bg-gray-50 dark:text-gray-900 dark:border-gray-400">Comprar</a>
+        </div>
+      </div>
+    </div>
+    <h2 class="mt-6 text-center text-2xl tracki font-bold" style="color: #2b1411;">¡Nuestros productos del momento!</h2>
+    <div class="carrusel">
+      <div class="carrusel-items">
+        <div class="carrusel-item">
+          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/dog.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/dog.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/dog.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+        </div>
+      </div>
+    </div>
+    <h2 class="mt-6 text-center text-2xl tracki font-bold" style="color: #2b1411;">¡Nuestras marcas!</h2>
+    <div class="carrusel">
+      <div class="carrusel-items">
+        <div class="carrusel-item">
+          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/dog.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/dog.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/dog.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+        </div>
+      </div>
+    </div>
+
     <!--
       - Testimonios, cta y servicios
     -->
@@ -490,7 +569,8 @@
             'postCategory' => $item->category_data->slug, 
             'post' => $item->slug
             ])}}">
-              <img src="{{asset('storage/blogs/'.$item->banner_image)}}" alt="" class="blog-banner" width="300">
+              <img src="{{asset('storage/blogs/'.$item->banner_image)}}" alt="{{$item->image}}" class="blog-banner"
+                width="300">
             </a>
             <div class="blog-content">
               <a href="{{route('post.show', [

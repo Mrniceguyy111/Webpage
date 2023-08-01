@@ -65,12 +65,10 @@
                 </div>
 
                 <div class="mb-4" wire:ignore wire:key='description'>
-                    <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Descripcion:</label>
-                    <trix-editor input="description" wire:model='description' class="trix-content"></trix-editor>
-                    <input type="hidden" id="description" name="description">
-                    @error('description')
-                    <span class="text-red-600">{{ $message }}</span>
-                    @enderror
+                    <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
+                    <textarea
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="description" wire:model.lazy='description'></textarea>
                 </div>
 
                 <div class="mb-4" wire:key='animal'>
@@ -85,6 +83,29 @@
                     @error('animal')
                     <span class="text-red-600">{{ $message }}</span>
                     @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300"
+                        for="file_input">File:</label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        aria-describedby="file_input_help" id="file_input" type="file" wire:model='imagename'>
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or
+                        GIF (Size. min: 500x500).</p>
+                    @error('imagename')
+                    <span class="text-red-600">{{ $message }}</span>
+                    @enderror
+                    <div wire:loading wire:target="imagename" class=""><img
+                            src="{{ asset('images/svg/Rolling-1s-200px.svg') }}" alt=""></div>
+
+                    @if ($imagename)
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300"
+                            for="file_input">Previsualización:</label>
+                        <img src="{{ $imagename->temporaryUrl() }}">
+                    </div>
+                    @endif
                 </div>
 
                 <div class="mb-4" wire:key='animal_category'>

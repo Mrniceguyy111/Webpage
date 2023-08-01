@@ -38,7 +38,7 @@ class UserFactory extends Factory
             'last_purchase' => $this->faker->date(),
             'total_purchases' => rand(1, 100),
             'email_verified_at' => $this->faker->date(),
-            'subscription_level' => rand(1, 4),
+            'subscription_level' => 1,
             'remember_token' => Str::random(10),
             'current_team_id' => 1,
         ];

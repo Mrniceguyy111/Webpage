@@ -37,11 +37,11 @@ use App\Http\Livewire\Website\{
 |
 */
 
-if (time() > strtotime("August 01 2023 00:00:00")) {
-    Route::get('/', [Controller::class, 'index'])->name('home');
-} else {
-    Route::get('/', [Controller::class, 'coomingSoon'])->name('home');
-}
+// if (time() > strtotime("August 01 2023 00:00:00")) {
+Route::get('/', [Controller::class, 'index'])->name('home');
+// } else {
+//     Route::get('/', [Controller::class, 'coomingSoon'])->name('home');
+// }
 
 // Route::get('/', [Controller::class, 'index'])->name('home');
 
@@ -90,7 +90,8 @@ Route::prefix('shop')->group(function () {
 
 Route::prefix('cart')->group(function () {
     Route::get('view', ShoppingCart::class)
-        ->name('cart.view');
+        ->name('cart.view')
+        ->middleware(["auth"]);
 
     Route::get('add/{id}', [ShoppingCart::class, 'addCart'])
         ->name('cart.add')
