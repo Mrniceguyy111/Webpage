@@ -159,8 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Te7aHoudini\LaravelTrix\LaravelTrixServiceProvider::class,
-        Alexo\LaravelPayU\LaravelPayUServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

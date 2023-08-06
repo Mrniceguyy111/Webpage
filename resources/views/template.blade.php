@@ -303,9 +303,7 @@ $nav_links = [
     </nav>
   </header>
 
-  <div>
-    @yield('content')
-  </div>
+  @yield('content')
 
   <footer>
     <div class="footer-category">
@@ -420,32 +418,60 @@ $nav_links = [
         </ul>
         <ul class="footer-nav-list">
           <li class="footer-nav-item">
+            <h2 class="nav-title">Contactanos:</h2>
+          </li>
+          <li class="footer-nav-item flex">
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+            <address class="content">
+              Carrera 26 #50-34
+            </address>
+          </li>
+          <li class="footer-nav-item flex">
+            <div class="icon-box">
+              <ion-icon name="call-outline"></ion-icon>
+            </div>
+            <a href="tel:+607936-8058" class="footer-nav-link">(+57) 322-730-35-00</a>
+          </li>
+          <li class="footer-nav-item flex">
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+            <a href="" class="footer-nav-link">Hatchicolombia@gmail.com</a>
+          </li>
+        </ul>
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item">
             <h2 class="nav-title">Siguenos en:</h2>
           </li>
           <li>
             <ul class="social-link">
               <li class="footer-nav-item">
-                <a href="#" class="footer-nav-link">
+                <a href="https://www.facebook.com/Hatchicolombia" class="footer-nav-link">
                   <ion-icon name="logo-facebook"></ion-icon>
                 </a>
               </li>
               <li class="footer-nav-item">
-                <a href="#" class="footer-nav-link">
-                  <ion-icon name="logo-twitter"></ion-icon>
-                </a>
-              </li>
-              <li class="footer-nav-item">
-                <a href="#" class="footer-nav-link">
-                  <ion-icon name="logo-linkedin"></ion-icon>
-                </a>
-              </li>
-              <li class="footer-nav-item">
-                <a href="#" class="footer-nav-link">
+                <a href="https://instagram.com/hatchicolombia" class="footer-nav-link">
                   <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+              <li class="footer-nav-item">
+                <a href="https://www.tiktok.com/@hatchicolombia" class="footer-nav-link">
+                  <ion-icon name="logo-tiktok"></ion-icon>
+                </a>
+              </li>
+              <li class="footer-nav-item">
+                <a href="https://youtube.com/@Hatchicolombia" class="footer-nav-link">
+                  <ion-icon name="logo-youtube"></ion-icon>
                 </a>
               </li>
             </ul>
           </li>
+        </ul>
+        <ul>
+
         </ul>
       </div>
     </div>
@@ -459,6 +485,7 @@ $nav_links = [
       </p>
     </div>
   </footer>
+
   @livewireScripts
   @vite(['resources/js/app.js'])
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>

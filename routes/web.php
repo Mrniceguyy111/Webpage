@@ -22,6 +22,7 @@ use App\Http\Livewire\Backend\{
     Userlist,
 };
 use App\Http\Livewire\Website\{
+    OrderCreate,
     Payment,
     ShoppingCart
 };
@@ -37,11 +38,11 @@ use App\Http\Livewire\Website\{
 |
 */
 
-if (time() > strtotime("August 05 2023 00:00:00")) {
-    Route::get('/', [Controller::class, 'index'])->name('home');
-} else {
-    Route::get('/', [Controller::class, 'coomingSoon'])->name('home');
-}
+// if (time() > strtotime("August 05 2023 00:00:00")) {
+Route::get('/', [Controller::class, 'index'])->name('home');
+// } else {
+//     Route::get('/', [Controller::class, 'coomingSoon'])->name('home');
+// }
 
 // Route::get('/', [Controller::class, 'index'])->name('home');
 
@@ -105,6 +106,13 @@ Route::prefix('cart')->group(function () {
 Route::prefix('payment')->group(function () {
     Route::get('resume', Payment::class)
         ->name('payment.view')
+        ->middleware(["auth"]);
+    Route::get('response', OrderCreate::class)
+        ->name('payment.response')
+        ->middleware(["auth"]);
+
+    Route::get('confirmation', [Payment::class, 'success'])
+        ->name('payment.confirmation')
         ->middleware(["auth"]);
 });
 

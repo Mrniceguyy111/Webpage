@@ -1,5 +1,4 @@
 @props(['id', 'maxWidth'])
-@trixassets
 @php
 $id = $id ?? md5($attributes->wire('model'));
 

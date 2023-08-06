@@ -110,11 +110,4 @@
       'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
     ),
   ),
-  'te7a-houdini/laravel-trix' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Te7aHoudini\\LaravelTrix\\LaravelTrixServiceProvider',
-    ),
-  ),
 );

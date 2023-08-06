@@ -29,18 +29,17 @@ class SystemConfig extends Component
 
     public function checkPayU()
     {
-        LaravelPayU::doPing(function ($response) {
-            $code = $response->code;
-            echo "PayU Status: " . $code;
-        }, function ($e) {
-            echo "PayU Status: " . $e;
-            return;
-        });
+        // LaravelPayU::doPing(function ($response) {
+        //     $code = $response->code;
+        //     echo "✅ $code";
+        // }, function ($e) {
+        //     echo "PayU Error! ❌:";
+        //     return;
+        // });
     }
 
     public function render()
     {
-        // $this->checkPayU();
         return view('livewire.backend.config.view', [
             'animalsCategory' => AnimalsCategory::all(),
             'animals' => Animals::all(),

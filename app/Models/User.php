@@ -32,6 +32,7 @@ class User extends Authenticatable
         'phone',
         'document',
         'document_type',
+        'last_purchase',
         'subscription_level',
     ];
 

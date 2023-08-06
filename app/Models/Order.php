@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use Alexo\LaravelPayU\Payable;
+// use Alexo\LaravelPayU\Payable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
     use HasFactory;
-    use Payable;
+    // use Payable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,6 +18,21 @@ class Order extends Model
      */
 
     protected $fillable = [
-        'reference', 'payu_order_id',  'transaction_id', 'state', 'value', 'user_id'
+        'user_id',
+        'status',
+        'value',
+        'order_date',
+        'delivery_address',
+        // PayU requests
+        'reference',
+        'payu_order_id',
+        'transaction_id',
+
+
+
     ];
+
+    public function address()
+    {
+    }
 }

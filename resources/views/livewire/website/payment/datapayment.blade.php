@@ -1,6 +1,8 @@
 @section('title', 'Detalles de pago')
 <div class="my-4">
     <section class="grid md:grid-cols-2 grid-cols-1 w-full">
+
+        @if ($pageData)
         <div class="ml-6" id="page-info">
             <div class="px-4 sm:px-0">
                 <h3 class="text-base font-semibold leading-7 text-gray-900">Informacion Basica</h3>
@@ -47,12 +49,15 @@
                     <box-icon name='edit'></box-icon>Editar
                 </button>
             </div>
-            <button type="button" id="siguiente-informacion"
+            <button type="button" id="siguiente-informacion" wire:click="page('address')"
                 class="my-2 inline-flex cursor-pointer items-center justify-center rounded-xl border-2 border-black bg-gray-200 px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80">
                 Siguiente
             </button>
         </div>
-        <div class="ml-6 hidden" id="page-corre">
+        @endif
+
+        @if ($pageAddresses)
+        <div class="ml-6" id="page-corre">
             <div class="px-4 sm:px-0">
                 <h3 class="text-base font-semibold leading-7 text-gray-900">Correspondencia</h3>
                 <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Selecciona el destino</p>
@@ -60,11 +65,12 @@
                     servientrega desde Bogotá, LOS TIEMPOS DE ENTREGA dependen de la cuarentena establecida en cada zona
                 </p>
             </div>
+
             <div class="mt-6 border-t border-gray-100">
                 @if ($hasAddreses)
                 <div class="px-4 py-2 ">
                     <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Mis direcciones:</label>
-                    <select id="address"
+                    <select id="address" wire:model='id_address'
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <option value="">Seleccione su direccion:</option>
                         @foreach ($addreses as $item)
@@ -111,16 +117,21 @@
                     <box-icon name='edit'></box-icon>Editar
                 </button>
             </div>
-            <button type="button" id="anterior-corre"
+            <button type="button" id="anterior-corre" wire:click="page('info')"
                 class="my-2 inline-flex cursor-pointer items-center justify-center rounded-xl border-2 border-critical bg-gray-200 px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80">
                 Anterior
             </button>
-            <button type="button" id="siguiente-corre"
+            @if ($id_address)
+            <button type="button" id="siguiente-corre" wire:click="page('pay')"
                 class="my-2 inline-flex cursor-pointer items-center justify-center rounded-xl border-2 border-critical bg-gray-200 px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80">
                 Siguiente
             </button>
+            @endif
         </div>
-        <div class="page-page ml-6 hidden" id="page-pago">
+        @endif
+
+        @if ($pagePay)
+        <div class="page-page ml-6" id="page-pago">
             <div class="px-4 sm:px-0">
                 <h3 class="text-base font-semibold leading-7 text-gray-900">Pago</h3>
                 <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Realiza el pago</p>
@@ -131,15 +142,37 @@
                 <dl class="divide-y divide-gray-100">
                 </dl>
             </div>
-            <button type="button" id="anterior-pago"
+            <button type="button" id="anterior-pago" wire:click="page('address')"
                 class="my-2 inline-flex cursor-pointer items-center justify-center rounded-xl border-2 border-critical bg-gray-200 px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80">
                 Anterior
             </button>
-            <button type="button"
-                class="my-2 inline-flex cursor-pointer items-center justify-center rounded-xl border-2 border-critical bg-blue-400 px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80">
-                Pagar <box-icon name='wallet-alt'></box-icon>
-            </button>
+            <form class="" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/" method="post">
+
+                <input name="merchantId" type="hidden" value="{{env('PAYU_MERCHANT_ID')}}">
+                <input name="accountId" type="hidden" value="{{env('PAYU_ACCOUNT_ID')}}">
+                <input name="description" type="hidden" value="Test PAYU">
+                <input name="referenceCode" type="hidden" value="{{$this->referenceCode}}">
+                <input name="amount" type="hidden" value="{{$this->totalPrice}}">
+                <input name="tax" type="hidden" value="{{$this->tax}}">
+                <input name="taxReturnBase" type="hidden" value="{{$this->taxBase}}">
+                <input name="currency" type="hidden" value="COP">
+                <input name="extra1" type="hidden" value="{{ Cart::content()->count() }}">
+                <input name="signature" type="hidden" value="{{$this->signature}}">
+                <input name="test" type="hidden" value="1">
+                <input name="buyerFullName" type="hidden" value="{{Auth::user()->name}}">
+                <input name="buyerEmail" type="hidden" value="{{Auth::user()->email}}">
+                <input name="mobilePhone" type="hidden" value="{{Auth::user()->phone}}">
+                <input name="responseUrl" type="hidden" value="{{route('payment.response')}}">
+                <input name="confirmationUrl" type="hidden" value="{{route('payment.confirmation')}}">
+
+                <button type="submit" wire:click="buy"
+                    class="my-2 inline-flex cursor-pointer items-center justify-center rounded-xl border-2 border-critical bg-blue-400 px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80">
+                    Pagar <box-icon name='wallet-alt'></box-icon>
+                </button>
+            </form>
         </div>
+        @endif
+
         <div class="flex justify-center min-h-screen">
             <div class="w-full max-w-sm rounded-xl bg-layer-2 px-8 py-6">
                 <h3 class="text-lg font-semibold text-heading">Resumen de pago</h3>
@@ -189,33 +222,4 @@
             </div>
         </div>
     </section>
-
-
-    <script>
-        const sectionInformation = document.getElementById("page-info")
-        const sectionCorre = document.getElementById("page-corre")
-        const sectionPago = document.getElementById("page-pago")
-        const siguienteInformacion = document.getElementById("siguiente-informacion")
-        const anteriorCorre = document.getElementById("anterior-corre")
-        const siguienteCorre = document.getElementById("siguiente-corre")
-        const anteriorPago = document.getElementById("anterior-pago")
-
-
-        siguienteInformacion.addEventListener("click", function() {
-            sectionInformation.classList.add("hidden")
-            sectionCorre.classList.remove("hidden")
-        })
-        anteriorCorre.addEventListener("click", function() {
-            sectionInformation.classList.remove("hidden")
-            sectionCorre.classList.add("hidden")
-        })
-        siguienteCorre.addEventListener("click", function() {
-            sectionCorre.classList.add("hidden")
-            sectionPago.classList.remove("hidden")
-        })
-        anteriorPago.addEventListener("click", function() {
-            sectionPago.classList.add("hidden")
-            sectionCorre.classList.remove("hidden")
-        }) 
-    </script>
 </div>

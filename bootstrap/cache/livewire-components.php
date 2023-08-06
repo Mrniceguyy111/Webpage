@@ -6,6 +6,7 @@
   'backend.shop' => 'App\\Http\\Livewire\\Backend\\Shop',
   'backend.system-config' => 'App\\Http\\Livewire\\Backend\\SystemConfig',
   'backend.userlist' => 'App\\Http\\Livewire\\Backend\\Userlist',
+  'website.order-create' => 'App\\Http\\Livewire\\Website\\OrderCreate',
   'website.payment' => 'App\\Http\\Livewire\\Website\\Payment',
   'website.shopping-cart' => 'App\\Http\\Livewire\\Website\\ShoppingCart',
 );

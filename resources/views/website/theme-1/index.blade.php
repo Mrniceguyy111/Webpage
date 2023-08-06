@@ -4,7 +4,11 @@
 
 
 @section('content')
+
 <div class="overlay" data-overlay></div>
+<a class="whats-app" href="https://wa.link/hatchi" target="_blank">
+  <box-icon name='whatsapp' type='logo' color='#ffffff' class="my-float"></box-icon>
+</a>
 <div class="modal" data-modal>
   <div class="modal-close-overlay" data-modal-overlay></div>
   <div class="modal-content">

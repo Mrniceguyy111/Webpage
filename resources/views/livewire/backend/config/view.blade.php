@@ -26,7 +26,7 @@
                         <div class="sm:flex sm:items-start">
                             <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
                                 <h3 class="text-sm leading-6 font-medium" style="color: #e7a242;">PayU</h3>
-                                <p class="text-3xl font-bold text-black">Active</p>
+                                <p class="text-3xl font-bold text-black">{{$this->checkPayU()}}</p>
                             </div>
                         </div>
                     </div>
