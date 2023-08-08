@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
 
 
         \App\Models\Address::factory(5)->create();
-        \App\Models\AnimalsCategory::factory(5)->create();
+        // \App\Models\AnimalsCategory::factory(5)->create();
         \App\Models\PostCategory::factory(5)->create();
         \App\Models\Post::factory(5)->create();
 
