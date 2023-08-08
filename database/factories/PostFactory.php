@@ -22,7 +22,7 @@ class PostFactory extends Factory
             'title' => $title = $this->faker->sentence(),
             'category' => rand(1, 4),
             'slug' => Str::slug($title),
-            'content' => $this->faker->text(2200),
+            'content' => 'En construccion',
         ];
     }
 }

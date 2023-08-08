@@ -312,43 +312,6 @@ $nav_links = [
   <footer>
     <div class="footer-category">
       <div class="container">
-        <h2 class="footer-category-title">Contenido:</h2>
-        <div class="footer-category-box">
-          <h3 class="category-box-title">Lagartos :</h3>
-          <a href="#" class="footer-category-link">Camisas para cocodrilos</a>
-          <a href="#" class="footer-category-link">Camisas para cocodrilos</a>
-          <a href="#" class="footer-category-link">Camisas para cocodrilos</a>
-          <a href="#" class="footer-category-link">Camisas para cocodrilos</a>
-          <a href="#" class="footer-category-link">Camisas para cocodrilos</a>
-        </div>
-        <div class="footer-category-box">
-          <h3 class="category-box-title">Caballos :</h3>
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Shampoo</a>
-        </div>
-        <div class="footer-category-box">
-          <h3 class="category-box-title">Gatos :</h3>
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Shampoo</a>
-        </div>
-        <div class="footer-category-box">
-          <h3 class="category-box-title">Perros :</h3>
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Shampoo</a>
-          <a href="#" class="footer-category-link">Shampoo</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-category">
-      <div class="container">
         <h2 class="footer-category-title">Descarganos en:</h2>
         <div class="footer-bottom">
           <div class="dowloand-zone">
@@ -414,7 +377,7 @@ $nav_links = [
             <div class="icon-box">
               <ion-icon name="mail-outline"></ion-icon>
             </div>
-            <a href="" class="footer-nav-link">Hatchicolombia@gmail.com</a>
+            <a href="mailto:hatchicolombia@gmail.com" class="footer-nav-link">Hatchicolombia@gmail.com</a>
           </li>
         </ul>
         <ul class="footer-nav-list">

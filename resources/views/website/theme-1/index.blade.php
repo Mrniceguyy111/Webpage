@@ -23,7 +23,7 @@
         <div class="newsletter-header">
           <h3 class="newsletter-title">Bienvenido a Hatchi</h3>
           <p class="newsletter-desc">
-            La mejor <b>E-commerce</b> para tus mascotas.
+            La unica <b>E-commerce</b> que se procupa por tus mascotas.
           </p>
         </div>
         <input type="email" name="email" class="email-field" placeholder="Email Address" required>
@@ -105,7 +105,7 @@
       <!--
       - animalss list
     -->
-      <div class="category">
+      {{-- <div class="category">
         <div class="container">
           <h2 class="tittle">Animales como:</h2>
           <div class="category-item-container has-scrollbar">
@@ -143,7 +143,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
       <!--
       - productos
     -->
@@ -188,7 +188,7 @@
                 @endforeach
               </ul>
             </div>
-            <div class="product-showcase">
+            {{-- <div class="product-showcase">
               <h3 class="showcase-heading">Lo mas vendido!</h3>
               <div class="showcase-wrapper">
                 <div class="showcase-container">
@@ -209,7 +209,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
           </div>
           <!--
             - Gird de los productos
@@ -407,6 +407,46 @@
         </div>
       </div>
     </div>
+    <div class="category">
+      <div class="container">
+        <h2 class="tittle text-center text-2xl font-bold my-5" style="color: #2b1411;">Trabajamos para animales como:
+        </h2>
+        <div class="category-item-container has-scrollbar">
+          <div class="category-item flex flex-col text-center">
+            <div class="category-img-box">
+              <img src="{{asset('images/animals/Dog.png')}}" alt="dress & frock" width="100">
+            </div>
+            <div class="category-content-box ">
+              <a href=" {{ route('shop.animal', 'perro' ) }}" class=" category-btn">Perros</a>
+            </div>
+          </div>
+          <div class="category-item flex flex-col text-center">
+            <div class="category-img-box">
+              <img src="{{asset('images/animals/Cat.png')}}" alt="dress & frock" width="100">
+            </div>
+            <div class="category-content-box ">
+              <a href="{{ route('shop.animal', 'gato' ) }}" class="category-btn">Gatos</a>
+            </div>
+          </div>
+          <div class="category-item flex flex-col text-center">
+            <div class="category-img-box">
+              <img src="{{asset('images/animals/Fish_Reptile.png')}}" alt="dress & frock" width="100">
+            </div>
+            <div class="category-content-box ">
+              <a href="#" class="category-btn">Reptiles Acuaticos</a>
+            </div>
+          </div>
+          <div class="category-item flex flex-col text-center">
+            <div class="category-img-box">
+              <img src="{{asset('images/animals/Horse.png')}}" alt="dress & frock" width="100">
+            </div>
+            <div class="category-content-box ">
+              <a href="{{ route('shop.animal', 'caballo' ) }}" class="category-btn">Caballos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <h2 class="mt-6 text-center text-2xl tracki font-bold" style="color: #2b1411;">¡Nuestros productos del momento!</h2>
     <div class="carrusel">
       <div class="carrusel-items">
@@ -489,8 +529,6 @@
               <p class="testimonial-title">Webmaster de Hatchi</p>
               <img src="{{asset('images/testimonia.png')}}" alt="quotation" class="quotation-img" width="26">
               <p class="testimonial-desc">
-                Lorem ipsum dolor sit amet consectetur Lorem ipsum
-                dolor dolor sit amet.
               </p>
             </div>
           </div>
