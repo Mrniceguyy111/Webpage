@@ -17,8 +17,10 @@ class ProductPolicy
         $teamWebmaster = Team::find(5);
 
         if (
-            $user->currentTeam == $teamAdmin ||
-            ($user->currentTeam == $teamWebmaster
+            $user->currentTeam == $teamAdmin &&
+            $teamAdmin->hasUser($user) ||
+            ($user->currentTeam == $teamWebmaster &&
+                $teamWebmaster->hasUser($user)
             )
         ) {
             return true;

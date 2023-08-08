@@ -8,6 +8,11 @@ use App\Models\{
     Product,
     Post,
 };
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Laravel\Jetstream\Jetstream;
+
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -65,6 +70,23 @@ class Controller extends BaseController
         return view('website.theme-1.membership', [
             "animals" => Animals::all(),
             "animalCategory" => AnimalsCategory::all(),
+        ]);
+    }
+
+    public function aboutHatchi()
+    {
+        $hatchi = Jetstream::localizedMarkdownPath('hatchi.md');
+
+        return view('about-hatchi', [
+            'hatchi' => Str::markdown(file_get_contents($hatchi)),
+        ]);
+    }
+    public function delivery()
+    {
+        $delivery = Jetstream::localizedMarkdownPath('delivery.md');
+
+        return view('delivery', [
+            'delivery' => Str::markdown(file_get_contents($delivery)),
         ]);
     }
 }

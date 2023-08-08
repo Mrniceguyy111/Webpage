@@ -49,7 +49,8 @@
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         aria-describedby="file_input_help" id="file_input" type="file" wire:model='imagename'>
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Only.</p>
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or
+                        GIF (Size. min: 1280x720).</p>
                     @error('imagename')
                     <span class="text-red-600">{{ $message }}</span>
                     @enderror
@@ -67,8 +68,9 @@
 
                 <div class="mb-4" wire:ignore wire:key='content'>
                     <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Contenido:</label>
-                    <trix-editor input="content" wire:model='content' class="trix-content"></trix-editor>
-                    <input type="hidden" id="content" name="content">
+                    <textarea
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="content" wire:model.lazy='content'></textarea>
                     @error('content')
                     <span class="text-red-600">{{ $message }}</span>
                     @enderror

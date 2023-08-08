@@ -277,27 +277,31 @@ $nav_links = [
         </li>
       </ul>
       @endguest
-      <ul class="menu-social-container"></ul>
-      <li>
-        <a href="#" class="social-link">
-          <ion-icon name="logo-facebook"></ion-icon>
-        </a>
+      <ul class="social-link flex flex-wrap mx-2">
+        <li class="footer-nav-item">
+          <a href="https://www.facebook.com/Hatchicolombia" class="footer-nav-link">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </a>
+        </li>
+        <li class="footer-nav-item">
+          <a href="https://instagram.com/hatchicolombia" class="footer-nav-link">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a>
+        </li>
+        <li class="footer-nav-item">
+          <a href="https://www.tiktok.com/@hatchicolombia" class="footer-nav-link">
+            <ion-icon name="logo-tiktok"></ion-icon>
+          </a>
+        </li>
+        <li class="footer-nav-item">
+          <a href="https://youtube.com/@Hatchicolombia" class="footer-nav-link">
+            <ion-icon name="logo-youtube"></ion-icon>
+          </a>
+        </li>
+      </ul>
       </li>
-      <li>
-        <a href="#" class="social-link">
-          <ion-icon name="logo-twitter"></ion-icon>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="social-link">
-          <ion-icon name="logo-instagram"></ion-icon>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="social-link">
-          <ion-icon name="logo-linkedin"></ion-icon>
-        </a>
-      </li>
+      </ul>
+      <ul>
       </ul>
       </div>
     </nav>
@@ -362,16 +366,13 @@ $nav_links = [
             <h2 class="nav-title">Sobre Hatchi</h2>
           </li>
           <li class="footer-nav-link">
-            <a href="">Acerca de Hatchi</a>
+            <a href="{{ route('about-hatchi') }}">Acerca de Hatchi</a>
           </li>
           <li class="footer-nav-link">
-            <a href="">Trabaja con nosotros</a>
+            <a href="{{ route('workus.view')}}">Trabaja con nosotros</a>
           </li>
           <li class="footer-nav-link">
-            <a href="">Nuestros blogs</a>
-          </li>
-          <li class="footer-nav-link">
-            <a href="">Terminos y condiciones</a>
+            <a href="{{ route('posts.index')}}">Nuestros blogs</a>
           </li>
         </ul>
         <ul class="footer-nav-list">
@@ -382,13 +383,13 @@ $nav_links = [
             <a href="#" class="footer-nav-link">¿Como comprar en hatchi?</a>
           </li>
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Preguntas frecuentes</a>
+            <a href="{{ route('faq.view') }}" class="footer-nav-link">Preguntas frecuentes</a>
           </li>
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Politicas de entrega</a>
+            <a href="{{ route('delivery-policy') }}" class="footer-nav-link">Politicas de entrega</a>
           </li>
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Politicas de privacidad</a>
+            <a href="{{ route('policy.show')}}" class="footer-nav-link">Politicas de privacidad</a>
           </li>
         </ul>
         <ul class="footer-nav-list">
@@ -407,32 +408,7 @@ $nav_links = [
             <div class="icon-box">
               <ion-icon name="call-outline"></ion-icon>
             </div>
-            <a href="tel:+607936-8058" class="footer-nav-link">(+57) 322-730-35-00</a>
-          </li>
-          <li class="footer-nav-item flex">
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
-            </div>
-            <a href="" class="footer-nav-link">Hatchicolombia@gmail.com</a>
-          </li>
-        </ul>
-        <ul class="footer-nav-list">
-          <li class="footer-nav-item">
-            <h2 class="nav-title">Contactanos:</h2>
-          </li>
-          <li class="footer-nav-item flex">
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-            <address class="content">
-              Carrera 26 #50-34
-            </address>
-          </li>
-          <li class="footer-nav-item flex">
-            <div class="icon-box">
-              <ion-icon name="call-outline"></ion-icon>
-            </div>
-            <a href="tel:+607936-8058" class="footer-nav-link">(+57) 322-730-35-00</a>
+            <a href="tel:+573227303500" class="footer-nav-link">(+57) 322-730-35-00</a>
           </li>
           <li class="footer-nav-item flex">
             <div class="icon-box">
@@ -533,6 +509,37 @@ $nav_links = [
     });
     
     start();
+  </script>
+  <script>
+    const carrusel2 = document.querySelector(".carrusel-items2");
+    
+    let maxScrollLeft2 = carrusel2.scrollWidth - carrusel2.clientWidth;
+    let intervalo2 = null;
+    let step2 = 1;
+    const start2 = () => {
+      intervalo2 = setInterval(function () {
+        carrusel2.scrollLeft = carrusel2.scrollLeft + step2;
+        if (carrusel2.scrollLeft === maxScrollLeft2) {
+          step2 = step2 * -1;
+        } else if (carrusel2.scrollLeft === 0) {
+          step2 = step2 * -1;
+        }
+      }, 10);
+    };
+    
+    const stop2 = () => {
+      clearInterval(intervalo2);
+    };
+    
+    carrusel2.addEventListener("mouseover", () => {
+      stop2();
+    });
+    
+    carrusel2.addEventListener("mouseout", () => {
+      start2();
+    });
+    
+    start2();
   </script>
 
 </body>

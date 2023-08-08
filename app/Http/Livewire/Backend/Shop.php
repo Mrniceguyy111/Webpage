@@ -38,10 +38,15 @@ class Shop extends Component
     public $editing = false;
 
     protected $rules = [
-        'name' => 'required',
-        'price' => 'required',
-        'animal' => 'required',
-        'animal_category' => 'required',
+        'name'                  => 'required|unique:products,name',
+        'price'                 => 'required|numeric|gte:1000',
+        'quantity'              => 'required|gte:1',
+        'subscription_price'    => 'nullable|numeric|lte:1000',
+        'discount'              => 'numeric|lte:100',
+        'description'           => 'required',
+        'animal'                => 'required',
+        'animal_category'       => 'required',
+        'imagename'             => 'required|image|max:65000|dimensions:min_width=500,min_height=500'
     ];
 
     public function render()

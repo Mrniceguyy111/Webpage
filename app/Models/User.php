@@ -76,6 +76,12 @@ class User extends Authenticatable
         return $this->belongsTo(Address::class);
     }
 
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class);
+    }
+
+
     public function team()
     {
         return $this->belongsTo(Team::class);

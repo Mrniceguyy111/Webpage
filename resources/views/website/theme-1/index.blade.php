@@ -114,7 +114,31 @@
                 <img src="{{asset('images/juguetes.png')}}" alt="dress & frock" width="100">
               </div>
               <div class="category-content-box ">
-                <a href="#" class="category-btn">Perros</a>
+                <a href=" {{ route('shop.animal', 'perro' ) }}" class=" category-btn">Perros</a>
+              </div>
+            </div>
+            <div class="category-item flex flex-col text-center">
+              <div class="category-img-box">
+                <img src="{{asset('images/animals/Cat.png')}}" alt="dress & frock" width="100">
+              </div>
+              <div class="category-content-box ">
+                <a href="{{ route('shop.animal', 'gato' ) }}" class="category-btn">Gatos</a>
+              </div>
+            </div>
+            <div class="category-item flex flex-col text-center">
+              <div class="category-img-box">
+                <img src="{{asset('images/animals/Fish_Reptile.png')}}" alt="dress & frock" width="100">
+              </div>
+              <div class="category-content-box ">
+                <a href="#" class="category-btn">Reptiles</a>
+              </div>
+            </div>
+            <div class="category-item flex flex-col text-center">
+              <div class="category-img-box">
+                <img src="{{asset('images/animals/Horse.png')}}" alt="dress & frock" width="100">
+              </div>
+              <div class="category-content-box ">
+                <a href="{{ route('shop.animal', 'caballo' ) }}" class="category-btn">Caballos</a>
               </div>
             </div>
           </div>
@@ -197,9 +221,9 @@
               <div class="showcase">
                 <div class="showcase-banner">
                   <img src="{{asset('storage/products/'. $item->principal_image_path)}}" alt="{{$item->name}}"
-                    width="300" class="product-img default">
+                    width="500" height="500" class="product-img default">
                   <img src="{{asset('storage/products/'. $item->principal_image_path)}}" alt="{{$item->name}}"
-                    width="300" class="product-img hover">
+                    width="300" height="500" class="product-img hover">
                 </div>
                 <div class="showcase-content">
                   <a href="{{route('shop.product',[
@@ -411,27 +435,33 @@
     </div>
     <h2 class="mt-6 text-center text-2xl tracki font-bold" style="color: #2b1411;">¡Nuestras marcas!</h2>
     <div class="carrusel">
-      <div class="carrusel-items">
+      <div class="carrusel-items2">
         <div class="carrusel-item">
-          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+          <img src="{{asset('images/brands/Bravecto.png')}}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{asset('images/dog.png')}}" alt="banner_images" />
+          <img src="{{asset('images/brands/CANAMOR.png')}}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+          <img src="{{asset('images/brands/Frontline.png')}}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{asset('images/dog.png')}}" alt="banner_images" />
+          <img src="{{asset('images/brands/Max.png')}}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+          <img src="{{asset('images/brands/Nat.png')}}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{asset('images/dog.png')}}" alt="banner_images" />
+          <img src="{{asset('images/brands/Natural.png')}}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+          <img src="{{asset('images/brands/Purina.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/brands/Royal.png')}}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{asset('images/brands/Taste.png')}}" alt="banner_images" />
         </div>
       </div>
     </div>

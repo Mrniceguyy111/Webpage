@@ -30,7 +30,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('birthday_date')->nullable();
             $table->unsignedBigInteger('subscription_level')->default(1)->nullable();
-            $table->integer('permision_level')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->foreignId('current_team_id')->nullable();

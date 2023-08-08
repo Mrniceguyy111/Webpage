@@ -33,8 +33,6 @@ class Userlist extends Component
     protected $rules = [
         'name' => 'required',
         'email' => 'required|unique:users,name',
-        // 'password' => 'required|min:8|confirmed',
-        // 'password_confirm' => 'required',
     ];
 
     public function render()

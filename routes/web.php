@@ -58,7 +58,11 @@ Route::get('/unete-a-hatchi', [Controller::class, 'workUs'])
 Route::get('/faq', [Controller::class, 'faq'])
     ->name('faq.view');
 
+Route::get('about-hatchi', [Controller::class, 'aboutHatchi'])
+    ->name('about-hatchi');
 
+Route::get('delivery-policy', [Controller::class, 'delivery'])
+    ->name('delivery-policy');
 
 /* Blogs */
 
