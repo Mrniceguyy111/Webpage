@@ -7,9 +7,11 @@
     </section>
     <section class="blogpost-main-container">
         <div class="grid-container">
-            <h3>{{$post->category_data->name}}</h3>
+            {{-- <h3>{{$post->category_data->name}}</h3> --}}
+            <h3>¡Pronto!</h3>
             <article>
-                <h1>{{$post->title}}</h1>
+                {{-- <h1>{{$post->title}}</h1> --}}
+                <h1>¡Pronto!</h1>
                 <p>{!! $post->content !!}</p>
         </div>
     </section>

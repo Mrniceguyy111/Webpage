@@ -7,6 +7,8 @@ namespace Database\Seeders;
 use App\Models\Suscription;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,7 +19,10 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         // \App\Models\Suscription::factory(3)->create();
+
+
         $this->call(SusriptionsSeeder::class);
+
         \App\Models\User::factory()->create([
             'name' => 'CoMMArka Studio',
             'email' => 'commarkastudio@gmail.com',
@@ -26,7 +31,6 @@ class DatabaseSeeder extends Seeder
             'document' => '123456789',
             'document_type' => 'C.C'
         ]);
-
 
         \App\Models\User::factory()->create([
             'name' => 'Santiago Tamayo',
@@ -48,12 +52,15 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(PostCategorySeeder::class);
 
+
+
         \App\Models\Address::factory(5)->create();
         \App\Models\AnimalsCategory::factory(5)->create();
         \App\Models\PostCategory::factory(5)->create();
         \App\Models\Post::factory(5)->create();
 
         $this->call(TeamSeeder::class);
+        $this->call(AnimalsCategorySeeder::class);
 
         DB::unprepared(file_get_contents(__DIR__ . '/Animals.sql'));
         DB::unprepared(file_get_contents(__DIR__ . '/AnimalBreed.sql'));

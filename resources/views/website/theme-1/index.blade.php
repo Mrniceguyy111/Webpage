@@ -23,7 +23,7 @@
         <div class="newsletter-header">
           <h3 class="newsletter-title">Bienvenido a Hatchi</h3>
           <p class="newsletter-desc">
-            La unica <b>E-commerce</b> que se procupa por tus mascotas.
+            La unica <b>E-commerce</b> que se preocupa por tus mascotas.
           </p>
         </div>
         <input type="email" name="email" class="email-field" placeholder="Email Address" required>
@@ -414,7 +414,7 @@
         <div class="category-item-container has-scrollbar">
           <div class="category-item flex flex-col text-center">
             <div class="category-img-box">
-              <img src="{{asset('images/animals/Dog.png')}}" alt="dress & frock" width="100">
+              <img src="{{asset('images/animals/Dog.png')}}" alt="dress & frock" width="150">
             </div>
             <div class="category-content-box ">
               <a href=" {{ route('shop.animal', 'perro' ) }}" class=" category-btn">Perros</a>
@@ -422,7 +422,7 @@
           </div>
           <div class="category-item flex flex-col text-center">
             <div class="category-img-box">
-              <img src="{{asset('images/animals/Cat.png')}}" alt="dress & frock" width="100">
+              <img src="{{asset('images/animals/Cat.png')}}" alt="dress & frock" width="150">
             </div>
             <div class="category-content-box ">
               <a href="{{ route('shop.animal', 'gato' ) }}" class="category-btn">Gatos</a>
@@ -430,7 +430,7 @@
           </div>
           <div class="category-item flex flex-col text-center">
             <div class="category-img-box">
-              <img src="{{asset('images/animals/Fish_Reptile.png')}}" alt="dress & frock" width="100">
+              <img src="{{asset('images/animals/Fish_Reptile.png')}}" alt="dress & frock" width="150">
             </div>
             <div class="category-content-box ">
               <a href="#" class="category-btn">Reptiles Acuaticos</a>
@@ -438,7 +438,7 @@
           </div>
           <div class="category-item flex flex-col text-center">
             <div class="category-img-box">
-              <img src="{{asset('images/animals/Horse.png')}}" alt="dress & frock" width="100">
+              <img src="{{asset('images/animals/Horse.png')}}" alt="dress & frock" width="150">
             </div>
             <div class="category-content-box ">
               <a href="{{ route('shop.animal', 'caballo' ) }}" class="category-btn">Caballos</a>
@@ -451,22 +451,22 @@
     <div class="carrusel">
       <div class="carrusel-items">
         <div class="carrusel-item">
-          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+          <img src="{{ asset('images/toys/15(500x500).png') }}" alt=" banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{asset('images/dog.png')}}" alt="banner_images" />
+          <img src="{{ asset('images/toys/24(500x500).png') }}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+          <img src="{{ asset('images/toys/27(500x500).png') }}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{asset('images/dog.png')}}" alt="banner_images" />
+          <img src="{{ asset('images/toys/66(500x500).png') }}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+          <img src="{{ asset('images/toys/89(500x500).png') }}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{asset('images/dog.png')}}" alt="banner_images" />
+          <img src="{{ asset('images/toys/96(500x500).png') }}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
           <img src="{{asset('images/cat.png')}}" alt="banner_images" />
@@ -648,12 +648,12 @@
               <a href="{{route('post.show', [
               'postCategory' => $item->category_data->slug, 
               'post' => $item->slug
-              ])}}" class="blog-category">{{$item->category_data->name}}</a>
+              ])}}" class="blog-category">¡Pronto!</a>
               <h3>
                 <a href="{{route('post.show', [
                 'postCategory' => $item->category_data->slug, 
                 'post' => $item->slug
-                ])}}" class="blog-title">{{$item->title}}</a>
+                ])}}" class="blog-title">¡Pronto!</a>
               </h3>
               <p class="blog-meta">
                 Por <cite>{{$item->user->name}}</cite> / <time

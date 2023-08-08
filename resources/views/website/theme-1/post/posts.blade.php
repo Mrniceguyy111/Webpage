@@ -10,7 +10,8 @@
                 <img src="{{asset('storage/blogs/'. $lastPost->banner_image )}}" alt="{{$lastPost->name}}">
             </div>
             <div class="blogs-news-info-container">
-                <h2>{{$lastPost->title}}</h2>
+                {{-- <h2>{{$lastPost->title}}</h2> --}}
+                <h2>¡Pronto!</h2>
                 <p>{{$lastPost->getExcerptAttribute()}}</p>
                 <a href="{{route('post.show', [
                     'postCategory' => $lastPost->category_data->slug, 
@@ -21,11 +22,12 @@
     </section>
     <section class="blogs-posts-container">
         <div class="grid-container">
-            <h3>Nuestros ultimos blogs</h3>
+            <h3 class="my-5">Nuestros ultimos blogs</h3>
             @foreach ($post as $item)
             <article class="post-container">
                 <img src="{{asset('storage/blogs/'. $item->banner_image )}}" alt="{{$item->name}}">
-                <p class="font-semibold">{{$item->title}}</p>
+                {{-- <p class="font-semibold">{{$item->title}}</p> --}}
+                <p class="font-semibold">¡PRONTO!</p>
                 <p>{{$item->getExcerptAttribute()}}</p>
                 <a href="{{route('post.show', [
                     'postCategory' => $item->category_data->slug, 

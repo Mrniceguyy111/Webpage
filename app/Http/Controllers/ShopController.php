@@ -19,6 +19,7 @@ class ShopController extends Controller
         return view('website.theme-1.shop.view', [
             "animals" => $animals,
             "animalCategory" => AnimalsCategory::all(),
+            "allAnimals" => Animals::all(),
             "product" => $product
         ]);
     }
@@ -29,6 +30,7 @@ class ShopController extends Controller
 
         return view('website.theme-1.shop.offers', [
             "product" => $product->getProductHasOffer(),
+            "allAnimals" => Animals::all(),
             "animalCategory" => AnimalsCategory::all(),
         ]);
     }
@@ -45,6 +47,7 @@ class ShopController extends Controller
         return view('website.theme-1.shop.view', [
             "product" => $product,
             "animals" => $animal,
+            "allAnimals" => Animals::all(),
             "category" => $animalCategory,
             "animalCategory" => AnimalsCategory::all(),
         ]);

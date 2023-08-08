@@ -10,7 +10,7 @@
             <h2 class="text-4xl font-bold leadi lg:text-5xl">Envianos tu propuesta</h2>
             <div class="dark:text-gray-400" bis_skin_checked="1">Estaremos feliz de responderte</div>
         </div>
-        <img src="assets/banner.png" alt="" class="p-6 h-52 md:h-64">
+        <img src="{{ asset('images/logo.png') }}" alt="" class="p-6 h-full md:h-full">
     </div>
     <form novalidate="" class="space-y-6">
         <div bis_skin_checked="1">

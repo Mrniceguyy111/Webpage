@@ -19,48 +19,31 @@
                             <ion-icon name="close-outline"></ion-icon>
                         </button>
                     </div>
-                    <ul class="sidebar-menu-category-list">
-                        <li class="sidebar-menu-category">
-                            <button class="sidebar-accordion-menu" data-accordion-btn>
-                                <div class="menu-title-flex">
-                                    <p class="menu-title">Perros</p>
-                                </div>
-                                <div>
-                                    <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                                    <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                                </div>
-                            </button>
-                            <ul class="sidebar-submenu-category-list" data-accordion>
-                                <li class="sidebar-submenu-category">
-                                    <a href="#" class="sidebar-submenu-title">
-                                        <p class="product-name">1</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="product-showcase">
-                    <h3 class="showcase-heading">Lo mas vendido!</h3>
-                    <div class="showcase-wrapper">
-                        <div class="showcase-container">
-                            <div class="showcase">
-                                <a href="#" class="showcase-img-box">
-                                    <img src="{{asset('images/logo.png')}}" alt="" width="75" height="75"
-                                        class="showcase-img">
-                                </a>
-                                <div class="showcase-content">
-                                    <a href="#">
-                                        <h4 class="showcase-title">Lorem, ipsum.</h4>
-                                    </a>
-                                    <div class="price-box">
-                                        <del>$5.00</del>
-                                        <p class="price">$4.00</p>
-                                    </div>
-                                </div>
+                    @foreach ($allAnimals as $animal)
+                    <li class="sidebar-menu-category">
+                        <button class="sidebar-accordion-menu" data-accordion-btn>
+                            <div class="menu-title-flex">
+                                <p class="menu-title">{{$animal->name}}</p>
                             </div>
-                        </div>
-                    </div>
+                            <div>
+                                <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                                <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                            </div>
+                        </button>
+                        <ul class="sidebar-submenu-category-list" data-accordion>
+                            @foreach ($animalCategory as $category)
+                            <li class="sidebar-submenu-category">
+                                <a href="{{route('shop.category', [
+                          'animal' => $animal->name,
+                          'animalCategory' => $category->slug
+                          ])}}" class=" sidebar-submenu-title">
+                                    <p class="product-name">{{$category->name}}</p>
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    @endforeach
                 </div>
             </div>
             <!--

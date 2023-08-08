@@ -11,7 +11,7 @@
             <!--
           - sidebar
         -->
-            <div class="sidebar has-scrollbar" data-mobile-menu>
+            <div class="sidebar  has-scrollbar" data-mobile-menu>
                 <div class="sidebar-category">
                     <div class="sidebar-top">
                         <h2 class="sidebar-title">Trabajamos para mascotas como:</h2>
@@ -20,10 +20,11 @@
                         </button>
                     </div>
                     <ul class="sidebar-menu-category-list">
+                        @foreach ($allAnimals as $animal)
                         <li class="sidebar-menu-category">
                             <button class="sidebar-accordion-menu" data-accordion-btn>
                                 <div class="menu-title-flex">
-                                    <p class="menu-title">Perros</p>
+                                    <p class="menu-title">{{$animal->name}}</p>
                                 </div>
                                 <div>
                                     <ion-icon name="add-outline" class="add-icon"></ion-icon>
@@ -31,22 +32,28 @@
                                 </div>
                             </button>
                             <ul class="sidebar-submenu-category-list" data-accordion>
+                                @foreach ($animalCategory as $category)
                                 <li class="sidebar-submenu-category">
-                                    <a href="#" class="sidebar-submenu-title">
-                                        <p class="product-name">1</p>
+                                    <a href="{{route('shop.category', [
+                      'animal' => $animal->name,
+                      'animalCategory' => $category->slug
+                      ])}}" class=" sidebar-submenu-title">
+                                        <p class="product-name">{{$category->name}}</p>
                                     </a>
                                 </li>
+                                @endforeach
                             </ul>
                         </li>
+                        @endforeach
                     </ul>
                 </div>
-                <div class="product-showcase">
+                {{-- <div class="product-showcase">
                     <h3 class="showcase-heading">Lo mas vendido!</h3>
                     <div class="showcase-wrapper">
                         <div class="showcase-container">
                             <div class="showcase">
                                 <a href="#" class="showcase-img-box">
-                                    <img src="{{asset('images/logo.png')}}" alt="" width="75" height="75"
+                                    <img src="{{asset('images/logo.png')}}" alt="more_sell" width="75" height="75"
                                         class="showcase-img">
                                 </a>
                                 <div class="showcase-content">
@@ -61,7 +68,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <!--
             - Gird de los productos
