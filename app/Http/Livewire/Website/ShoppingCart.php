@@ -29,7 +29,6 @@ class ShoppingCart extends Component
 
     public function render()
     {
-        // Asignamos el valor de AnimalsCategory::all() a la propiedad $animalsCategory
         $this->animalCategory = AnimalsCategory::all();
 
         return view('livewire.website.payment.cart', [

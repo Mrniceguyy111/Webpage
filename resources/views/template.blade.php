@@ -315,9 +315,9 @@ $nav_links = [
         <h2 class="footer-category-title">Descarganos en:</h2>
         <div class="footer-bottom">
           <div class="dowloand-zone">
-            <img src="{{asset('images/googlePlayBadge.png')}}" alt="disponible app" class="dowloand-img2">
-            <img src="{{asset('images/svg/AppleBadge.svg')}}" alt="disponible app" class="dowloand-img">
-            <img src="{{asset('images/appGalleryBadge.png')}}" alt="disponible app" class="dowloand-img">
+            <img src="{{asset('images/others/svg/AppleBadge.svg')}}" alt="disponible app" class="dowloand-img">
+            <img src="{{asset('images/others/googlePlayBadge.png')}}" alt="disponible app" class="dowloand-img">
+            <img src="{{asset('images/others/appGalleryBadge.png')}}" alt="disponible app" class="dowloand-img">
           </div>
         </div>
       </div>
@@ -410,14 +410,18 @@ $nav_links = [
           </li>
         </ul>
         <ul>
-
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="payment-zone">
-        <img src="{{asset('images/bitcoinhere.png')}}" alt="payment method" class="paymentb-img">
-        <img src="{{asset('images/payment.png')}}" alt="payment method" class="payment-img">
+        <div class="payment-zone2">
+          <img src="{{asset('images/others/Btc.png')}}" alt="payment method" class="payment-img2">
+          <img src="{{asset('images/others/bitcoinhere.png')}}" alt="payment method" class="payment-img">
+          <img src="{{asset('images/others/Tether.png')}}" alt="payment method" class="payment-img2b">
+        </div>
+        <img src="{{asset('images/others/payu.png')}}" alt="payment method" class="payment-img">
+        <img src="{{asset('images/others/payment.png')}}" alt="payment method" class="payment-img">
       </div>
       <p class="copyright">
         Copyright &copy; <a href="#">Hatchi</a> all rights reserved.

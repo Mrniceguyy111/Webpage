@@ -28,7 +28,8 @@ class OrderCreate extends Component
         $transaction_state,
         $transaction_id;
 
-    public function render(Request $request)
+
+    public function mount(Request $request)
     {
         $this->apiKey = env('PAYU_API_KEY');
         $this->merchant_id = env('PAYU_MERCHANT_ID');
@@ -70,9 +71,16 @@ class OrderCreate extends Component
             ],
         );
 
-        // Destruye todos los registros del cache
         Cart::destroy();
         $request->session()->forget('order');
+    }
+
+    public function render()
+    {
+
+        if (Cart::content()->count() == 0) {
+            abort(404);
+        }
 
         return view('livewire.website.payment.success', [
             "animalCategory" => AnimalsCategory::all(),

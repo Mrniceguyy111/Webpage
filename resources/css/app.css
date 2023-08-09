@@ -2225,7 +2225,13 @@ footer {
 
 .payment-zone {
   display: flex;
-  flex-direction: column;
+  flex-direction: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.payment-zone2 {
+  display: flex;
+  flex-direction: wrap;
   align-items: center;
   justify-content: center;
 }
@@ -2235,13 +2241,33 @@ footer {
   margin: auto;
   margin-bottom: 15px;
 }
+.payment-img2bi {
+  max-width: 335px;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 15px;
+}
+.payment-img2 {
+  max-width: 50px;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 15px;
+  margin: 15px;
+}
+.payment-img2b {
+  max-width: 70px;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 15px;
+  margin: 15px;
+}
 .paymentb-img {
   max-width: 230px;
   width: 100%;
   margin: auto;
   margin-bottom: 15px;
 }
-@media (max-width: 930px) {
+@media (max-width: 1175px) {
   .payment-zone {
     flex-direction: column;
   }
@@ -3385,7 +3411,6 @@ body {
   transform: scale(1.2);
 }
 #promotion-bar {
-  background-image: url(http://dev.hatchi.test/images/abstract.png);
   background-repeat: no-repeat;
   background-position: right;
 }

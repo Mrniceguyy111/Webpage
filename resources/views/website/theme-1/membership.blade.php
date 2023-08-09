@@ -152,13 +152,13 @@
                         </span>-- -- -- -- --
                     </p>
                     <button
-                        class="flex items-center mt-auto text-white bg-gray-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-600 rounded">Button
+                        class="flex items-center mt-auto text-white bg-orange-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-orange-600 rounded">Comprar
                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                         </svg>
                     </button>
-                    <p class="text-xs text-gray-500 mt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                    <p class="text-xs text-gray-500 mt-3">Sujeto a terminos y condiciones.</p>
                 </div>
             </div>
             <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
@@ -306,13 +306,13 @@
                         </span>-- -- -- -- --
                     </p>
                     <button
-                        class="flex items-center mt-auto text-white bg-gray-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-600 rounded">Button
+                        class="flex items-center mt-auto text-white bg-orange-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-orange-600 rounded">Comprar
                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                         </svg>
                     </button>
-                    <p class="text-xs text-gray-500 mt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                    <p class="text-xs text-gray-500 mt-3">Sujeto a terminos y condiciones.</p>
                 </div>
             </div>
             <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
@@ -469,13 +469,13 @@
                         </span>-- -- -- -- --
                     </p>
                     <button
-                        class="flex items-center mt-auto text-white bg-gray-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-600 rounded">Button
+                        class="flex items-center mt-auto text-white bg-orange-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-orange-600 rounded">Comprar
                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                         </svg>
                     </button>
-                    <p class="text-xs text-gray-500 mt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                    <p class="text-xs text-gray-500 mt-3">Sujeto a terminos y condiciones.</p>
                 </div>
             </div>
             <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
@@ -635,13 +635,13 @@
                         </span>-- -- -- -- --
                     </p>
                     <button
-                        class="flex items-center mt-auto text-white bg-indigo-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded">Button
+                        class="flex items-center mt-auto text-white bg-orange-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-orange-600 rounded">Comprar
                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                         </svg>
                     </button>
-                    <p class="text-xs text-gray-500 mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit..</p>
+                    <p class="text-xs text-gray-500 mt-3">Sujeto a terminos y condiciones.</p>
                 </div>
             </div>
         </div>

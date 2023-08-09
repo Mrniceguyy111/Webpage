@@ -69,7 +69,7 @@
     <div class="container">
       <div class="slider-container has-scrollbar">
         <div class="slider-item">
-          <img src="{{asset('images/banner.png')}}" alt="women's latest fashion sale" class="banner-img">
+          <img src="{{asset('images/test/banner.png')}}" alt="women's latest fashion sale" class="banner-img">
           <div class="banner-content">
             <p class="banner-subtitle">Hola, Somos</p>
             <h2 class="banner-title">Hatchi</h2>
@@ -80,7 +80,7 @@
           </div>
         </div>
         <div class="slider-item">
-          <img src="{{asset('images/banner.png')}}" alt="women's latest fashion sale" class="banner-img">
+          <img src="{{asset('images/test/banner.png')}}" alt="women's latest fashion sale" class="banner-img">
           <div class="banner-content">
             <p class="banner-subtitle">Hola, Somos</p>
             <h2 class="banner-title">Hatchi</h2>
@@ -91,7 +91,7 @@
           </div>
         </div>
         <div class="slider-item">
-          <img src="{{asset('images/banner.png')}}" alt="women's latest fashion sale" class="banner-img">
+          <img src="{{asset('images/test/banner.png')}}" alt="women's latest fashion sale" class="banner-img">
           <div class="banner-content">
             <p class="banner-subtitle">Hola, Somos</p>
             <h2 class="banner-title">Hatchi</h2>
@@ -392,7 +392,8 @@
     </div>
 
 
-    <div id="promotion-bar" class="p-6 py-12" bis_skin_checked="1">
+    <div id="promotion-bar" style="background-image: url({{ asset('images/others/abstract.png') }})" class="p-6 py-12"
+      bis_skin_checked="1">
       <div class="container mx-auto" bis_skin_checked="1">
         <div class="flex flex-col lg:flex-row items-center justify-between" bis_skin_checked="1">
           <h2 class="text-center text-2xl tracki font-bold" style="color: #e7a242;">En HATCHI siempre
@@ -430,18 +431,58 @@
           </div>
           <div class="category-item flex flex-col text-center">
             <div class="category-img-box">
-              <img src="{{asset('images/animals/Fish_Reptile.png')}}" alt="dress & frock" width="150">
-            </div>
-            <div class="category-content-box ">
-              <a href="#" class="category-btn">Reptiles Acuaticos</a>
-            </div>
-          </div>
-          <div class="category-item flex flex-col text-center">
-            <div class="category-img-box">
               <img src="{{asset('images/animals/Horse.png')}}" alt="dress & frock" width="150">
             </div>
             <div class="category-content-box ">
               <a href="{{ route('shop.animal', 'caballo' ) }}" class="category-btn">Caballos</a>
+            </div>
+          </div>
+          <div class="category-item flex flex-col text-center">
+            <div class="category-img-box">
+              <img src="{{asset('images/animals/Fish_Reptile.png')}}" alt="dress & frock" width="150">
+            </div>
+            <div class="category-content-box ">
+              <a href="#" class="category-btn">Peses y Reptiles</a>
+            </div>
+          </div>
+          <div class="category-item flex flex-col text-center">
+            <div class="category-img-box">
+              <img src="{{asset('images/animals/conejo.png')}}" alt="conejo" width="150">
+            </div>
+            <div class="category-content-box ">
+              <a href="#" class="category-btn">Conejo</a>
+            </div>
+          </div>
+          <div class="category-item flex flex-col text-center">
+            <div class="category-img-box">
+              <img src="{{asset('images/animals/ave.png')}}" alt="ave" width="150">
+            </div>
+            <div class="category-content-box ">
+              <a href="#" class="category-btn">Ave</a>
+            </div>
+          </div>
+          <div class="category-item flex flex-col text-center">
+            <div class="category-img-box">
+              <img src="{{asset('images/animals/cow.png')}}" alt="cow" width="150">
+            </div>
+            <div class="category-content-box ">
+              <a href="#" class="category-btn">Vaca</a>
+            </div>
+          </div>
+          <div class="category-item flex flex-col text-center">
+            <div class="category-img-box">
+              <img src="{{asset('images/animals/goat.png')}}" alt="dress & frock" width="150">
+            </div>
+            <div class="category-content-box ">
+              <a href="#" class="category-btn">Cabra</a>
+            </div>
+          </div>
+          <div class="category-item flex flex-col text-center">
+            <div class="category-img-box">
+              <img src="{{asset('images/animals/Hedgehogs_Hamsters.png')}}" alt="dress & frock" width="150">
+            </div>
+            <div class="category-content-box ">
+              <a href="#" class="category-btn">Erizos y Hamsters</a>
             </div>
           </div>
         </div>
@@ -451,25 +492,28 @@
     <div class="carrusel">
       <div class="carrusel-items">
         <div class="carrusel-item">
-          <img src="{{ asset('images/toys/15(500x500).png') }}" alt=" banner_images" />
+          <img src="{{ asset('images/toys/1.jpg') }}" alt=" banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{ asset('images/toys/24(500x500).png') }}" alt="banner_images" />
+          <img src="{{ asset('images/toys/2.jpg') }}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{ asset('images/toys/27(500x500).png') }}" alt="banner_images" />
+          <img src="{{ asset('images/toys/3.jpg') }}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{ asset('images/toys/66(500x500).png') }}" alt="banner_images" />
+          <img src="{{ asset('images/toys/4.jpg') }}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{ asset('images/toys/89(500x500).png') }}" alt="banner_images" />
+          <img src="{{ asset('images/toys/5.jpg') }}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{ asset('images/toys/96(500x500).png') }}" alt="banner_images" />
+          <img src="{{ asset('images/toys/6.jpg') }}" alt="banner_images" />
         </div>
         <div class="carrusel-item">
-          <img src="{{asset('images/cat.png')}}" alt="banner_images" />
+          <img src="{{ asset('images/toys/7.jpg') }}" alt="banner_images" />
+        </div>
+        <div class="carrusel-item">
+          <img src="{{ asset('images/toys/8.jpg') }}" alt="banner_images" />
         </div>
       </div>
     </div>
@@ -519,16 +563,15 @@
             <h2 class="title">Testimonio:</h2>
             <div class="testimonial-card">
               <div class="testimonial-imgs">
-                <img src="{{asset('images/logo.png')}}" alt="alan doe" class="testimonial-banner" width="70"
-                  height="70">
-                <img src="{{asset('images/logo.png')}}" alt="alan doe" class="testimonial-banner" width="70"
-                  height="70">
+                <img src="{{asset('images/profile/JR.png')}}" alt="" class="testimonial-banner" width="70" height="70">
+                <img src="{{asset('images/profile/LN.jpg')}}" alt="" class="testimonial-banner" width="70" height="70">
               </div>
-
-              <p class="testimonial-name">Angelo Acevedo</p>
-              <p class="testimonial-title">Webmaster de Hatchi</p>
+              <p class="testimonial-name">Julian Ramirez</p>
+              <p class="testimonial-title">Backend Developer de Hatchi</p>
               <img src="{{asset('images/testimonia.png')}}" alt="quotation" class="quotation-img" width="26">
               <p class="testimonial-desc">
+                Elaborar hatchi, no es solo un trabajo, fue encaminar y reforzar mi amor por los animales, aprendi y
+                considere que porfin se creo una linea 100% petfriendly para nuestros amiguitos que no hablan.
               </p>
             </div>
           </div>
@@ -536,13 +579,13 @@
             - CTA
           -->
           <div class="cta-container">
-            <img src="{{asset('images/banner.png')}}" alt="summer collection" class="cta-banner">
-            <a href="#" class="cta-content">
-              <p class="discount">1% De Donacion</p>
-              <h2 class="cta-title">En todas tus compras</h2>
-              <p class="cta-text">Para ayudar a los que no pueden hablar</p>
-              <button class="cta-btn">Ver coleccion</button>
-            </a>
+            <video src="{{asset('videos/CtaLetras.mp4')}}" autoplay class="cta-banner">
+              <!-- <a href="#" class="cta-content">
+                <p class="discount">1% De Donacion</p>
+                <h2 class="cta-title">En todas tus compras</h2>
+                <p class="cta-text">Para ayudar a los que no pueden hablar</p>
+                <button class="cta-btn">Ver coleccion</button>
+              </a> -->
           </div>
           <!--
             - SERVICE
@@ -611,7 +654,7 @@
 
                   <h3 class="service-title">Asesoramientos y orientaciones</h3>
                   <p class="service-desc">Cuidamos tanto tus mascotas, que realizamos todo tipo de asesoriamiento y
-                    orientaciones con nuestro emergente sistema.</p>
+                    orientaciones con nuestro sistema emergente.</p>
                 </div>
               </a>
               <a href="#" class="service-item">
