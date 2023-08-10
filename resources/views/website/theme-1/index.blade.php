@@ -447,7 +447,7 @@
           </div>
           <div class="category-item flex flex-col text-center">
             <div class="category-img-box">
-              <img src="{{asset('images/animals/conejo.png')}}" alt="conejo" width="150">
+              <img src="{{asset('images/animals/Conejo.png')}}" alt="conejo" width="150">
             </div>
             <div class="category-content-box ">
               <a href="#" class="category-btn">Conejo</a>
@@ -455,7 +455,7 @@
           </div>
           <div class="category-item flex flex-col text-center">
             <div class="category-img-box">
-              <img src="{{asset('images/animals/ave.png')}}" alt="ave" width="150">
+              <img src="{{asset('images/animals/Aves.png')}}" alt="ave" width="150">
             </div>
             <div class="category-content-box ">
               <a href="#" class="category-btn">Ave</a>
@@ -463,7 +463,7 @@
           </div>
           <div class="category-item flex flex-col text-center">
             <div class="category-img-box">
-              <img src="{{asset('images/animals/cow.png')}}" alt="cow" width="150">
+              <img src="{{asset('images/animals/Cow.png')}}" alt="cow" width="150">
             </div>
             <div class="category-content-box ">
               <a href="#" class="category-btn">Vaca</a>
@@ -471,7 +471,7 @@
           </div>
           <div class="category-item flex flex-col text-center">
             <div class="category-img-box">
-              <img src="{{asset('images/animals/goat.png')}}" alt="dress & frock" width="150">
+              <img src="{{asset('images/animals/Goat.png')}}" alt="dress & frock" width="150">
             </div>
             <div class="category-content-box ">
               <a href="#" class="category-btn">Cabra</a>
