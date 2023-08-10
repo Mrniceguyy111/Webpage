@@ -579,13 +579,14 @@
             - CTA
           -->
           <div class="cta-container">
-            <video src="{{asset('videos/CtaLetras.mp4')}}" autoplay class="cta-banner">
-              <!-- <a href="#" class="cta-content">
+            <video autoplay src="{{asset('videos/CtaLetras.mp4')}}" muted loop class="cta-banner">
+              {{--
+              <a href="#" class="cta-content">
                 <p class="discount">1% De Donacion</p>
                 <h2 class="cta-title">En todas tus compras</h2>
                 <p class="cta-text">Para ayudar a los que no pueden hablar</p>
                 <button class="cta-btn">Ver coleccion</button>
-              </a> -->
+              </a>--}}
           </div>
           <!--
             - SERVICE

@@ -24,27 +24,9 @@ class DatabaseSeeder extends Seeder
         $this->call(SusriptionsSeeder::class);
 
         \App\Models\User::factory()->create([
-            'name' => 'CoMMArka Studio',
-            'email' => 'commarkastudio@gmail.com',
-            'phone' => '3195397373',
-            'password' => bcrypt("somosCommarka2023@s"),
-            'document' => '123456789',
-            'document_type' => 'C.C'
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Santiago Tamayo',
-            'email' => 'easymoney388@gmail.com',
-            'phone' => '3172300370',
-            'password' => bcrypt("somosHatchi2023@h"),
-            'document' => '123456789',
-            'document_type' => 'C.C'
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Adriana Paez',
-            'email' => 'adrianapaezsuarez@gmail.com',
-            'phone' => '3044744067',
+            'name' => 'Administracion Hatchi',
+            'email' => 'admin@hatchi.com.co',
+            'phone' => '3227303500',
             'password' => bcrypt("somosHatchi2023@h"),
             'document' => '123456789',
             'document_type' => 'C.C'

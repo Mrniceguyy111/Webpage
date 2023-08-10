@@ -40,24 +40,12 @@ class CreateNewUser implements CreatesNewUsers
                 'phone' => $input['phone'],
                 'document' => $input['document'],
                 'birthday_date' => $input['birthday'],
-                'document_type' => $input['document_type']
+                'document_type' => $input['document_type'],
             ]), function (User $user) {
                 $this->assignTeamAuto($user);
             });
         });
     }
-
-    // /**
-    //  * Create a personal team for the user.
-    //  */
-    // protected function createTeam(User $user): void
-    // {
-    //     $user->ownedTeams()->save(Team::forceCreate([
-    //         'user_id' => $user->id,
-    //         'name' => explode(' ', $user->name, 2)[0] . "'s Team",
-    //         'personal_team' => true,
-    //     ]));
-    // }
 
     protected function assignTeamAuto(User $user)
     {

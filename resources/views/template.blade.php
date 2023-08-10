@@ -219,7 +219,7 @@ $nav_links = [
       </div>
       <ul class="mobile-menu-category-list">
         <li class="menu-category">
-          <a href="#" class="menu-title">Inicio</a>
+          <a href="{{ route('home') }}" class="menu-title">Inicio</a>
         </li>
         @foreach ($nav_links as $item)
         <li class="menu-category">

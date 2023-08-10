@@ -16,7 +16,7 @@
                 <a href="{{route('post.show', [
                     'postCategory' => $lastPost->category_data->slug, 
                     'post' => $lastPost->slug
-                    ])}}" class="blogs-button hover:bg-principal hover:text-white">Leer más</a>
+                    ])}}" class="blogs-button hover:bg-principal hover:text-white rounded-full">Leer más</a>
             </div>
         </div>
     </section>
@@ -32,7 +32,7 @@
                 <a href="{{route('post.show', [
                     'postCategory' => $item->category_data->slug, 
                     'post' => $item->slug
-                    ])}}" class="blogs-button hover:bg-principal hover:text-white">Leer más</a>
+                    ])}}" class="blogs-button hover:bg-principal hover:text-white rounded-full">Leer más</a>
             </article>
             @endforeach
         </div>

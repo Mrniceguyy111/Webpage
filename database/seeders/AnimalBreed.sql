@@ -1,3 +1,4 @@
+-- SQLBook: Code
 -- animal_breeds de perros
 
 INSERT INTO
@@ -28,11 +29,11 @@ VALUES ('Caballo Árabe', 4), ('Caballo Frisón', 4), (
         4
     );
 
--- Hámster
+-- Roedores
 
 INSERT INTO
     animal_breeds (name, animal_id)
-VALUES ('Hámster Ruso (Dwarf)', 5), ('Hámster Sirio', 5), ('Hámster Roborovski', 5), ('Hámster Chino', 5), ('Hámster Campbell', 5);
+VALUES ('Hámster', 5), ('Cuy', 5), ('Gerbo', 5), ('Cobaya', 5);
 
 -- Hurón
 
@@ -40,11 +41,11 @@ INSERT INTO
     animal_breeds (name, animal_id)
 VALUES ('Hurón Albino', 6), ('Hurón Sable', 6), ('Hurón Canela', 6), ('Hurón Chocolate', 6), ('Hurón Blanco', 6);
 
--- Pájaro
+-- Aves
 
 INSERT INTO
     animal_breeds (name, animal_id)
-VALUES ('Canario', 7), ('Periquito Australiano', 7), ('Cotorra de Kramer', 7), ('Cacatúa', 7), ('Loro Gris Africano', 7);
+VALUES ('Pericos', 7), ('Loros', 7), ('Canarios', 7), ('Cacatúa', 7), ('Patos', 7);
 
 -- Pez
 
@@ -52,44 +53,20 @@ INSERT INTO
     animal_breeds (name, animal_id)
 VALUES ('Betta Splendens', 8), ('Guppy', 8), ('Pez Ángel', 8), ('Molly', 8), ('Goldfish', 8);
 
--- Tortuga
-
-INSERT INTO
-    animal_breeds (name, animal_id)
-VALUES ('Tortuga de Orejas Rojas', 9), ('Tortuga Mordedora', 9), ('Tortuga Sulcata', 9), ('Tortuga Rusa', 9), ('Tortuga de Caja', 9);
-
 -- Reptil
 
 INSERT INTO
     animal_breeds (name, animal_id)
-VALUES ('Pitón Real', 10), ('Iguana Verde', 10), ('Dragón Barbudo', 10), ('Tortuga Rusa', 10), ('Geckos Leopardo', 10);
+VALUES ('Tortuga', 9), ('Ajolotes ', 9), ('Tarantulas', 9), ('Lagartijas', 9), ('Serpientes', 9), ('Sapos', 9);
 
 -- Mini Cerdo
 
 INSERT INTO
     animal_breeds (name, animal_id)
-VALUES ('Cerdo Vietnamita', 11), ('Cerdo Hampshire', 11), ('Cerdo Yorkshire', 11), ('Cerdo Duroc', 11), ('Cerdo Landrace', 11);
-
--- Cobaya
-
-INSERT INTO
-    animal_breeds (name, animal_id)
-VALUES ('Abyssinian', 12), ('Peruano', 12), ('Teddy', 12), ('Americano', 12), ('Coronet', 12);
+VALUES ('Cerdo Vietnamita', 10), ('Cerdo Hampshire', 10), ('Cerdo Yorkshire', 10), ('Cerdo Duroc', 10), ('Cerdo Landrace', 10);
 
 -- Granja
 
 INSERT INTO
     animal_breeds (name, animal_id)
-VALUES ('Cabra', 13), ('Oveja', 13), ('Cerdo', 13), ('Vaca', 13), ('Pollo', 13);
-
--- Cuy
-
-INSERT INTO
-    animal_breeds (name, animal_id)
-VALUES ('Cuy Peruano', 14), ('Cuy Americano', 14), ('Cuy Andino', 14), ('Cuy Texel', 14), ('Cuy Coronet', 14);
-
--- Gerbo
-
-INSERT INTO
-    animal_breeds (name, animal_id)
-VALUES ('Mongol', 15), ('Egipcio', 15), ('Desierto', 15), ('Península Arábiga', 15), ('Fat-tailed', 15);
+VALUES ('Cabra', 11), ('Oveja', 11), ('Cerdo', 11), ('Vaca', 11), ('Gallina', 11);

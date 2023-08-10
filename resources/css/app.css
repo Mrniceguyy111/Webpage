@@ -2272,6 +2272,11 @@ footer {
     flex-direction: column;
   }
 }
+@media (max-width: 480px) {
+  .payment-zone2 {
+    flex-direction: column;
+  }
+}
 .dowloand-zone {
   display: flex;
   flex-direction: row;

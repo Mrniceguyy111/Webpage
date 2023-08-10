@@ -13,7 +13,7 @@
         <div class="flex flex-wrap -m-4 mensual-targets">
             <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
                 <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
-                    <img src="{{asset('images/logo.png')}}" alt="" width="50px">
+                    <img src="{{asset('images/memberships/GRATIS.png')}}" alt="" width="70px" class="rounded-lg">
                     <h2 class="text-sm tracking-widest title-font mb-1 font-medium">Inicio</h2>
                     <h1 class="text-4xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">Gratis</h1>
                     <p class="flex items-center text-gray-600 mb-2">
@@ -163,7 +163,7 @@
             </div>
             <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
                 <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
-                    <img src="{{asset('images/logo.png')}}" alt="" width="50px">
+                    <img src="{{asset('images/memberships/YORKIE.png')}}" alt="" width="70px" class="rounded-lg">
                     <h2 class="text-sm tracking-widest title-font mb-1 font-medium">Yorkie Shire</h2>
                     <h1
                         class="text-4xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
@@ -317,7 +317,7 @@
             </div>
             <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
                 <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
-                    <img src="{{asset('images/logo.png')}}" alt="" width="50px">
+                    <img src="{{asset('images/memberships/AKITA.png')}}" alt="" width="70px" class="rounded-lg">
                     <h2 class="text-sm tracking-widest title-font mb-1 font-medium">Akita inu</h2>
                     <h1
                         class="text-4xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
@@ -479,11 +479,10 @@
                 </div>
             </div>
             <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
-                <div class="h-full p-6 rounded-lg border-2 border-indigo-500 flex flex-col relative overflow-hidden">
-                    <img src="{{asset('images/logo.png')}}" alt="" width="50px">
-                    <span
-                        class="bg-indigo-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">Popular</span>
-                    <img src="assets/logo.png" alt="" width="50px">
+                <div class="h-full p-6 rounded-lg border-2 border-orange-400 flex flex-col relative overflow-hidden">
+                    <img src="{{asset('images/memberships/DANES.png')}}" alt="" width="70px" class="rounded-lg">
+                    <!-- <span
+                        class="bg-orange-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">Popular</span> -->
                     <h2 class="text-sm tracking-widest title-font mb-1 font-medium">Gran Danes</h2>
                     <h1
                         class="text-4xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">

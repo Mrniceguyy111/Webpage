@@ -90,7 +90,13 @@ class User extends Authenticatable
 
     public function getLastBuyAttribute()
     {
-        $lastPurchaseDate = \Carbon\Carbon::parse($this->last_purchase); // Convierte la cadena a un objeto Carbon
-        return $lastPurchaseDate->diffForHumans();
+        // Convierte la cadena a un objeto Carbon
+
+        if ($this->last_purchase != null) {
+            $lastPurchaseDate = \Carbon\Carbon::parse($this->last_purchase);
+            return $lastPurchaseDate->diffForHumans();
+        } else {
+            return "No hay ultima compra 😿";
+        }
     }
 }
