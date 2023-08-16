@@ -32,18 +32,6 @@
                     @enderror
                 </div>
 
-                <div class="mb-4" wire:key='subscription_price'>
-                    <label for="subscription_price" class="block text-gray-700 text-sm font-bold mb-2">Precio para
-                        suscriptiores:</label>
-                    <input type="number" placeholder="$"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="subscription_price" wire:model="subscription_price">
-                    @error('subscription_price')
-                    <span class="text-red-600">{{ $message }}</span>
-                    @enderror
-                </div>
-
-
                 <div class="mb-4" wire:key='quantity'>
                     <label for="quantity" class="block text-gray-700 text-sm font-bold mb-2">Stock:</label>
                     <input type="number" placeholder="15"
@@ -56,7 +44,7 @@
 
                 <div class="mb-4" wire:key='discount'>
                     <label for="discount" class="block text-gray-700 text-sm font-bold mb-2">Descuento</label>
-                    <input type="number" placeholder="%"
+                    <input type="number" placeholder="%" value="0"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="discount" wire:model="discount">
                     @error('discount')

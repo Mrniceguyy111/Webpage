@@ -23,7 +23,7 @@
                 <img alt="" class="self-center flex-shrink-0 w-24 h-24 mb-4 bg-center bg-cover rounded-full "
                     src="{{asset('storage/pets/'.$item->photo)}}">
                 <p class="text-xl font-semibold leadi">{{$item->name}}</p>
-                <p class="dark:text-gray-400">{{$item->getAnimal->name}} - {{$item->getBreedAnimal->name}}</p>
+                <p class="dark:text-gray-400">{{$item->animal->name}} - {{$item->getBreedAnimal->name}}</p>
             </div>
             @endforeach
             <div wire:click='create()' class=" hover:bg-sale-200 flex-col justify-center m-8 text-center"

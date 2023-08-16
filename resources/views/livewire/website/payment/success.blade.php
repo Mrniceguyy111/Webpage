@@ -5,7 +5,24 @@
         <div class="flex justify-center min-h-screen">
             <div class="w-full max-w-sm rounded-xl bg-layer-2 px-8 py-6">
                 <div class="text-center">
-                    <h3 class="text-lg font-semibold text-heading">Recibimos tu transaccion </h3>
+                    <h3 class="text-lg font-semibold text-heading">
+                        @switch($this->transaction_state)
+                        @case(4)
+                        ¡Recibimos tu transaccion!
+                        @break
+                        @case(6)
+                        Transacción rechazada
+                        @break
+                        @case(104)
+                        Ocurrio un error, contacta a nuestro soporte
+                        @break
+                        @case(7)
+                        Aun estamos a la espera (Pago pendiente)
+                        @break
+                        @default
+
+                        @endswitch
+                    </h3>
                     <p class="text-sm font-semibold text-heading text-red-400">Recuerda descargar tu comprobante</p>
                 </div>
                 <dl class="mt-4 space-y-4">

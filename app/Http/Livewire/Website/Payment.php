@@ -125,6 +125,7 @@ class Payment extends Component
 
         $this->setDataPayU();
 
+
         return view('livewire.website.payment.datapayment', [
             "animalCategory" => AnimalsCategory::all(),
             "addreses" => $addreses,

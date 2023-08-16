@@ -24,7 +24,6 @@ class Shop extends Component
         $discount,
         $is_active = 1,
         $has_offer = 0,
-        $subscription_price,
         $animal,
         $quantity,
         $animal_category,
@@ -37,17 +36,6 @@ class Shop extends Component
     public $modal = false;
     public $editing = false;
 
-    protected $rules = [
-        'name'                  => 'required|unique:products,name',
-        'price'                 => 'required|numeric|gte:1000',
-        'quantity'              => 'required|gte:1',
-        'subscription_price'    => 'nullable|numeric|lte:1000',
-        'discount'              => 'numeric|lte:100',
-        'description'           => 'required',
-        'animal'                => 'required',
-        'animal_category'       => 'required',
-        'imagename'             => 'required|image|max:65000|dimensions:min_width=500,min_height=500'
-    ];
 
     public function render()
     {
@@ -76,15 +64,23 @@ class Shop extends Component
     }
 
 
-    public function lastedOrders()
+    public function rules()
     {
-        return view('livewire.backend.history.show');
+        return [
+            'name' => "required|unique:products,name,{$this->product_id}",
+            'price'                 => 'required|numeric|gte:1000',
+            'quantity'              => 'required|gte:1',
+            'discount'              => 'numeric|lte:100',
+            'description'           => 'required',
+            'animal'                => 'required',
+            'animal_category'       => 'required',
+            'imagename'             => 'required|image|max:65000|dimensions:min_width=500,min_height=500'
+        ];
     }
 
     public function store()
     {
-        $this->validate();
-
+        $this->rules();
         if ($this->imagename) {
             if ($this->principal_image_path) {
                 Storage::disk("products")->delete($this->principal_image_path);
@@ -101,7 +97,6 @@ class Shop extends Component
                 "price" => $this->price,
                 "discount" => $this->discount,
                 "quantity" => $this->quantity,
-                "subscription_price" => $this->subscription_price,
                 "is_active" => $this->is_active,
                 "has_offer" => $this->has_offer,
                 "animal" => $this->animal,
@@ -128,7 +123,6 @@ class Shop extends Component
         $this->slug = $product->slug;
         $this->price = $product->price;
         $this->quantity = $product->quantity;
-        $this->subscription_price = $product->subscription_price;
         $this->discount = $product->discount;
         $this->description = $product->description;
         $this->is_active = $product->is_active;

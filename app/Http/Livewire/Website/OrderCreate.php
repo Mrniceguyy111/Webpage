@@ -13,12 +13,15 @@ use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 
+use function Laravel\Prompts\error;
+
 class OrderCreate extends Component
 {
     public $order;
     public $apiKey,
         $merchant_id,
         $tx_value,
+        $tx_state,
         $signatureString,
         $signature,
         $oldSignature,
@@ -38,7 +41,7 @@ class OrderCreate extends Component
 
         $this->referenceCode = $request->query('referenceCode');
         $this->tx_value = $request->query('TX_VALUE');
-        $this->new_value = number_format($this->tx_value, 0, ',', '.');
+        $this->new_value = number_format($this->tx_value, 1, '.', '');
         $this->currency = $request->query('currency');
         $this->transaction_state = $request->query('transactionState');
         $this->signatureString = "$this->apiKey~$this->merchant_id~$this->referenceCode~$this->new_value~$this->currency~$this->transaction_state";
@@ -46,44 +49,66 @@ class OrderCreate extends Component
         $this->oldSignature = $request->query('signature');
         $this->transaction_id = $request->query('transactionId');
 
-        // Actualiza la orden
-        Order::updateOrCreate(
-            ['id' => $this->order->id],
-            [
-                'status' => 'success',
-                'transaction_id' => $this->transaction_id,
-            ]
-        );
 
-        // Edita la cantidad de stock de cada producto
-        foreach (Cart::content() as $item) {
-            $product = Product::find($item->id);
-            $product->quantity = $product->quantity - $item->qty;
-            $product->save();
+        switch ($this->transaction_state) {
+            case 4:
+
+                Order::updateOrCreate(
+                    ['id' => $this->order->id],
+                    [
+                        'status' => 'success',
+                        'transaction_id' => $this->transaction_id,
+                    ]
+                );
+
+                foreach (Cart::content() as $item) {
+                    $product = Product::find($item->id);
+                    $product->quantity = $product->quantity - $item->qty;
+                    $product->save();
+                }
+
+                User::updateOrCreate(
+                    ['id' => Auth::user()->id],
+                    [
+                        'last_purchase' => Carbon::now(),
+                        'total_purchases' => Auth::user()->total_purchases += 1,
+                    ],
+                );
+                break;
+
+            case 6:
+                Order::updateOrCreate(
+                    ['id' => $this->order->id],
+                    [
+                        'status' => 'rejected',
+                        'transaction_id' => $this->transaction_id,
+                    ]
+                );
+                break;
+            case 104:
+                break;
+            case 7:
+                Order::updateOrCreate(
+                    ['id' => $this->order->id],
+                    [
+                        'transaction_id' => $this->transaction_id,
+                    ]
+                );
+                break;
+            default:
+                return abort(500);
+                break;
         }
-
-        // Actualiza fecha y cantidad de compras de usuario
-        User::updateOrCreate(
-            ['id' => Auth::user()->id],
-            [
-                'last_purchase' => Carbon::now(),
-                'total_purchases' => Auth::user()->total_purchases += 1,
-            ],
-        );
-
-        Cart::destroy();
-        $request->session()->forget('order');
     }
 
     public function render()
     {
-
-        if (Cart::content()->count() == 0) {
-            abort(404);
+        if (strtoupper($this->oldSignature) == strtoupper($this->signature)) {
+            return view('livewire.website.payment.success', [
+                "animalCategory" => AnimalsCategory::all(),
+            ])->extends('template', ["animalCategory" => AnimalsCategory::all()]);
+        } else {
+            return abort(403);
         }
-
-        return view('livewire.website.payment.success', [
-            "animalCategory" => AnimalsCategory::all(),
-        ])->extends('template', ["animalCategory" => AnimalsCategory::all()]);
     }
 }

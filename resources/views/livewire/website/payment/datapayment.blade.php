@@ -29,11 +29,6 @@
                             {{Auth::user()->document}}</dd>
                     </div>
                     <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                        <dt class="text-sm font-medium leading-6 text-gray-900">Fecha de nacimiento:</dt>
-                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{Auth::user()->birthday_date}}</dd>
-                    </div>
-                    <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Email:</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{Auth::user()->email}}
                         </dd>
@@ -191,13 +186,14 @@
                             IVA (19%)
                         </dt>
                         <dd class="text-sm font-semibold text-heading">${{Cart::tax()}}</dd>
+                        {{--
                     </div>
                     <div class="flex items-center justify-between">
                         <dt class="text-sm font-semibold text-text">
                             Domicilio
                         </dt>
                         <dd class="text-sm font-semibold text-heading">$10.000</dd>
-                    </div>
+                    </div> --}}
 
                 </dl>
                 <div class="mt-2 flex items-center justify-between">

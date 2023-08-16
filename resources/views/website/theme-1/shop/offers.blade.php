@@ -48,7 +48,7 @@
             </div>
             <!--
             - Gird de los productos
-            
+
           -->
             <div class="product-main">
                 <h2 class="title">¡OFERTAS IMPERDIBLES!</h2>
@@ -56,10 +56,10 @@
                     @foreach ($product as $item)
                     <div class="showcase">
                         <div class="showcase-banner">
-                            <img src="{{asset('images/juguetes.png')}}" alt="Mens Winter Leathers Jackets" width="300"
-                                class="product-img default">
-                            <img src="{{asset('images/juguetes.png')}}" alt="Mens Winter Leathers Jackets" width="300"
-                                class="product-img hover">
+                            <img src="{{asset('storage/products/'. $item->principal_image_path)}}"
+                                alt="Mens Winter Leathers Jackets" width="300" class="product-img default">
+                            <img src="{{asset('storage/products/'. $item->principal_image_path)}}"
+                                alt="Mens Winter Leathers Jackets" width="300" class="product-img hover">
                         </div>
                         <div class="showcase-content">
                             <a href="{{route('shop.product',[

@@ -20,9 +20,16 @@ class ShoppingCart extends Component
     {
         $product = Product::findOrFail($id);
 
-        Cart::add($product->id, $product->name, 1, $product->price, [
-            'image' => $product->principal_image_path,
-        ]);
+        if ($product->discount > 0) {
+            Cart::add($product->id, $product->name, 1, $product->getPriceWithDiscountSub(), [
+                'image' => $product->principal_image_path,
+            ]);
+        } else {
+            Cart::add($product->id, $product->name, 1, $product->getPrice(), [
+                'image' => $product->principal_image_path,
+            ]);
+        }
+
 
         return redirect()->back()->with("message", "¡Producto agregado al carrito!");
     }

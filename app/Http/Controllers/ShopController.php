@@ -60,7 +60,6 @@ class ShopController extends Controller
         if ($product->is_active == 0) {
             return abort(404);
         }
-        $category = AnimalsCategory::where('slug', $animalCategory)->first();
 
         return view('website.theme-1.shop.show', [
             "product" => $product,

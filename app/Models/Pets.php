@@ -30,7 +30,7 @@ class Pets extends Model
     }
 
 
-    public function getAnimal()
+    public function animal()
     {
         return $this->belongsTo(Animals::class, 'animal_id');
     }

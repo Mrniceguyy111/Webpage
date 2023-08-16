@@ -46,6 +46,10 @@ Route::get('/', [Controller::class, 'index'])->name('home');
 
 // Route::get('/', [Controller::class, 'index'])->name('home');
 
+Route::get('500', function () {
+    abort(500);
+});
+
 Route::get('memberships', [Controller::class, 'memberships'])
     ->name('membership.index');
 

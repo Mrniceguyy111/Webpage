@@ -50,9 +50,15 @@
                         <h2 class="max-w-xl mb-6 text-2xl font-bold  md:text-4xl">
                             {{$product->name}}</h2>
                         <p class="inline-block mb-6 text-4xl font-bold text-gray-700  ">
+                            @if ($product->discount == 0)
+                            <span>${{$product->getCorrectPrice()}}</span>
+                            @else
                             <span>${{$product->getPriceWithDiscount()}}</span>
                             <span
                                 class="text-base font-normal text-gray-500 line-through ">${{$product->getCorrectPrice()}}</span>
+                            @endif
+
+
                         </p>
                         <p class="max-w-md text-gray-700 ">
                             {!! $product->description !!}
