@@ -9,4 +9,5 @@
   'website.order-create' => 'App\\Http\\Livewire\\Website\\OrderCreate',
   'website.payment' => 'App\\Http\\Livewire\\Website\\Payment',
   'website.shopping-cart' => 'App\\Http\\Livewire\\Website\\ShoppingCart',
+  'website.subscriptions' => 'App\\Http\\Livewire\\Website\\Subscriptions',
 );

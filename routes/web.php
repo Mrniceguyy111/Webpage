@@ -24,7 +24,8 @@ use App\Http\Livewire\Backend\{
 use App\Http\Livewire\Website\{
     OrderCreate,
     Payment,
-    ShoppingCart
+    ShoppingCart,
+    Subscriptions
 };
 
 /*
@@ -50,9 +51,8 @@ Route::get('500', function () {
     abort(500);
 });
 
-Route::get('memberships', [Controller::class, 'memberships'])
+Route::get('/memberships', Subscriptions::class)
     ->name('membership.index');
-
 Route::get('/help', [Controller::class, 'helpCenter'])
     ->name('help.view');
 

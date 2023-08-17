@@ -69,25 +69,26 @@
         <div class="container">
             <div class="slider-container has-scrollbar">
                 <div class="slider-item">
-                    <img src="{{asset('images/test/banner.png')}}" alt="women's latest fashion sale" class="banner-img">
-                    <div class="banner-content">
-                        <p class="banner-subtitle">Hola, Somos</p>
-                        <h2 class="banner-title">Hatchi</h2>
-                        <p class="banner-text">
-                            Lo mejor, de lo mejor
-                        </p>
-                        <a href="#" class="banner-btn">Enterate</a>
-                    </div>
+                    <video autoplay loop muted playsinline src="{{asset('videos/banner1.mp4')}}" class="banner-img">
+                        <div class="banner-content">
+                            <!-- <p class="banner-subtitle">Hola, Somos</p>
+                            <h2 class="banner-title">Hatchi</h2>
+                            <p class="banner-text">
+                                Lo mejor, de lo mejor
+                            </p>
+                            <a href="#" class="banner-btn">Enterate</a> -->
+                        </div>
                 </div>
                 <div class="slider-item">
-                    <img src="{{asset('images/test/banner.png')}}" alt="women's latest fashion sale" class="banner-img">
+                    <img src="{{asset('images/others/banner2.png')}}" alt="women's latest fashion sale"
+                        class="banner-img">
                     <div class="banner-content">
-                        <p class="banner-subtitle">Hola, Somos</p>
+                        <!-- <p class="banner-subtitle">Hola, Somos</p>
                         <h2 class="banner-title">Hatchi</h2>
                         <p class="banner-text">
                             Lo mejor, de lo mejor
                         </p>
-                        <a href="#" class="banner-btn">Enterate</a>
+                        <a href="#" class="banner-btn">Enterate</a> -->
                     </div>
                 </div>
                 <div class="slider-item">
@@ -619,7 +620,8 @@
 
                                     <h3 class="service-title">Primeros En Aceptar Pagos Con Criptomonedas
                                     </h3>
-                                    <p class="service-desc">Recibimos BITCOIN y TETHER (USDT)
+                                    <p class="service-desc">Recibimos BITCOIN y TETHER (USDT) y obtendras hasta 20% de
+                                        Descuento en toda la tienda.
                                     </p>
 
                                 </div>
@@ -651,7 +653,8 @@
                                 <div class="service-content">
 
                                     <h3 class="service-title">El mejor soporte</h3>
-                                    <p class="service-desc">Soporte inmediatico con IA 24/7 y unico en Colombia
+                                    <p class="service-desc">Soporte inmediatico con Inteligencia artificial (IA) 24/7 y
+                                        unico en Colombia
                                     </p>
 
                                 </div>

@@ -343,7 +343,7 @@ $nav_links = [
             <h2 class="nav-title">Datos de intereses</h2>
           </li>
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">¿Como comprar en hatchi?</a>
+            <a href="https://youtu.be/mtwa7L_l59U" class="footer-nav-link">¿Como comprar en hatchi?</a>
           </li>
           <li class="footer-nav-item">
             <a href="{{ route('faq.view') }}" class="footer-nav-link">Preguntas frecuentes</a>
@@ -415,10 +415,12 @@ $nav_links = [
     </div>
     <div class="footer-bottom">
       <div class="payment-zone">
+        <img src="{{asset('images/others/pse.png')}}" alt="payment method" class="payment-img">
         <div class="payment-zone2">
           <img src="{{asset('images/others/Btc.png')}}" alt="payment method" class="payment-img2">
           <img src="{{asset('images/others/bitcoinhere.png')}}" alt="payment method" class="payment-img">
           <img src="{{asset('images/others/Tether.png')}}" alt="payment method" class="payment-img2b">
+          <img src="{{asset('images/others/capsula.png')}}" alt="payment method" class="payment-img2bb">
         </div>
         <img src="{{asset('images/others/payu.png')}}" alt="payment method" class="payment-img">
         <img src="{{asset('images/others/payment.png')}}" alt="payment method" class="payment-img">
@@ -448,7 +450,7 @@ $nav_links = [
 
   <script>
     const carrusel = document.querySelector(".carrusel-items");
-    
+
     let maxScrollLeft = carrusel.scrollWidth - carrusel.clientWidth;
     let intervalo = null;
     let step = 1;
@@ -462,24 +464,24 @@ $nav_links = [
         }
       }, 10);
     };
-    
+
     const stop = () => {
       clearInterval(intervalo);
     };
-    
+
     carrusel.addEventListener("mouseover", () => {
       stop();
     });
-    
+
     carrusel.addEventListener("mouseout", () => {
       start();
     });
-    
+
     start();
   </script>
   <script>
     const carrusel2 = document.querySelector(".carrusel-items2");
-    
+
     let maxScrollLeft2 = carrusel2.scrollWidth - carrusel2.clientWidth;
     let intervalo2 = null;
     let step2 = 1;
@@ -493,19 +495,19 @@ $nav_links = [
         }
       }, 10);
     };
-    
+
     const stop2 = () => {
       clearInterval(intervalo2);
     };
-    
+
     carrusel2.addEventListener("mouseover", () => {
       stop2();
     });
-    
+
     carrusel2.addEventListener("mouseout", () => {
       start2();
     });
-    
+
     start2();
   </script>
 

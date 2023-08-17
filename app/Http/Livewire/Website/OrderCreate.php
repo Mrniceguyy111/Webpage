@@ -76,6 +76,7 @@ class OrderCreate extends Component
                 );
                 break;
 
+                Cart::destroy();
             case 6:
                 Order::updateOrCreate(
                     ['id' => $this->order->id],

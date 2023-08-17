@@ -22,20 +22,20 @@ class SusriptionsSeeder extends Seeder
 
         DB::table('subscriptions')->insert([
             'name' => 'Gran Danes',
-            'price_month' => 8000,
-            'price_year' => 6500
+            'price_month' => 0,
+            'price_year' => 0,
         ]);
 
         DB::table('subscriptions')->insert([
             'name' => 'Akita',
-            'price_month' => 17500,
-            'price_year' => 15000
+            'price_month' => 0,
+            'price_year' => 0
         ]);
 
         DB::table('subscriptions')->insert([
             'name' => 'Yorkie',
-            'price_month' => 54500,
-            'price_year' => 35000
+            'price_month' => 0,
+            'price_year' => 55000
         ]);
     }
 }
