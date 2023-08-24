@@ -5,6 +5,7 @@ namespace App\Models;
 // use Alexo\LaravelPayU\Payable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Order extends Model
 {
@@ -34,5 +35,11 @@ class Order extends Model
 
     public function address()
     {
+        return $this->belongsTo(Address::class, 'delivery_address');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -19,16 +19,21 @@
             <img src="{{asset('images/logo.png')}}" alt="subscribe newsletter" width="400" height="400">
         </div>
         <div class="newsletter">
-            <form action="#">
+
+            <form action="{{route('send-mail')}}" method="POST">
                 <div class="newsletter-header">
                     <h3 class="newsletter-title">Bienvenido a Hatchi</h3>
                     <p class="newsletter-desc">
                         La unica <b>E-commerce</b> que se preocupa por tus mascotas.
                     </p>
                 </div>
-                <input type="email" name="email" class="email-field" placeholder="Email Address" required>
+                @csrf
+                <input type="text" name="name" autocomplete="off" class="email-field" placeholder="Nombre" required>
+                <input type="email" name="email" autocomplete="off" class="email-field" placeholder="Correo electronico"
+                    required>
                 <button type="submit" class="btn-newsletter">Ir ahora!</button>
             </form>
+
         </div>
     </div>
 </div>
@@ -401,8 +406,8 @@
                         <br class="sm:hidden">Aseguramos el bienestar <br> de tu mascota!
                     </h2>
                     <div class=" space-x-2 text-center py-2 lg:py-0" bis_skin_checked="1">
-                        <span class="">Lo hacemos lo mejor de lo mejor!</span>
-                        <span class="font-bold text-lg">Miralo!</span>
+                        <span class="">Hacemos Lo Mejor Para Ti y Tu Mascota,</span>
+                        <span class="font-bold text-lg">Compruébalo!!!</span>
                     </div>
                     <a href="{{route('shop.offert')}}" rel="noreferrer noopener"
                         class="bg-white px-5 mt-4 lg:mt-0 py-3 rounded-md border block dark:bg-gray-50 dark:text-gray-900 dark:border-gray-400">Comprar</a>
@@ -411,7 +416,8 @@
         </div>
         <div class="category">
             <div class="container">
-                <h2 class="tittle text-center text-2xl font-bold my-5" style="color: #2b1411;">Trabajamos para animales
+                <h2 class="tittle text-center text-2xl font-bold my-5" style="color: #2b1411;">Trabajamos para todas tus
+                    mascotas
                     como:
                 </h2>
                 <div class="category-item-container has-scrollbar">

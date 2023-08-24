@@ -70,7 +70,7 @@ class Payment extends Component
         $this->taxBase = str_replace(".", "", Cart::subtotal());
         $this->totalPrice = str_replace(".", "", Cart::total());
         $this->referenceCode = Auth::user()->id . Auth::user()->total_purchases .  $this->totalPrice . rand(1, 1000);
-        $this->signatureString = env('PAYU_API_KEY') . '~' . env('PAYU_MERCHANT_ID') . '~' . $this->referenceCode . '~' . $this->totalPrice . '~' . "COP";
+        $this->signatureString = env('PAYU_API_KEY') . '' . env('PAYU_MERCHANT_ID') . '~' . $this->referenceCode . '~' . $this->totalPrice . '~' . "COP";
         $this->signature = md5($this->signatureString);
     }
 

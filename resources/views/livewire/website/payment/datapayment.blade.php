@@ -141,7 +141,7 @@
                 class="my-2 inline-flex cursor-pointer items-center justify-center rounded-xl border-2 border-critical bg-gray-200 px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80">
                 Anterior
             </button>
-            <form class="" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/" method="post">
+            <form class="" action="https://checkout.payulatam.com/ppp-web-gateway-payu/" method="post">
 
                 <input name="merchantId" type="hidden" value="{{env('PAYU_MERCHANT_ID')}}">
                 <input name="accountId" type="hidden" value="{{env('PAYU_ACCOUNT_ID')}}">

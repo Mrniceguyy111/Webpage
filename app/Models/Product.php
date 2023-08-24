@@ -71,8 +71,6 @@ class Product extends Model
             ->get();
     }
 
-
-
     public function getPriceWithDiscount()
     {
         if ($this->discount > 0) {

@@ -9,6 +9,7 @@ use App\Models\{
     Post,
 };
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Jetstream;
@@ -19,6 +20,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
+    public $email;
     use AuthorizesRequests, ValidatesRequests;
 
     public function coomingSoon()
@@ -50,8 +52,29 @@ class Controller extends BaseController
         ]);
     }
 
+    public function sendEmail(Request $request)
+    {
+        $name = $request->get('name');
+        $this->email = $request->get('email');
+
+        Mail::send('emails.welcome', ['name' => $name, 'correo' => $this->email], function ($message) {
+            $message->from('info@hatchi.com.co', 'Info Hatchi');
+            $message->to($this->email, 'Cliente Hatchi');
+            $message->subject('¡Pronto tendras mas informacion sobre Hatchi!');
+        });
+
+        return redirect()->route('home');
+    }
+
     public function workUs()
     {
+
+        Mail::send('emails.welcome', [], function ($message) {
+            $message->from('info@hathi.com.co', 'Hatchi Colombia!');
+            $message->to('julir2772@gmail.com', 'Recipient Name');
+            $message->subject('Welcome!');
+        });
+
         return view('website.theme-1.work-us', [
             "animals" => Animals::all(),
             "animalCategory" => AnimalsCategory::all(),

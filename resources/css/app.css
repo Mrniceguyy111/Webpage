@@ -2241,6 +2241,12 @@ footer {
   margin: auto;
   margin-bottom: 15px;
 }
+.payment-img2pse {
+  max-width: 200px;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 15px;
+}
 .payment-img2bi {
   max-width: 240px;
   width: 100%;

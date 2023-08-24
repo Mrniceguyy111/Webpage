@@ -27,6 +27,7 @@ use App\Http\Livewire\Website\{
     ShoppingCart,
     Subscriptions
 };
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,8 @@ use App\Http\Livewire\Website\{
 |
 */
 
+Route::post('correo', [Controller::class, 'sendEmail'])->name('send-mail');
+
 // if (time() > strtotime("August 05 2023 00:00:00")) {
 Route::get('/', [Controller::class, 'index'])->name('home');
 // } else {
@@ -46,10 +49,6 @@ Route::get('/', [Controller::class, 'index'])->name('home');
 // }
 
 // Route::get('/', [Controller::class, 'index'])->name('home');
-
-Route::get('500', function () {
-    abort(500);
-});
 
 Route::get('/memberships', Subscriptions::class)
     ->name('membership.index');

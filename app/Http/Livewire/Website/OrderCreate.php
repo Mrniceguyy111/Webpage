@@ -13,7 +13,6 @@ use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 
-use function Laravel\Prompts\error;
 
 class OrderCreate extends Component
 {
@@ -71,7 +70,7 @@ class OrderCreate extends Component
                     ['id' => Auth::user()->id],
                     [
                         'last_purchase' => Carbon::now(),
-                        'total_purchases' => Auth::user()->total_purchases += 1,
+                        'total_purchases' => Auth::user()->total_purchases + 1,
                     ],
                 );
                 break;
