@@ -20,12 +20,14 @@ use App\Http\Livewire\Backend\{
     Shop,
     SystemConfig,
     Userlist,
+    Work as BackendWork,
 };
 use App\Http\Livewire\Website\{
     OrderCreate,
     Payment,
     ShoppingCart,
-    Subscriptions
+    Subscriptions,
+    Work
 };
 use Illuminate\Support\Facades\Mail;
 
@@ -42,20 +44,14 @@ use Illuminate\Support\Facades\Mail;
 
 Route::post('correo', [Controller::class, 'sendEmail'])->name('send-mail');
 
-// if (time() > strtotime("August 05 2023 00:00:00")) {
 Route::get('/', [Controller::class, 'index'])->name('home');
-// } else {
-//     Route::get('/', [Controller::class, 'coomingSoon'])->name('home');
-// }
-
-// Route::get('/', [Controller::class, 'index'])->name('home');
 
 Route::get('/memberships', Subscriptions::class)
     ->name('membership.index');
 Route::get('/help', [Controller::class, 'helpCenter'])
     ->name('help.view');
 
-Route::get('/unete-a-hatchi', [Controller::class, 'workUs'])
+Route::get('/unete-a-hatchi', Work::class)
     ->name('workus.view');
 
 Route::get('/faq', [Controller::class, 'faq'])
@@ -150,6 +146,9 @@ Route::middleware([
     Route::prefix('staff')->group(function () {
 
         Route::get('/usuarios', Userlist::class)->name('users.index');
+
+
+        Route::get('/work-us', BackendWork::class)->name('work-us.staff');
 
         Route::get('/products', Shop::class)->name('purchases')
             ->middleware(["auth"]);

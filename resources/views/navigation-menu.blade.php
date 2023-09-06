@@ -37,11 +37,17 @@ $nav_links = [
 'model' => 'Product',
 ],
 [
+'name' => 'Trabaja con nosotros',
+'route' => route('work-us.staff'),
+'active' => request()->routeIs('work-us.staff'),
+'model' => 'Product',
+],
+[
 'name' => 'Configuracion',
 'route' => route('system.config'),
 'active' => request()->routeIs('system.config'),
 'model' => 'Product',
-]
+],
 ]
 @endphp
 

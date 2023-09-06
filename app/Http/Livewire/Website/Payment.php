@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Ramsey\Uuid\Type\Time;
 
@@ -24,6 +25,7 @@ class Payment extends Component
 
     // check hasAddreses
     public $hasAddreses = false;
+
     // Form address
     public
         $id_address,
@@ -57,22 +59,102 @@ class Payment extends Component
         $pageAddresses = false,
         $pagePay = false;
 
-    public $apiKey,
+    // PayU
+    public
         $merchant_id,
         $tx_value,
         $new_value,
         $currency,
         $transaction_state;
 
-    public function setDataPayU()
+    public $request_id,
+        $btc_value,
+        $pay_currency,
+        $select_payment;
+
+
+    public function setDataPayments()
     {
+        // Shared variables
         $this->tax = str_replace(".", "", Cart::tax());
         $this->taxBase = str_replace(".", "", Cart::subtotal());
         $this->totalPrice = str_replace(".", "", Cart::total());
+
+        // PayU Variables
         $this->referenceCode = Auth::user()->id . Auth::user()->total_purchases .  $this->totalPrice . rand(1, 1000);
-        $this->signatureString = env('PAYU_API_KEY') . '' . env('PAYU_MERCHANT_ID') . '~' . $this->referenceCode . '~' . $this->totalPrice . '~' . "COP";
+        $this->signatureString = env('PAYU_API_KEY') . '~' . env('PAYU_MERCHANT_ID') . '~' . $this->referenceCode . '~' . $this->totalPrice . '~' . "COP";
         $this->signature = md5($this->signatureString);
     }
+
+    public function trokeraRequest()
+    {
+
+        $this->currency = 'COP';
+
+        $url = "https://trokera.com/api/getPaymentRequest";
+
+        $headers = [
+            'X-API-KEY' => env('TROKERA_API_KEY'),
+            'SECRET-KEY' => env('TROKERA_SECRET_KEY'),
+            'Content-type' => 'application/json',
+        ];
+
+        // When the payment currency is selected
+        try {
+            switch ($this->pay_currency) {
+                case 'BTC':
+                    $params = [
+                        'currency' => $this->currency,
+                        'amount' => $this->totalPrice,
+                        'tax' => "0",
+                        'description' => "Payment test",
+                        'pay_currency' => "BTC"
+                    ];
+
+                    $response = Http::withHeaders($headers)->post($url, $params);
+
+                    if ($response->ok()) {
+                        $jsonTrokera = $response->json();
+                        $this->request_id = $jsonTrokera["data"]["request_id"];
+                        $this->btc_value = $jsonTrokera["data"]["btc_value"];
+                    }
+                    break;
+                case 'USDT':
+                    $params = [
+                        'currency' => $this->currency,
+                        'amount' => $this->totalPrice,
+                        'tax' => "0",
+                        'description' => "Payment test",
+                        'pay_currency' => "USDT"
+                    ];
+
+                    $response = Http::withHeaders($headers)->post($url, $params);
+
+                    if ($response->ok()) {
+                        $jsonTrokera = $response->json();
+                        // dd($jsonTrokera);
+                        $this->request_id = $jsonTrokera["data"]["request_id"];
+                        $this->btc_value = $jsonTrokera["data"]["btc"];
+                    }
+
+                    break;
+                default:
+                    echo "Ocurrio un error";
+                    break;
+            }
+        } catch (\Throwable $th) {
+            echo "Ocurrio un error";
+        }
+    }
+
+    // Here the client can decide if pay with "BTC" or "USDT"
+
+    public function trokeraPayment()
+    {
+        return $this->select_payment = true;
+    }
+
+
 
     public function createOrder()
     {
@@ -86,6 +168,7 @@ class Payment extends Component
 
         session(['order' => $this->order]);
     }
+
     public function page($page)
     {
         switch ($page) {
@@ -123,7 +206,7 @@ class Payment extends Component
             $this->hasAddreses = false;
         }
 
-        $this->setDataPayU();
+        $this->setDataPayments();
 
 
         return view('livewire.website.payment.datapayment', [
@@ -140,5 +223,10 @@ class Payment extends Component
     public function buy()
     {
         $this->createOrder();
+    }
+
+
+    public function tokeraCheckout()
+    {
     }
 }

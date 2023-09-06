@@ -22,11 +22,11 @@ class ShoppingCart extends Component
 
         if ($product->discount > 0) {
             Cart::add($product->id, $product->name, 1, $product->getPriceWithDiscountSub(), [
-                'image' => $product->principal_image_path,
+                'image' => $product->getFirstImage($product->id),
             ]);
         } else {
             Cart::add($product->id, $product->name, 1, $product->getPrice(), [
-                'image' => $product->principal_image_path,
+                'image' => $product->getFirstImage($product->id),
             ]);
         }
 

@@ -1,2 +1,2 @@
 INSERT INTO animals (id, name)
-VALUES (1, 'Perro'), (2, 'Gato'), (3, 'Conejo'), (4, 'Caballo'), (5, 'Reodores'), (6, 'Hurón'), (7, 'Aves'), (8, 'Pez'), (9, 'Reptil'), (10, 'Mini cerdo'), (11, 'Granja');
+VALUES (1, 'Perro'), (2, 'Gato'), (3, 'Conejo'), (4, 'Caballo'), (5, 'Roedores'), (6, 'Hurón'), (7, 'Aves'), (8, 'Pez'), (9, 'Reptil'), (10, 'Mini cerdo'), (11, 'Granja');

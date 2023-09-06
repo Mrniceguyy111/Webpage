@@ -4,8 +4,10 @@ namespace App\Http\Livewire\Backend;
 
 use App\Models\Animals;
 use App\Models\AnimalsCategory;
+use App\Models\Images;
 use Livewire\Component;
 use App\Models\Product;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -15,6 +17,12 @@ class Shop extends Component
 {
     use AuthorizesRequests;
     use WithFileUploads;
+
+
+    // Uploads variable's
+    public $uploads = [],
+        $product,
+        $images;
 
     public $product_id,
         $name,
@@ -26,12 +34,7 @@ class Shop extends Component
         $has_offer = 0,
         $animal,
         $quantity,
-        $animal_category,
-        $principal_image_path,
-        $imagename,
-        $second_image_path,
-        $third_image_path,
-        $fourth_image_path;
+        $animal_category;
 
     public $modal = false;
     public $editing = false;
@@ -63,7 +66,7 @@ class Shop extends Component
         $this->openModal();
     }
 
-
+    // Function validate
     public function rules()
     {
         return [
@@ -74,43 +77,66 @@ class Shop extends Component
             'description'           => 'required',
             'animal'                => 'required',
             'animal_category'       => 'required',
-            'imagename'             => 'required|image|max:65000|dimensions:min_width=500,min_height=500'
+            'imagename'             => 'required|max:65000|dimensions:min_width=500,min_height=500'
         ];
+    }
+
+    public function updateFiles($files)
+    {
+        $this->uploads = $files;
     }
 
     public function store()
     {
+
         $this->rules();
-        if ($this->imagename) {
-            if ($this->principal_image_path) {
-                Storage::disk("products")->delete($this->principal_image_path);
+
+        try {
+
+            // Get First Image
+
+
+            // Create new product
+            $this->product = Product::updateOrCreate(
+                ["id" => $this->product_id],
+                [
+                    "name" => $this->name,
+                    "slug" => Str::slug($this->name),
+                    "description" => $this->description,
+                    "price" => $this->price,
+                    "discount" => $this->discount,
+                    "quantity" => $this->quantity,
+                    "is_active" => $this->is_active,
+                    "has_offer" => $this->has_offer,
+                    "animal" => $this->animal,
+                    "animal_category" => $this->animal_category
+                ]
+            );
+
+            // Get all the files and then push them to to S3 in AWS
+
+            foreach ($this->uploads as $file) {
+                $storage = Storage::disk('s3')->put('products/' . $this->product->id, $file, 'public');
+                $this->images = Images::create([
+                    'url' => Storage::disk('s3')->url($storage),
+                    'name' => $this->product->name,
+                    'product_id' => $this->product->id,
+                ]);
             }
-            $this->principal_image_path = $this->imagename->store(null, "products");
+
+            $this->closeModal();
+            $this->editing = false;
+            return session()->flash(
+                "message",
+                $this->product_id ? "¡Actualización exitosa!" : "¡Creacion Exitosa!"
+            );
+        } catch (\Exception $e) {
+            $this->closeModal();
+            return session()->flash(
+                "error",
+                "No se pudo registrar el producto. Error: <br>" . $e->getMessage()
+            );
         }
-
-        Product::updateOrCreate(
-            ["id" => $this->product_id],
-            [
-                "name" => $this->name,
-                "slug" => Str::slug($this->name),
-                "description" => $this->description,
-                "price" => $this->price,
-                "discount" => $this->discount,
-                "quantity" => $this->quantity,
-                "is_active" => $this->is_active,
-                "has_offer" => $this->has_offer,
-                "animal" => $this->animal,
-                "animal_category" => $this->animal_category,
-                "principal_image_path" => $this->principal_image_path,
-            ]
-        );
-
-        $this->closeModal();
-        $this->editing = false;
-        return session()->flash(
-            "message",
-            $this->product_id ? "¡Actualización exitosa!" : "¡Creacion Exitosa!"
-        );
     }
 
     public function edit($id)
@@ -132,18 +158,16 @@ class Shop extends Component
         $this->animal_category = $product->animal_category;
 
 
-        $this->principal_image_path = $product->principal_image_path;
-        $this->second_image_path = $product->second_image_path;
-        $this->third_image_path = $product->third_image_path;
-        $this->fourth_image_path = $product->fourth_image_path;
-
-
         $this->openModal();
     }
 
     public function delete($id)
     {
+        // Delete image
+        Images::where('product_id', $id)->delete();
+        // Delete product
         Product::find($id)->delete();
+
         return session()->flash("message", "Registro elimnado correctamente");
     }
 }

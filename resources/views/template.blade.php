@@ -27,6 +27,7 @@ $nav_links = [
     <title>{{env('APP_NAME')}} | @yield('title')</title>
 
     @vite(['resources/css/app.css'])
+
     <link rel="shortcut icon" href="{{asset('images/favicon.ico')}}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -267,10 +268,10 @@ $nav_links = [
                 </li>
                 @guest
                 <li class="menu-category">
-                    <a href="" class="menu-title">Iniciar sesion</a>
+                    <a href="{{route('login')}}" class="menu-title">Iniciar sesion</a>
                 </li>
                 <li class="menu-category">
-                    <a href="" class="menu-title">Registrarse</a>
+                    <a href="{{route('register')}}" class="menu-title">Registrarse</a>
                 </li>
                 <li class="menu-category">
                     <a href="" class="menu-title">Rastrear envio</a>
@@ -450,6 +451,8 @@ $nav_links = [
     }
 
     </script>
+
+    {!! HCaptcha::script('es') !!}
 
     <script>
         const carrusel = document.querySelector(".carrusel-items");

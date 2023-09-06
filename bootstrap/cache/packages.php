@@ -110,4 +110,15 @@
       'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
     ),
   ),
+  'teampanfu/laravel-hcaptcha' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Panfu\\Laravel\\HCaptcha\\HCaptchaServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'HCaptcha' => 'Panfu\\Laravel\\HCaptcha\\Facades\\HCaptcha',
+    ),
+  ),
 );

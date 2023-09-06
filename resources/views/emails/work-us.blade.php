@@ -137,7 +137,7 @@
                                                 color: #e7a242;
                                                 font-weight: bold;
                                             ">
-                                        ¡Bienvenido a Hatchi!
+                                        Trabaja con nosotros
                                     </td>
                                 </tr>
                                 <tr>
@@ -156,21 +156,21 @@
                                                 line-height: 22px;
                                                 color: #434343;
                                             ">
-                                        Hola <b>{{$name}}</b>. Gracias por tu interés en Hatchi, la tienda de mascotas
-                                        que está revolucionando el mercado en Colombia. <br><br>
+                                        Estimado/a {{$name}}, <br><br>
 
-                                        En Hatchi, nuestro compromiso es ofrecer a nuestros clientes la mejor
-                                        experiencia, tanto en la selección de sus mascotas como en el cuidado de
-                                        las mismas. Por eso, estamos trabajando duro para ofrecerte toda la información
-                                        que necesitas y puestas tomar una decisión informada. <br><br>
 
-                                        En los próximos días, te enviaremos más información sobre nuestra tienda,
-                                        productos y servicios. Mientras tanto, puedes visitar nuestra página
-                                        web para conocer más sobre nosotros. <br><br>
+                                        Le agradecemos su interés en trabajar en Hatchi. <br>
 
-                                        Atentamente, <br><br>
+                                        Hemos recibido su propuesta de trabajo y la estamos evaluando cuidadosamente.
+                                        Nos pondremos en contacto con usted en breve para informarle de nuestro
+                                        veredicto. <br>
 
-                                        El equipo de Hatchi
+                                        Mientras tanto, si tiene alguna pregunta, no dude en ponerse en contacto con
+                                        nosotros. <br>
+
+                                        Atentamente, <br>
+
+                                        El equipo de recursos humanos de Hatchi
                                     </td>
 
                                 </tr>
@@ -203,14 +203,6 @@
                                         </table>
                                     </td>
                                 </tr>
-                                {{-- <tr>
-                                    <td class="em_white" height="42" align="center" valign="middle"
-                                        style="font-family: Arial, sans-serif; font-size: 16px; background-color:#e7a242 color:blue; font-weight:bold; height:42px;">
-                                        <a href="https://www.mailgun.com" target="_blank"
-                                            style="text-decoration:none; color:#ffffff; line-height:42px; display:block;">Order
-                                            Status</a>
-                                    </td>
-                                </tr> --}}
                                 <tr>
                                     <td height="40" style="height: 40px" class="em_h10">
                                         &nbsp;

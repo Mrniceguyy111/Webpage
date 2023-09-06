@@ -29,3 +29,8 @@ upArrowAnimals.addEventListener('click', () =>{
     upArrowAnimals.classList.add('inactive');
     downArrowAnimals.classList.remove('inactive');
 });
+
+
+
+
+

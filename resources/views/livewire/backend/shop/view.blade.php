@@ -10,6 +10,15 @@
                 </div>
             </div>
             @endif
+            @if (session()->has('error'))
+            <div class="bg-amber-200 rounded-b text-red-800 px-4 py-4 shadow-md my-3" role="alert">
+                <div class="flex">
+                    <div>
+                        <h4>{!! session('error') !!}</h4>
+                    </div>
+                </div>
+            </div>
+            @endif
             @if ($modal)
             @include('livewire.backend.shop.create')
             @endif
@@ -59,8 +68,8 @@
             </div>
             </td>
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <div class="text-sm leading-5 text-gray-500"><img width="330"
-                        src="{{asset('storage/products/'.$item->principal_image_path)}}" alt="{{$item->name}}"></div>
+                <div class="text-sm leading-5 text-gray-500"><img width="330" src="{{$item->getFirstImage($item->id)}}"
+                        alt="{{$item->name}}"></div>
             </td>
 
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -99,3 +108,68 @@
     </div>
 </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+<script src="https://unpkg.com/create-file-list"></script>
+<script>
+    function dataFileDnD() {
+    return {
+        files: [],
+        fileDragging: null,
+        fileDropping: null,
+        humanFileSize(size) {
+            const i = Math.floor(Math.log(size) / Math.log(1024));
+            return (
+                (size / Math.pow(1024, i)).toFixed(2) * 1 +
+                " " +
+                ["B", "kB", "MB", "GB", "TB"][i]
+            );
+        },
+        remove(index) {
+            let files = [...this.files];
+            files.splice(index, 1);
+
+            this.files = createFileList(files);
+        },
+        drop(e) {
+            let removed, add;
+            let files = [...this.files];
+
+            removed = files.splice(this.fileDragging, 1);
+            files.splice(this.fileDropping, 0, ...removed);
+
+            this.files = createFileList(files);
+
+            this.fileDropping = null;
+            this.fileDragging = null;
+        },
+        dragenter(e) {
+            let targetElem = e.target.closest("[draggable]");
+            this.fileDropping = targetElem.getAttribute("data-index");
+        },
+        dragstart(e) {
+            this.fileDragging = e.target
+                .closest("[draggable]")
+                .getAttribute("data-index");
+            e.dataTransfer.effectAllowed = "move";
+        },
+        loadFile(file) {
+            const preview = document.querySelectorAll(".preview");
+            const blobUrl = URL.createObjectURL(file);
+
+            preview.forEach(elem => {
+                elem.onload = () => {
+                    URL.revokeObjectURL(elem.src); // free memory
+                };
+            });
+
+            return blobUrl;
+        },
+        addFiles(e) {
+            const files = createFileList([...this.files], [...e.target.files]);
+            this.files = files;
+            this.form.formData.files = [...files];
+        }
+    };
+}
+</script>

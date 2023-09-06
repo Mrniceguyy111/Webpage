@@ -20,7 +20,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    public $email;
+    public $email, $name;
     use AuthorizesRequests, ValidatesRequests;
 
     public function coomingSoon()
@@ -54,26 +54,21 @@ class Controller extends BaseController
 
     public function sendEmail(Request $request)
     {
-        $name = $request->get('name');
+        $this->name = $request->get('name');
         $this->email = $request->get('email');
 
-        Mail::send('emails.welcome', ['name' => $name, 'correo' => $this->email], function ($message) {
-            $message->from('info@hatchi.com.co', 'Info Hatchi');
-            $message->to($this->email, 'Cliente Hatchi');
+        Mail::send('emails.welcome', ['name' => $this->name, 'correo' => $this->email], function ($message) {
+            $message->from('info@hatchi.com.co', 'Hatchi te informa');
+            $message->to($this->email, $this->name);
             $message->subject('¡Pronto tendras mas informacion sobre Hatchi!');
         });
 
         return redirect()->route('home');
     }
 
+
     public function workUs()
     {
-
-        Mail::send('emails.welcome', [], function ($message) {
-            $message->from('info@hathi.com.co', 'Hatchi Colombia!');
-            $message->to('julir2772@gmail.com', 'Recipient Name');
-            $message->subject('Welcome!');
-        });
 
         return view('website.theme-1.work-us', [
             "animals" => Animals::all(),

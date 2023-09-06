@@ -226,10 +226,10 @@
                             @foreach ($productsInOffer as $item)
                             <div class="showcase">
                                 <div class="showcase-banner">
-                                    <img src="{{asset('storage/products/'. $item->principal_image_path)}}"
-                                        alt="{{$item->name}}" width="500" height="500" class="product-img default">
-                                    <img src="{{asset('storage/products/'. $item->principal_image_path)}}"
-                                        alt="{{$item->name}}" width="300" height="500" class="product-img hover">
+                                    <img src="{{$item->getFirstImage($item->id)}}" alt="{{$item->name}}" width="500"
+                                        height="500" class="product-img default">
+                                    <img src="{{$item->getFirstImage($item->id)}}" alt="{{$item->name}}" width="300"
+                                        height="500" class="product-img hover">
                                 </div>
                                 <div class="showcase-content">
                                     <a href="{{route('shop.product',[
@@ -264,10 +264,10 @@
                             @foreach ($lastUploadProducts as $item)
                             <div class="showcase">
                                 <div class="showcase-banner">
-                                    <img src="{{asset('storage/products/'. $item->principal_image_path)}}"
-                                        alt="{{$item->name}}" width="300" class="product-img default">
-                                    <img src="{{asset('storage/products/'. $item->principal_image_path)}}"
-                                        alt="{{$item->name}}" width="300" class="product-img hover">
+                                    <img src="{{$item->getFirstImage($item->id)}}" alt="{{$item->name}}" width="300"
+                                        class="product-img default">
+                                    <img src="{{$item->getFirstImage($item->id)}}" alt="{{$item->name}}" width="300"
+                                        class="product-img hover">
                                 </div>
                                 <div class="showcase-content">
                                     <a href="{{route('shop.product',[
@@ -308,10 +308,10 @@
                             @foreach ($productsOfDogs as $item)
                             <div class="showcase">
                                 <div class="showcase-banner">
-                                    <img src="{{asset('storage/products/'. $item->principal_image_path)}}"
-                                        alt="{{$item->name}}" width="300" class="product-img default">
-                                    <img src="{{asset('storage/products/'. $item->principal_image_path)}}"
-                                        alt="{{$item->name}}" width="300" class="product-img hover">
+                                    <img src="{{$item->getFirstImage($item->id)}}" alt="{{$item->name}}" width="300"
+                                        class="product-img default">
+                                    <img src="{{$item->getFirstImage($item->id)}}" alt="{{$item->name}}" width="300"
+                                        class="product-img hover">
                                 </div>
                                 <div class="showcase-content">
                                     <a href="{{route('shop.product',[
@@ -352,9 +352,9 @@
                             @foreach ($productsOfCat as $item)
                             <div class="showcase">
                                 <div class="showcase-banner">
-                                    <img src="{{asset('storage/products/'. $item->principal_image_path)}}"
-                                        alt="{{$item->name}}" width="300" class="product-img default">
-                                    <img src="{{asset('storage/products/'. $item->principal_image_path)}}" width="300"
+                                    <img src="{{$item->getFirstImage($item->id)}}" alt="{{$item->name}}" width="300"
+                                        class="product-img default">
+                                    <img src="{{$item->getFirstImage($item->id)}}" width="300"
                                         class="product-img hover">
                                 </div>
                                 <div class="showcase-content">

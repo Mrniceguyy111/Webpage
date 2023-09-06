@@ -13,35 +13,24 @@
     </div>
     @endif
     <div class="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
-        <div class="flex flex-wrap -mx-4">
+        <div class="flex flex-wrap mx-4">
             <div class="w-full mb-8 md:w-1/2 md:mb-0">
                 <div class="sticky top-0 z-50 overflow-hidden ">
                     <div class="relative mb-6 lg:mb-10 lg:h-2/4 ">
-                        <img src="{{asset('storage/products/'. $product->principal_image_path)}}" alt=""
+                        <img src="{{$product->getFirstImage($product->id)}}" alt="{{$product->name}}"
                             class="object-cover w-full lg:h-full ">
                     </div>
-                    {{-- <div class="flex-wrap hidden md:flex ">
+                    <div class="flex-wrap hidden md:flex ">
+                        @foreach ($product->getAllImages($product->id) as $item)
                         <div class="w-1/2 p-2 sm:w-1/4">
-                            <a href="#" class="block border border-blue-300 hover:border-blue-300">
-                                <img src="{{asset('images/juguetes.png')}}" alt="" class="object-cover w-full lg:h-20">
+                            <a href="#" data-target="#large-image"
+                                class="block border border-blue-300 hover:border-blue-300">
+                                <img src="{{$item->url}}" alt="" class="object-cover w-full lg:h-20">
                             </a>
+
                         </div>
-                        <div class="w-1/2 p-2 sm:w-1/4">
-                            <a href="#" class="block border border-transparent hover:border-blue-300">
-                                <img src="{{asset('images/logo.png')}}" alt="" class="object-cover w-full lg:h-20">
-                            </a>
-                        </div>
-                        <div class="w-1/2 p-2 sm:w-1/4">
-                            <a href="#" class="block border border-transparent hover:border-blue-300">
-                                <img src="{{asset('images/juguetes.png')}}" alt="" class="object-cover w-full lg:h-20">
-                            </a>
-                        </div>
-                        <div class="w-1/2 p-2 sm:w-1/4">
-                            <a href="#" class="block border border-transparent hover:border-blue-300">
-                                <img src="{{asset('images/juguetes.png')}}" alt="" class="object-cover w-full lg:h-20">
-                            </a>
-                        </div>
-                    </div> --}}
+                        @endforeach
+                    </div>
                 </div>
             </div>
             <div class="w-full px-4 md:w-1/2 ">

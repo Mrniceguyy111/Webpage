@@ -75,29 +75,31 @@
                     <span class="text-red-600">{{ $message }}</span>
                     @enderror
                 </div>
+                <div>
+                    <form wire:submit.prevent="store" class="space-y-4">
+                        <div class="space-y-2">
+                            <label class="block text-gray-600">Sube tus archivos</label>
+                            <input type="file" wire:model="uploads" multiple class="border border-gray-300 p-2 w-full">
+                        </div>
 
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300"
-                        for="file_input">File:</label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        aria-describedby="file_input_help" id="file_input" type="file" wire:model='imagename'>
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or
-                        GIF (Size. min: 500x500).</p>
-                    @error('imagename')
-                    <span class="text-red-600">{{ $message }}</span>
-                    @enderror
-                    <div wire:loading wire:target="imagename" class=""><img
-                            src="{{ asset('images/svg/Rolling-1s-200px.svg') }}" alt=""></div>
+                        <div wire:loading wire:target="files">
+                            Cargando archivos...
+                        </div>
 
-                    @if ($imagename)
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300"
-                            for="file_input">Previsualización:</label>
-                        <img src="{{ $imagename->temporaryUrl() }}">
-                    </div>
-                    @endif
+                        @if(count($uploads) > 0)
+                        <div class="space-y-2">
+                            <p class="text-lg font-semibold">Archivos Cargados:</p>
+                            @foreach($uploads as $file)
+                            <div class="flex items-center space-x-2" wire:key="{{ $file->getFilename() }}">
+                                <img src="{{ $file->temporaryUrl() }}" alt="Archivo Previsualizado" class="h-16 w-auto">
+                                <span>{{ $file->getClientOriginalName() }}</span>
+                            </div>
+                            @endforeach
+                        </div>
+                        @endif
+                    </form>
                 </div>
+
 
                 <div class="mb-4" wire:key='animal_category'>
                     <label for="animal_category" class="block mb-2 text-sm font-medium text-gray-900">Categoria:</label>

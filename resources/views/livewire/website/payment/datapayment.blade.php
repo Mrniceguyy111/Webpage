@@ -56,9 +56,6 @@
             <div class="px-4 sm:px-0">
                 <h3 class="text-base font-semibold leading-7 text-gray-900">Correspondencia</h3>
                 <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Selecciona el destino</p>
-                <p class="mt-1 max-w-2xl font-bold text-2x1 leading-6 text-gray-500">Todas las compras se despachan por
-                    servientrega desde Bogotá, LOS TIEMPOS DE ENTREGA dependen de la cuarentena establecida en cada zona
-                </p>
             </div>
 
             <div class="mt-6 border-t border-gray-100">
@@ -138,10 +135,11 @@
                 </dl>
             </div>
             <button type="button" id="anterior-pago" wire:click="page('address')"
-                class="my-2 inline-flex cursor-pointer items-center justify-center rounded-xl border-2 border-critical bg-gray-200 px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80">
+                class="my-2 block cursor-pointer items-center justify-center rounded-xl border-2 border-critical bg-gray-200 px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80">
                 Anterior
             </button>
-            <form class="" action="https://checkout.payulatam.com/ppp-web-gateway-payu/" method="post">
+
+            <form class="inline" method="post" action="https://checkout.payulatam.com/ppp-web-gateway-payu">
 
                 <input name="merchantId" type="hidden" value="{{env('PAYU_MERCHANT_ID')}}">
                 <input name="accountId" type="hidden" value="{{env('PAYU_ACCOUNT_ID')}}">
@@ -153,7 +151,7 @@
                 <input name="currency" type="hidden" value="COP">
                 <input name="extra1" type="hidden" value="{{ Cart::content()->count() }}">
                 <input name="signature" type="hidden" value="{{$this->signature}}">
-                <input name="test" type="hidden" value="1">
+                <input name="test" type="hidden" value="0">
                 <input name="buyerFullName" type="hidden" value="{{Auth::user()->name}}">
                 <input name="buyerEmail" type="hidden" value="{{Auth::user()->email}}">
                 <input name="mobilePhone" type="hidden" value="{{Auth::user()->phone}}">
@@ -165,6 +163,40 @@
                     Pagar <box-icon name='wallet-alt'></box-icon>
                 </button>
             </form>
+
+            <button type="submit" wire:click="trokeraPayment"
+                class="my-2 inline-flex cursor-pointer items-center justify-center rounded-xl border-2 border-critical bg-principal px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80">
+                Pagar con Trokera <box-icon name='dollar'></box-icon>
+            </button>
+
+            @if ($this->select_payment)
+            <select id="address" wire:model='pay_currency' wire:change='trokeraRequest'
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Seleccione su cryptomoneda:</option>
+                <option value="BTC"'>Bitcoin - BTC</option>
+                <option value="USDT">Tether - USDT</option>
+            </select>
+            @endif
+
+
+
+            @if ($this->pay_currency)
+            <h3 class="text-base font-semibold leading-7 text-gray-900">Pago total en BTC: {{$this->btc_value}}</h3>
+
+            <form class="inline" id="profileForm" action="https://trokera.com/api/apiRequestCheckout" method="post"
+                autocomplete="off">
+                <input type="hidden" name="api_key" value="{{env("TROKERA_API_KEY")}}"">
+                    <input type="hidden" name="secret_key" value="{{env("TROKERA_SECRET_KEY")}}">
+                    <input type="hidden" name="return_url_success" value="http://127.0.0.1:8000/request">
+                    <input type="hidden" name="return_url_failed" value="http://127.0.0.1:8000/request">
+                    <input type="hidden" name="request_id" value="{{$this->request_id}}">
+
+                    <button
+                        class="my-2 inline-flex cursor-pointer items-center justify-center rounded-xl border-2 border-critical bg-principal px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80"
+                        type="submit">Llevame a pagar!</button>
+                    </form>
+                    @endif
+
         </div>
         @endif
 
@@ -200,22 +232,15 @@
                     <dt class="text-sm font-semibold text-text">Total a pagar:</dt>
                     <dd class="text-lg font-semibold text-heading">${{Cart::total()}}</dd>
                 </div>
-                <div class="flex flex-wrap items-center justify-between">
-                    <p class="mt-2 text-sm font-semibold text-heading text-gray-400">*Asegurar tu mercancía garantiza
-                        que si ocurre un percance con la transportadora no perderás tu inversión. Esto en casos extremos
-                        como desastres naturales y otros factores inevitables.</p>
-                    <p class="mt-2 text-sm font-semibold text-heading text-gray-400">Los costos de envío pueden variar
-                        de acuerdo a la cantidad o el tamaño de los artículos.</p>
-                    <p class="mt-2 text-sm font-semibold text-heading text-red-400">Recuerda que una vez realizada tu
-                        compra no se aceptan devoluciones de dinero.</p>
-                </div>
+                {{-- <div class="flex flex-wrap items-center justify-between">
+                </div> --}}
                 <div class="mt-6 flex flex-col space-y-2">
-                    <button type="button" wire:click='cancelCart'
-                        class="my-2 inline-flex cursor-pointer items-center justify-center rounded-xl border-2 border-critical bg-gray-200 px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80">
-                        Cancelar transferencia
+                    <button type="button" wire:click=' cancelCart'
+                    class="my-2 inline-flex cursor-pointer items-center justify-center rounded-xl border-2 border-critical bg-gray-200 px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:border-critical-accent hover:bg-gray-200-accent focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:border-critical disabled:hover:bg-gray-200 disabled:hover:text-white dark:focus:ring-white/80">
+                    Cancelar transferencia
                     </button>
-                </div>
-            </div>
         </div>
-    </section>
+</div>
+</div>
+</section>
 </div>

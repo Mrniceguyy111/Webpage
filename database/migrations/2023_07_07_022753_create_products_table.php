@@ -27,10 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('animal');
             $table->unsignedBigInteger('animal_category');
 
-            $table->string('principal_image_path')->default('default.png')->nullable();
-            $table->string('second_image_path')->nullable();
-            $table->string('third_image_path')->nullable();
-            $table->string('fourth_image_path')->nullable();
+            $table->string('image')->default('default.png')->nullable();
             $table->timestamps();
 
             $table->foreign('animal')->references('id')->on('animals');

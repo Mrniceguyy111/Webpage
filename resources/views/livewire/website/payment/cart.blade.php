@@ -19,7 +19,7 @@
                     @foreach (Cart::content() as $item)
                     <li class="flex py-6 sm:py-10">
                         <div class="flex-shrink-0">
-                            <img src="{{asset('storage/products/'. $item->options['image'])}}" alt=""
+                            <img src="{{$item->options['image']}}" alt=""
                                 class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48" />
                         </div>
 

@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use League\Flysystem\Filesystem;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -41,6 +44,7 @@ class Product extends Model
 
     public function getProductHasOffer()
     {
+
         return Product::where('is_active', 1)
             ->where('has_offer', 1)
             ->orWhere('discount', '>=', 1)
@@ -56,6 +60,29 @@ class Product extends Model
         return Product::where('is_active', 1)
             ->whereBetween('created_at', [$sevenDaysAgo, Carbon::now()])
             ->get();
+    }
+
+
+    public function getFirstImage($productId)
+    {
+        try {
+            $resource = Images::where('product_id', $productId)
+                ->first();
+            return $resource->url;
+        } catch (\Throwable $th) {
+            return Storage::disk('s3')->url('default.png');
+        }
+    }
+
+    public function getAllImages($productId)
+    {
+        try {
+            $resource = Images::where('product_id', $productId)
+                ->get();
+            return $resource;
+        } catch (\Throwable $th) {
+            return Storage::disk('s3')->url('default.png');
+        }
     }
 
     public function getProductByAnimal($animal)
@@ -294,5 +321,10 @@ class Product extends Model
         } else {
             return "⛔";
         }
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Images::class);
     }
 }
