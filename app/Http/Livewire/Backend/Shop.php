@@ -8,9 +8,11 @@ use App\Models\Images;
 use Livewire\Component;
 use App\Models\Product;
 use Illuminate\Contracts\Cache\Store;
+
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class Shop extends Component
@@ -22,7 +24,8 @@ class Shop extends Component
     // Uploads variable's
     public $uploads = [],
         $product,
-        $images;
+        $images,
+        $files = [];
 
     public $product_id,
         $name,
@@ -38,6 +41,7 @@ class Shop extends Component
 
     public $modal = false;
     public $editing = false;
+
 
 
     public function render()
@@ -69,7 +73,7 @@ class Shop extends Component
     // Function validate
     public function rules()
     {
-        return [
+        $this->validate([
             'name' => "required|unique:products,name,{$this->product_id}",
             'price'                 => 'required|numeric|gte:1000',
             'quantity'              => 'required|gte:1',
@@ -77,14 +81,16 @@ class Shop extends Component
             'description'           => 'required',
             'animal'                => 'required',
             'animal_category'       => 'required',
-            'imagename'             => 'required|max:65000|dimensions:min_width=500,min_height=500'
-        ];
+            'imagename'             => 'required|max:2048|dimensions:min_width=500,min_height=500'
+        ]);
     }
 
-    public function updateFiles($files)
+    public function updateFiles()
     {
-        $this->uploads = $files;
+        $this->uploads = $this->files;
     }
+
+
 
     public function store()
     {
@@ -92,8 +98,6 @@ class Shop extends Component
         $this->rules();
 
         try {
-
-            // Get First Image
 
 
             // Create new product
@@ -115,13 +119,15 @@ class Shop extends Component
 
             // Get all the files and then push them to to S3 in AWS
 
-            foreach ($this->uploads as $file) {
-                $storage = Storage::disk('s3')->put('products/' . $this->product->id, $file, 'public');
-                $this->images = Images::create([
-                    'url' => Storage::disk('s3')->url($storage),
-                    'name' => $this->product->name,
-                    'product_id' => $this->product->id,
-                ]);
+            if ($this->uploads) {
+                foreach ($this->uploads as $file) {
+                    $storage = Storage::disk('s3')->put('products/' . $this->product->id, $file, 'public');
+                    $this->images = Images::create([
+                        'url' => Storage::disk('s3')->url($storage),
+                        'name' => $this->product->name,
+                        'product_id' => $this->product->id,
+                    ]);
+                }
             }
 
             $this->closeModal();
@@ -138,6 +144,7 @@ class Shop extends Component
             );
         }
     }
+
 
     public function edit($id)
     {

@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\OrderCollection;
-use App\Http\Resources\V1\OrderResource;
-use App\Models\Order;
+use App\Http\Resources\V1\PetsCollection;
+use App\Http\Resources\V1\PetsResource;
+use App\Models\Pets;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class PetsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return new OrderCollection(Order::all());
+        return new PetsCollection(Pets::all());
     }
 
     /**
@@ -29,15 +29,15 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show(Pets $pets)
     {
-        return new OrderResource($order);
+        return new PetsResource($pets);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Pets $pets)
     {
         //
     }
@@ -45,7 +45,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy(Pets $pets)
     {
         //
     }

@@ -1,6 +1,6 @@
 <div>
     <x-modal wire:model='modal' id="slider">
-        <form>
+        <form wire:submit.prevent='updateFiles'>
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div class="mb-4">
                     <h1 class="text-gray-900 text-2xl font-bold ">
@@ -75,30 +75,28 @@
                     <span class="text-red-600">{{ $message }}</span>
                     @enderror
                 </div>
-                <div>
-                    <form wire:submit.prevent="store" class="space-y-4">
-                        <div class="space-y-2">
-                            <label class="block text-gray-600">Sube tus archivos</label>
-                            <input type="file" wire:model="uploads" multiple class="border border-gray-300 p-2 w-full">
-                        </div>
-
-                        <div wire:loading wire:target="files">
-                            Cargando archivos...
-                        </div>
-
-                        @if(count($uploads) > 0)
-                        <div class="space-y-2">
-                            <p class="text-lg font-semibold">Archivos Cargados:</p>
-                            @foreach($uploads as $file)
-                            <div class="flex items-center space-x-2" wire:key="{{ $file->getFilename() }}">
-                                <img src="{{ $file->temporaryUrl() }}" alt="Archivo Previsualizado" class="h-16 w-auto">
-                                <span>{{ $file->getClientOriginalName() }}</span>
-                            </div>
-                            @endforeach
-                        </div>
-                        @endif
-                    </form>
+                <div class="mb-4 space-y-2">
+                    <label class="block text-gray-600">Sube tus archivos</label>
+                    <input type="file" name="files" wire:model='files' wire:change='updateFiles'
+                        class="file-upload border border-gray-300 p-2 w-full">
                 </div>
+
+                <div wire:loading wire:target="files">
+                    <img src="{{asset('images/svg/Rolling-1s-200px.svg')}}" alt="">
+                </div>
+
+
+                @if(count($uploads) > 0)
+                <div class="space-y-2">
+                    <p class="text-lg font-semibold">Otras fotos:</p>
+                    @foreach($uploads as $file)
+                    <div class="flex items-center space-x-2" wire:key="{{ $file->getFilename() }}">
+                        <img src="{{ $file->temporaryUrl() }}" alt="Archivo Previsualizado" class="h-16 w-auto">
+                        <span>{{ $file->getClientOriginalName() }}</span>
+                    </div>
+                    @endforeach
+                </div>
+                @endif
 
 
                 <div class="mb-4" wire:key='animal_category'>

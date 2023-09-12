@@ -5,7 +5,7 @@ namespace App\Http\Resources\V1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class PostCollection extends ResourceCollection
+class AddressCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -24,7 +24,7 @@ class PostCollection extends ResourceCollection
                         'contacto@commarka.app',
                         // Agrega informacion de futuros Devs
                     ],
-                    'type' => 'posts'
+                    'type' => 'address'
                 ]
             ];
     }

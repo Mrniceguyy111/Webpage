@@ -27,6 +27,9 @@ class ProductResource extends JsonResource
             'animal' => $this->getAnimal->name,
             'animal_category' => $this->getCategory->name,
             'created_at' => $this->created_at,
+            'images' => [
+                $this->getAllImages($this->id),
+            ]
         ];
     }
 }

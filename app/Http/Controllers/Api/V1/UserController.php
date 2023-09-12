@@ -3,19 +3,20 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\OrderCollection;
-use App\Http\Resources\V1\OrderResource;
-use App\Models\Order;
+use App\Http\Resources\V1\PostResource;
+use App\Http\Resources\V1\UserCollection;
+use App\Http\Resources\V1\UserResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return new OrderCollection(Order::all());
+        return abort(403);
     }
 
     /**
@@ -29,15 +30,15 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show(User $user)
     {
-        return new OrderResource($order);
+        return new UserResource($user);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -45,7 +46,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy(User $user)
     {
         //
     }
