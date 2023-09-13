@@ -43,6 +43,10 @@ class Shop extends Component
     public $editing = false;
 
 
+    // public function mount()
+    // {
+    //     $this->on('');
+    // }
 
     public function render()
     {
@@ -81,7 +85,6 @@ class Shop extends Component
             'description'           => 'required',
             'animal'                => 'required',
             'animal_category'       => 'required',
-            'imagename'             => 'required|max:2048|dimensions:min_width=500,min_height=500'
         ]);
     }
 
